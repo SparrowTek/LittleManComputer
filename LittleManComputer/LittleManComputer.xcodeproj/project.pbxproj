@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E967ED411D8F665B005B4540 /* Registers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967ED401D8F665B005B4540 /* Registers.swift */; };
+		E967ED431D8F6669005B4540 /* LittleManComputerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967ED421D8F6669005B4540 /* LittleManComputerModel.swift */; };
+		E967ED451D8F667E005B4540 /* LMCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967ED441D8F667E005B4540 /* LMCDelegate.swift */; };
+		E967ED471D8F7DD9005B4540 /* RegistersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967ED461D8F7DD9005B4540 /* RegistersViewController.swift */; };
 		E976E0CA1D8EF8DB005142B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E976E0C91D8EF8DB005142B5 /* AppDelegate.swift */; };
-		E976E0CC1D8EF8DB005142B5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E976E0CB1D8EF8DB005142B5 /* ViewController.swift */; };
+		E976E0CC1D8EF8DB005142B5 /* LMCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E976E0CB1D8EF8DB005142B5 /* LMCViewController.swift */; };
 		E976E0CF1D8EF8DB005142B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E976E0CD1D8EF8DB005142B5 /* Main.storyboard */; };
 		E976E0D11D8EF8DB005142B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E976E0D01D8EF8DB005142B5 /* Assets.xcassets */; };
 		E976E0D41D8EF8DB005142B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E976E0D21D8EF8DB005142B5 /* LaunchScreen.storyboard */; };
@@ -26,9 +30,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E967ED401D8F665B005B4540 /* Registers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Registers.swift; sourceTree = "<group>"; };
+		E967ED421D8F6669005B4540 /* LittleManComputerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LittleManComputerModel.swift; sourceTree = "<group>"; };
+		E967ED441D8F667E005B4540 /* LMCDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMCDelegate.swift; sourceTree = "<group>"; };
+		E967ED461D8F7DD9005B4540 /* RegistersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistersViewController.swift; sourceTree = "<group>"; };
 		E976E0C61D8EF8DB005142B5 /* LittleManComputer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LittleManComputer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E976E0C91D8EF8DB005142B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E976E0CB1D8EF8DB005142B5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E976E0CB1D8EF8DB005142B5 /* LMCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMCViewController.swift; sourceTree = "<group>"; };
 		E976E0CE1D8EF8DB005142B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E976E0D01D8EF8DB005142B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E976E0D31D8EF8DB005142B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,6 +64,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E967ED3D1D8F660F005B4540 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E976E0CB1D8EF8DB005142B5 /* LMCViewController.swift */,
+				E967ED461D8F7DD9005B4540 /* RegistersViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E967ED3E1D8F661D005B4540 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 		E976E0BD1D8EF8DB005142B5 = {
 			isa = PBXGroup;
 			children = (
@@ -77,12 +101,16 @@
 		E976E0C81D8EF8DB005142B5 /* LittleManComputer */ = {
 			isa = PBXGroup;
 			children = (
+				E967ED3E1D8F661D005B4540 /* CoreData */,
+				E967ED3D1D8F660F005B4540 /* ViewControllers */,
 				E976E0C91D8EF8DB005142B5 /* AppDelegate.swift */,
-				E976E0CB1D8EF8DB005142B5 /* ViewController.swift */,
 				E976E0CD1D8EF8DB005142B5 /* Main.storyboard */,
 				E976E0D01D8EF8DB005142B5 /* Assets.xcassets */,
 				E976E0D21D8EF8DB005142B5 /* LaunchScreen.storyboard */,
 				E976E0D51D8EF8DB005142B5 /* Info.plist */,
+				E967ED401D8F665B005B4540 /* Registers.swift */,
+				E967ED421D8F6669005B4540 /* LittleManComputerModel.swift */,
+				E967ED441D8F667E005B4540 /* LMCDelegate.swift */,
 			);
 			path = LittleManComputer;
 			sourceTree = "<group>";
@@ -201,7 +229,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E976E0CC1D8EF8DB005142B5 /* ViewController.swift in Sources */,
+				E976E0CC1D8EF8DB005142B5 /* LMCViewController.swift in Sources */,
+				E967ED471D8F7DD9005B4540 /* RegistersViewController.swift in Sources */,
+				E967ED431D8F6669005B4540 /* LittleManComputerModel.swift in Sources */,
+				E967ED411D8F665B005B4540 /* Registers.swift in Sources */,
+				E967ED451D8F667E005B4540 /* LMCDelegate.swift in Sources */,
 				E976E0CA1D8EF8DB005142B5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,6 +444,7 @@
 				E976E0E51D8EF8DB005142B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E976E0E61D8EF8DB005142B5 /* Build configuration list for PBXNativeTarget "LittleManComputerTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +453,7 @@
 				E976E0E81D8EF8DB005142B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -6,4 +6,6 @@
 //  Copyright © 2016 SparrowTek LLC. All rights reserved.
 //
 
-import Foundation
+protocol LMCDelegate: class {
+    func setOutbox(_ outboxValue: Int)
+}
