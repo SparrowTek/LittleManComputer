@@ -140,17 +140,18 @@ class LittleManComputerModel {
         
         switch oppCode {
         case .add:
+            let accumulatorCopy = accumulator
             accumulator += registers[mailbox]
-            returnString = "Add \(accumulator) from the accumulator to the value in register \(mailbox), \(registers[mailbox])"
+            returnString = "Add \(accumulatorCopy) from the accumulator to the value in register \(mailbox); \(registers[mailbox])"
         case .subtract:
             accumulator -= registers[mailbox]
-            returnString = "Subtract \(registers[mailbox]) in register \(mailbox) from the accumulator value, \(accumulator)"
+            returnString = "Subtract \(registers[mailbox]) in register \(mailbox) from the accumulator value; \(accumulator)"
         case .store:
             registers[mailbox] = accumulator
             returnString = "Store the accumulator value \(accumulator) in register \(mailbox)"
         case .load:
             accumulator = registers[mailbox]
-            returnString = "Load the value in register \(mailbox), \(registers[mailbox]) into the accumulator"
+            returnString = "Load the value in register \(mailbox); \(registers[mailbox]) into the accumulator"
         case .branch:
             programCounter = registers[mailbox]
             return "Branch: change the program counter to the value in register \(mailbox)"
