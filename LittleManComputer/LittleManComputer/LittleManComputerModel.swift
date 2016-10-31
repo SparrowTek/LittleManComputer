@@ -82,7 +82,13 @@ class LittleManComputerModel {
     }
     
     func loadRegisters(code: String, completion: ((_ error: CompileError?) -> Void)) {
-        let linesArray = splitLines(code: code.lowercased())
+        
+        for index in 0...99 {
+            registers[index] = 0
+        }
+        
+        let codeWithoutLeadingAndTrailingWhiteSpace = code.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let linesArray = splitLines(code: codeWithoutLeadingAndTrailingWhiteSpace.lowercased())
         assemblyCodeRegisterCount = 0
         leadingLabelDictionary = [ : ]
         
@@ -201,7 +207,6 @@ class LittleManComputerModel {
     }
     
     // MARK: Methods to help load registers from assembly code
-    
     private func setRegistersFrominterpretedRegisterArray(interpretedLines: [interpretedRegister], arrayCount: Int) throws {
         do {
             for index in 0..<arrayCount {
@@ -255,17 +260,16 @@ class LittleManComputerModel {
             let oppCode = try convertCodeStringToOppCode(code: assemblyCode.oppCode)
             
             
-            if oppCode == Oppcode.input {
+            if oppCode == .input {
                 return 901
-            } else if oppCode == Oppcode.output {
+            } else if oppCode == .output {
                 return 902
-            } else if oppCode == Oppcode.halt {
+            } else if oppCode == .halt {
                 return 000
             }
             
             let mailbox = try setMailbox(trailingLabel: assemblyCode.trailingLabel)
-            
-            return (getDigitFromOppCode(oppCode: oppCode) * 100) + mailbox
+            return getDigitFromOppCode(oppCode: oppCode) + mailbox
             
         } catch let error as CompileError {
             throw error
@@ -286,30 +290,28 @@ class LittleManComputerModel {
         
         switch oppCode {
         case .add:
-            return 1
+            return 100
         case .subtract:
-            return 2
+            return 200
         case .store:
-            return 3
+            return 300
         case .load:
-            return 5
+            return 500
         case .branch:
-            return 6
+            return 600
         case .branchIfZero:
-            return 7
+            return 700
         case .branchIfPositive:
-            return 8
+            return 800
         case .input, .output:
-            return 9
+            return 900
         case .halt:
-            return 0
+            return 000
         }
     }
     
     private func interpretLine(line: String) throws -> interpretedRegister {
-        //let splitLine = line.characters.split { $0 == " " }.map(String.init)
-        let splitLine = line.components(separatedBy: .whitespaces).flatMap(String.init) // TODO: is this correct?
-        //let splitLine = line.utf16.split { NSCharacterSet.whitespaceCharacterSet().characterIsMember($0) }.flatMap(String.init)
+        let splitLine = line.components(separatedBy: .whitespaces)//.flatMap(String.init)
         let code: String
         var leadingLabel: String?
         var trailingLabel: String?
@@ -359,31 +361,29 @@ class LittleManComputerModel {
         case "add":
             return Oppcode.add
         case "sub":
-            return Oppcode.subtract
+            return .subtract
         case "sta":
-            return Oppcode.store
+            return .store
         case "lda":
-            return Oppcode.load
+            return .load
         case "bra":
-            return Oppcode.branch
+            return .branch
         case "brz":
-            return Oppcode.branchIfZero
+            return .branchIfZero
         case "brp":
-            return Oppcode.branchIfPositive
+            return .branchIfPositive
         case "inp":
-            return Oppcode.input
+            return .input
         case "out":
-            return Oppcode.output
+            return .output
         case "hlt":
-            return Oppcode.halt
+            return .halt
         default:
             throw CompileError.invalidAssemblyCode
         }
     }
     
     private func splitLines(code: String) -> [String] {
-        //let newLineChars = NSCharacterSet.newlines
-        //return code.utf16.split { newLineChars.characterIsMember($0) }.flatMap(String.init) // splits lines
-        return code.components(separatedBy: .newlines).flatMap(String.init) // TODO: is this correct?
+        return code.components(separatedBy: .newlines)//.flatMap(String.init)
     }
 }

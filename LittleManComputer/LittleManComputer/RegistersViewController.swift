@@ -111,7 +111,10 @@ class RegistersViewController: UIViewController {
     @IBOutlet weak var register97: UITextField!
     @IBOutlet weak var register98: UITextField!
     @IBOutlet weak var register99: UITextField!
+    
     var registerTextFieldArray: [UITextField]!
+    var activeTextField: UITextField?
+    weak var delegate: RegistersDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,18 +129,26 @@ class RegistersViewController: UIViewController {
                                   register83, register84, register85, register86, register87, register88, register89, register90, register91, register92, register93, register94,
                                   register95, register96, register97, register98, register99]
     }
-    
-    /*func createRegistersArray() -> [UITextField] {
-        return [register0, register1, register2, register3, register4, register5, register6, register7, register8, register9, register10,
-                register11, register12, register13, register14, register15, register16, register17, register18, register19, register20, register21, register22,
-                register23, register24, register25, register26, register27, register28, register29, register30, register31, register32, register33, register34,
-                register35, register36, register37, register38, register39, register40, register41, register42, register43, register44, register45, register46,
-                register47, register48, register49, register50, register51, register52, register53, register54, register55, register56, register57, register58,
-                register59, register60, register61, register62, register63, register64, register65, register66, register67, register68, register69, register70,
-                register71, register72, register73, register74, register75, register76, register77, register78, register79, register80, register81, register82,
-                register83, register84, register85, register86, register87, register88, register89, register90, register91, register92, register93, register94,
-                register95, register96, register97, register98, register99]
-    }*/
-    
+}
 
+extension RegistersViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.text = ""
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        activeTextField = nil
+        delegate?.RegisterTextFieldDidEndEditing()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        activeTextField = nil
+        return true
+    }
 }

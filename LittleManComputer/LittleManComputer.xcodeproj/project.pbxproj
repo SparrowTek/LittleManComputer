@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E93E83AA1DC6C26C0016576A /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93E83A91DC6C26C0016576A /* MoreViewController.swift */; };
 		E967ED411D8F665B005B4540 /* Registers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967ED401D8F665B005B4540 /* Registers.swift */; };
 		E967ED431D8F6669005B4540 /* LittleManComputerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967ED421D8F6669005B4540 /* LittleManComputerModel.swift */; };
 		E967ED451D8F667E005B4540 /* LMCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967ED441D8F667E005B4540 /* LMCDelegate.swift */; };
@@ -17,6 +18,7 @@
 		E976E0D11D8EF8DB005142B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E976E0D01D8EF8DB005142B5 /* Assets.xcassets */; };
 		E976E0D41D8EF8DB005142B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E976E0D21D8EF8DB005142B5 /* LaunchScreen.storyboard */; };
 		E976E0DF1D8EF8DB005142B5 /* LittleManComputerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E976E0DE1D8EF8DB005142B5 /* LittleManComputerTests.swift */; };
+		E9C6C2961D988C2D00C8BC5A /* RegistersDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6C2951D988C2D00C8BC5A /* RegistersDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E93E83A91DC6C26C0016576A /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		E967ED401D8F665B005B4540 /* Registers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Registers.swift; sourceTree = "<group>"; };
 		E967ED421D8F6669005B4540 /* LittleManComputerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LittleManComputerModel.swift; sourceTree = "<group>"; };
 		E967ED441D8F667E005B4540 /* LMCDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMCDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +47,7 @@
 		E976E0DA1D8EF8DB005142B5 /* LittleManComputerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LittleManComputerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E976E0DE1D8EF8DB005142B5 /* LittleManComputerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittleManComputerTests.swift; sourceTree = "<group>"; };
 		E976E0E01D8EF8DB005142B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9C6C2951D988C2D00C8BC5A /* RegistersDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistersDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,15 +73,9 @@
 			children = (
 				E976E0CB1D8EF8DB005142B5 /* LMCViewController.swift */,
 				E967ED461D8F7DD9005B4540 /* RegistersViewController.swift */,
+				E93E83A91DC6C26C0016576A /* MoreViewController.swift */,
 			);
 			name = ViewControllers;
-			sourceTree = "<group>";
-		};
-		E967ED3E1D8F661D005B4540 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = CoreData;
 			sourceTree = "<group>";
 		};
 		E976E0BD1D8EF8DB005142B5 = {
@@ -101,7 +99,6 @@
 		E976E0C81D8EF8DB005142B5 /* LittleManComputer */ = {
 			isa = PBXGroup;
 			children = (
-				E967ED3E1D8F661D005B4540 /* CoreData */,
 				E967ED3D1D8F660F005B4540 /* ViewControllers */,
 				E976E0C91D8EF8DB005142B5 /* AppDelegate.swift */,
 				E976E0CD1D8EF8DB005142B5 /* Main.storyboard */,
@@ -111,6 +108,7 @@
 				E967ED401D8F665B005B4540 /* Registers.swift */,
 				E967ED421D8F6669005B4540 /* LittleManComputerModel.swift */,
 				E967ED441D8F667E005B4540 /* LMCDelegate.swift */,
+				E9C6C2951D988C2D00C8BC5A /* RegistersDelegate.swift */,
 			);
 			path = LittleManComputer;
 			sourceTree = "<group>";
@@ -169,7 +167,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "SparrowTek LLC";
 				TargetAttributes = {
 					E976E0C51D8EF8DB005142B5 = {
@@ -232,7 +230,9 @@
 				E976E0CC1D8EF8DB005142B5 /* LMCViewController.swift in Sources */,
 				E967ED471D8F7DD9005B4540 /* RegistersViewController.swift in Sources */,
 				E967ED431D8F6669005B4540 /* LittleManComputerModel.swift in Sources */,
+				E9C6C2961D988C2D00C8BC5A /* RegistersDelegate.swift in Sources */,
 				E967ED411D8F665B005B4540 /* Registers.swift in Sources */,
+				E93E83AA1DC6C26C0016576A /* MoreViewController.swift in Sources */,
 				E967ED451D8F667E005B4540 /* LMCDelegate.swift in Sources */,
 				E976E0CA1D8EF8DB005142B5 /* AppDelegate.swift in Sources */,
 			);
@@ -294,6 +294,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -344,6 +345,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

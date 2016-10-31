@@ -12,9 +12,7 @@ class LMCViewController: UIViewController {
     
     @IBOutlet weak var assemblyCodeTextView: UITextView!
     @IBOutlet weak var outputTextView: UITextView!
-    
     @IBOutlet weak var stepMessageLabel: UILabel!
-    
     @IBOutlet weak var programCounterLabel: UILabel!
     @IBOutlet weak var accumulatorLabel: UILabel!
     @IBOutlet weak var inputLabel: UILabel!
@@ -22,42 +20,21 @@ class LMCViewController: UIViewController {
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var stepButton: UIButton!
     @IBOutlet weak var runButton: UIButton!
-    
-    
-    //lazy var registerTextFieldArray = registersVC.createRegisterTextFieldArray()
-    //var registerTextFieldArray: [UITextField]!
-    private var registersVC: RegistersViewController!
-    
+    @IBOutlet weak var registersScrollView: UIScrollView!
+    fileprivate var registersVC: RegistersViewController!
     var activeTextField: UITextField?
-    
     var programHalted = false
     var runNotStep = false
     var runSteppingSpeed: Double = 1.0 // TODO: allow user to adjust the run speed in a future version
-    
     var littleManComputerModel: LittleManComputerModel!
-    //var registers: Registers!
     let registers = Registers()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        /*if UIDevice.currentDevice.userInterfaceIdiom == .Pad {
-            registers = (tabBarController as! TabRootViewController).registers
-            coreDataStack = (tabBarController as! TabRootViewController).coreDataStack
-        }
-        else {
-            registers = (navigationController as! NavRootViewController).registers
-            coreDataStack = (navigationController as! NavRootViewController).coreDataStack
-        }*/
-        
         littleManComputerModel = LittleManComputerModel(registers: registers)
         littleManComputerModel.delegate = self
-        //createRegisterTextFieldArray()
-        //registerTextFieldArray = registersVC.createRegistersArray()
-        
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LMCViewController.hideKeyboard(touches:)))
         view.addGestureRecognizer(gestureRecognizer)
-        
         setupButtons()
     }
     
@@ -87,6 +64,11 @@ class LMCViewController: UIViewController {
     private func assembleAndReset() {
         littleManComputerModel.reset()
         resetView()
+        
+        for index in 0...99 {
+            registersVC.registerTextFieldArray[index].text = "000"
+        }
+        
         littleManComputerModel.loadRegisters(code: assemblyCodeTextView.text, completion: { (error) -> Void in
             
             if let error = error {
@@ -105,11 +87,6 @@ class LMCViewController: UIViewController {
         inputLabel.text = "000"
         stepMessageLabel.text = "Enter program"
         programHalted = false
-        
-        for index in 0...99 {
-            //registerTextFieldArray[index].text = "000"
-            registersVC.registerTextFieldArray[index].text = "000"
-        }
     }
     
     private func executeRun() {
@@ -174,11 +151,11 @@ class LMCViewController: UIViewController {
                     }
                 }
                 else {
-                    self.createErrorAlert(message: "1") // TODO: handle error
+                    self.createErrorAlert(message: "The input value must be an integer between 0 - 999")
                 }
             }
             else {
-                self.createErrorAlert(message: "2") // TODO: handle error
+                self.createErrorAlert(message: "The input value must be an integer between 0 - 999")
             }
             
         })
@@ -201,18 +178,16 @@ class LMCViewController: UIViewController {
         }
     }
     
-    private func createErrorAlert(message: String) {
+    fileprivate func createErrorAlert(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: {
-            self.assembleAndReset()
-        })
+        present(alert, animated: true, completion: nil)
     }
     
-    private func setRegisters(resetToZero bool: Bool) {
+    private func setRegisters(resetToZero: Bool) {
         
         func ensureThreeDigitsInRegister(index: Int) -> String {
-            if bool {
+            if resetToZero {
                 return "000"
             }
             return String(format: "%03d", registers[index])
@@ -227,10 +202,11 @@ class LMCViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? RegistersViewController , segue.identifier == "RegistersSegue" {
             registersVC = vc
+            registersVC.delegate = self
         }
     }
     
-    // MARK: keyboard and textField
+    // MARK: keyboard methods
     func registerForKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(LMCViewController.keyboardWasShown(notification:)), name: .UIKeyboardDidShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LMCViewController.keyboadWillBeHidden(aNotification:)), name: .UIKeyboardWillHide, object: nil)
@@ -249,73 +225,39 @@ class LMCViewController: UIViewController {
             let keyboardFrame:CGSize = (info[UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.size
             assemblyCodeTextView.contentInset = UIEdgeInsetsMake(0, 0, keyboardFrame.height, 0)
             assemblyCodeTextView.scrollIndicatorInsets = assemblyCodeTextView.contentInset
-        }
-        else {
+        } else if registersVC.activeTextField != nil {
+            var userInfo = notification.userInfo!
+            var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+            keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+            
+            var contentInset:UIEdgeInsets = registersScrollView.contentInset
+            contentInset.bottom = keyboardFrame.size.height
+            registersScrollView.contentInset = contentInset
+        } else {
             var info = notification.userInfo!
             var keyboardFrame:CGRect = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
             keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-            
-            //var contentInset:UIEdgeInsets = registersScrollView.contentInset
-            //contentInset.bottom = keyboardFrame.size.height + (view.frame.minY - registersView.frame.minY)
-            //registersScrollView.contentInset = contentInset // TODO: uncomment these 3 lines after a scroll view is added to the view
-            
-/*var info = notification.userInfo!
- var keyboardFrame:CGRect = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
- keyboardFrame = self.view.convertRect(keyboardFrame, fromView: nil)
- 
- var contentInset:UIEdgeInsets = registersScrollView.contentInset
- contentInset.bottom = keyboardFrame.size.height + (view.frame.minY - registersView.frame.minY)
- registersScrollView.contentInset = contentInset*/
         }
     }
  
     func keyboadWillBeHidden(aNotification: NSNotification) {
         let contentInsets = UIEdgeInsets.zero
-        //registersScrollView.contentInset = contentInsets
-        //registersScrollView.scrollIndicatorInsets = contentInsets //TODO: uncomment these 2 lines after a scroll view is added to the view
+        registersScrollView.contentInset = contentInsets
+        registersScrollView.scrollIndicatorInsets = contentInsets
         
         assemblyCodeTextView.contentInset = contentInsets
         assemblyCodeTextView.scrollIndicatorInsets = contentInsets
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
-        activeTextField = textField
-    }
     
-    func textFieldDidEndEditing(textField: UITextField) {
-        
-        for index in 0...99 {
-            if registersVC.registerTextFieldArray[index].text != nil {
-                if let value = Int(registersVC.registerTextFieldArray[index].text!) , value >= 0 && value <= 999 {
-                    registers[index] = value
-                }
-                else {
-                    createErrorAlert(message: "RAM registers must contain an integer between 0 and 999")
-                }
-            }
-            else {
-                createErrorAlert(message: "") // TODO: handle error
-                activeTextField = nil
-                return
-            }
-        }
-        activeTextField = nil
-    }
     
     func hideKeyboard(touches: AnyObject) {
-        activeTextField?.resignFirstResponder()
+        registersVC.activeTextField?.resignFirstResponder()
         
         if assemblyCodeTextView.isFirstResponder {
             assemblyCodeTextView.resignFirstResponder()
         }
     }
-    
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
     
     // MARK: button actions
     @IBAction func run() {
@@ -325,6 +267,7 @@ class LMCViewController: UIViewController {
         runNotStep = true
         executeRun()
     }
+    
     @IBAction func step() {
         if programHalted {
             resetView()
@@ -332,19 +275,41 @@ class LMCViewController: UIViewController {
         runNotStep = false
         executeStep()
     }
+    
     @IBAction func assembleIntoRam() {
         assembleAndReset()
     }
+    
     @IBAction func reset() {
         setRegisters(resetToZero: true)
         assembleAndReset()
     }
 }
 
-// MARK: LMCDelegate methods
+// MARK: RegistersDelegate
+extension LMCViewController: RegistersDelegate {
+    func RegisterTextFieldDidEndEditing() {
+        for index in 0...99 {
+            if registersVC.registerTextFieldArray[index].text != nil {
+                if let value = Int(registersVC.registerTextFieldArray[index].text!) , value >= 0 && value <= 999 {
+                    registers[index] = value
+                }
+                else {
+                    createErrorAlert(message: "RAM registers must contain an integer between 0 and 999.\n Check register \(index)")
+                }
+            }
+            else {
+                createErrorAlert(message: "") // TODO: handle error
+                activeTextField = nil
+                return
+            }
+        }
+    }
+}
+
+// MARK: LMCDelegate
 extension LMCViewController: LMCDelegate {
     func setOutbox(_ outboxValue: Int) {
         outputTextView.text = outputTextView.text + String(format: "%03d", outboxValue) + "\n"
     }
 }
-
