@@ -18,6 +18,7 @@
 		E976E0D11D8EF8DB005142B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E976E0D01D8EF8DB005142B5 /* Assets.xcassets */; };
 		E976E0D41D8EF8DB005142B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E976E0D21D8EF8DB005142B5 /* LaunchScreen.storyboard */; };
 		E976E0DF1D8EF8DB005142B5 /* LittleManComputerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E976E0DE1D8EF8DB005142B5 /* LittleManComputerTests.swift */; };
+		E99BDF631DD16F6600CA1D4D /* ClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99BDF621DD16F6600CA1D4D /* ClassExtensions.swift */; };
 		E9C6C2961D988C2D00C8BC5A /* RegistersDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6C2951D988C2D00C8BC5A /* RegistersDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		E976E0DA1D8EF8DB005142B5 /* LittleManComputerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LittleManComputerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E976E0DE1D8EF8DB005142B5 /* LittleManComputerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittleManComputerTests.swift; sourceTree = "<group>"; };
 		E976E0E01D8EF8DB005142B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E99BDF621DD16F6600CA1D4D /* ClassExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassExtensions.swift; sourceTree = "<group>"; };
 		E9C6C2951D988C2D00C8BC5A /* RegistersDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistersDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +111,7 @@
 				E967ED421D8F6669005B4540 /* LittleManComputerModel.swift */,
 				E967ED441D8F667E005B4540 /* LMCDelegate.swift */,
 				E9C6C2951D988C2D00C8BC5A /* RegistersDelegate.swift */,
+				E99BDF621DD16F6600CA1D4D /* ClassExtensions.swift */,
 			);
 			path = LittleManComputer;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E976E0CC1D8EF8DB005142B5 /* LMCViewController.swift in Sources */,
+				E99BDF631DD16F6600CA1D4D /* ClassExtensions.swift in Sources */,
 				E967ED471D8F7DD9005B4540 /* RegistersViewController.swift in Sources */,
 				E967ED431D8F6669005B4540 /* LittleManComputerModel.swift in Sources */,
 				E9C6C2961D988C2D00C8BC5A /* RegistersDelegate.swift in Sources */,

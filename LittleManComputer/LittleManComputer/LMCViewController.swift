@@ -87,6 +87,7 @@ class LMCViewController: UIViewController {
         inputLabel.text = "000"
         stepMessageLabel.text = "Enter program"
         programHalted = false
+        registersVC.resetApperanceOfRegisters()
     }
     
     private func executeRun() {
@@ -121,6 +122,10 @@ class LMCViewController: UIViewController {
             self.programCounterLabel.text = String(format: "%02d", programCounter)
             self.accumulatorLabel.text = String(format: "%03d", accumulator)
             self.stepMessageLabel.text = stepDetail
+            
+            self.registersVC.resetApperanceOfRegisters()
+            self.registersVC.registerTextFieldArray[programCounter].backgroundColor = .sparrowTekGreen()
+            self.registersVC.registerTextFieldArray[programCounter].textColor = .white
             
             if runNotStep && !halt {
                 executeRun()
@@ -225,6 +230,11 @@ class LMCViewController: UIViewController {
             let keyboardFrame:CGSize = (info[UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.size
             assemblyCodeTextView.contentInset = UIEdgeInsetsMake(0, 0, keyboardFrame.height, 0)
             assemblyCodeTextView.scrollIndicatorInsets = assemblyCodeTextView.contentInset
+            
+            if assemblyCodeTextView.text == "Enter assembly code here..." {
+                assemblyCodeTextView.text = ""
+            }
+            
         } else if registersVC.activeTextField != nil {
             var userInfo = notification.userInfo!
             var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
@@ -269,6 +279,7 @@ class LMCViewController: UIViewController {
     }
     
     @IBAction func step() {
+        
         if programHalted {
             resetView()
         }
@@ -284,6 +295,7 @@ class LMCViewController: UIViewController {
         setRegisters(resetToZero: true)
         assembleAndReset()
     }
+    
 }
 
 // MARK: RegistersDelegate

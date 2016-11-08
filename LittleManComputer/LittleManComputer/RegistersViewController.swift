@@ -129,6 +129,13 @@ class RegistersViewController: UIViewController {
                                   register83, register84, register85, register86, register87, register88, register89, register90, register91, register92, register93, register94,
                                   register95, register96, register97, register98, register99]
     }
+    
+    func resetApperanceOfRegisters() {
+        for register in registerTextFieldArray {
+            register.backgroundColor = .white
+            register.textColor = .black
+        }
+    }
 }
 
 extension RegistersViewController: UITextFieldDelegate {
