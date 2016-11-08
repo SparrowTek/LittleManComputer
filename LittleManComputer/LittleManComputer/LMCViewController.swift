@@ -25,7 +25,7 @@ class LMCViewController: UIViewController {
     var activeTextField: UITextField?
     var programHalted = false
     var runNotStep = false
-    var runSteppingSpeed: Double = 1.0 // TODO: allow user to adjust the run speed in a future version
+    var runSteppingSpeed: Double = 0.05 // TODO: allow user to adjust the run speed in a future version
     var littleManComputerModel: LittleManComputerModel!
     let registers = Registers()
     
@@ -33,7 +33,7 @@ class LMCViewController: UIViewController {
         super.viewDidLoad()
         littleManComputerModel = LittleManComputerModel(registers: registers)
         littleManComputerModel.delegate = self
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LMCViewController.hideKeyboard(touches:)))
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(touches:)))
         view.addGestureRecognizer(gestureRecognizer)
         setupButtons()
     }
@@ -85,13 +85,13 @@ class LMCViewController: UIViewController {
         accumulatorLabel.text = "000"
         outputTextView.text = nil
         inputLabel.text = "000"
-        stepMessageLabel.text = "Enter program"
+        stepMessageLabel.text = "Step or Run code"
         programHalted = false
         registersVC.resetApperanceOfRegisters()
     }
     
     private func executeRun() {
-        perform(#selector(LMCViewController.executeStep), with: nil, afterDelay: runSteppingSpeed)
+        perform(#selector(executeStep), with: nil, afterDelay: runSteppingSpeed)
     }
     
     func executeStep() {
@@ -119,13 +119,11 @@ class LMCViewController: UIViewController {
                 programHalted = true
             }
             
+            setRegisters(resetToZero: false)
+            
             self.programCounterLabel.text = String(format: "%02d", programCounter)
             self.accumulatorLabel.text = String(format: "%03d", accumulator)
             self.stepMessageLabel.text = stepDetail
-            
-            self.registersVC.resetApperanceOfRegisters()
-            self.registersVC.registerTextFieldArray[programCounter].backgroundColor = .sparrowTekGreen()
-            self.registersVC.registerTextFieldArray[programCounter].textColor = .white
             
             if runNotStep && !halt {
                 executeRun()
@@ -172,8 +170,6 @@ class LMCViewController: UIViewController {
     
     private func handleError(error: CompileError) {
         switch error {
-        case CompileError.branchError:
-            createErrorAlert(message: "Branch error: If the accumulator is less than 0 or greater than 999 a branch cannot occur")
         case CompileError.invalidAssemblyCode:
             createErrorAlert(message: "The assembly code that you entered is not valid. Please adjust your code and try again")
         case CompileError.mailboxOutOfBounds:
@@ -184,7 +180,7 @@ class LMCViewController: UIViewController {
     }
     
     fileprivate func createErrorAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Oops..", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
@@ -213,8 +209,8 @@ class LMCViewController: UIViewController {
     
     // MARK: keyboard methods
     func registerForKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(LMCViewController.keyboardWasShown(notification:)), name: .UIKeyboardDidShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(LMCViewController.keyboadWillBeHidden(aNotification:)), name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: .UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboadWillBeHidden(notification:)), name: .UIKeyboardWillHide, object: nil)
     }
     
     func unregisterFromKeyboardNotifications () {
@@ -226,9 +222,8 @@ class LMCViewController: UIViewController {
         
         if assemblyCodeTextView.isFirstResponder { // TODO: adjust how high scrolling occurs when keyboard is displayed
             let info = notification.userInfo!
-            //let keyboardFrame:CGSize = info[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
             let keyboardFrame:CGSize = (info[UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.size
-            assemblyCodeTextView.contentInset = UIEdgeInsetsMake(0, 0, keyboardFrame.height, 0)
+            assemblyCodeTextView.contentInset = UIEdgeInsetsMake(0, 0, keyboardFrame.height - 100, 0)
             assemblyCodeTextView.scrollIndicatorInsets = assemblyCodeTextView.contentInset
             
             if assemblyCodeTextView.text == "Enter assembly code here..." {
@@ -250,7 +245,7 @@ class LMCViewController: UIViewController {
         }
     }
  
-    func keyboadWillBeHidden(aNotification: NSNotification) {
+    func keyboadWillBeHidden(notification: NSNotification) {
         let contentInsets = UIEdgeInsets.zero
         registersScrollView.contentInset = contentInsets
         registersScrollView.scrollIndicatorInsets = contentInsets
@@ -311,7 +306,7 @@ extension LMCViewController: RegistersDelegate {
                 }
             }
             else {
-                createErrorAlert(message: "") // TODO: handle error
+                createErrorAlert(message: "An error has occured with the RAM registers.")
                 activeTextField = nil
                 return
             }
@@ -323,5 +318,11 @@ extension LMCViewController: RegistersDelegate {
 extension LMCViewController: LMCDelegate {
     func setOutbox(_ outboxValue: Int) {
         outputTextView.text = outputTextView.text + String(format: "%03d", outboxValue) + "\n"
+    }
+    
+    func setCurrentRegisterBeingEvaluated(_ register: Int) {
+        registersVC.resetApperanceOfRegisters()
+        registersVC.registerTextFieldArray[register].backgroundColor = .sparrowTekGreen()
+        registersVC.registerTextFieldArray[register].textColor = .white
     }
 }

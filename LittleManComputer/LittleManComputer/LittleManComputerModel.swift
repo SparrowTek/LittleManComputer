@@ -14,7 +14,7 @@ enum Oppcode {
 
 enum CompileError: Error {
     case mailboxOutOfBounds // Mailbox xx is either less than 0 or greater than 99
-    case branchError // Negative flag set to true
+    //case branchError // Not needed for now
     case invalidAssemblyCode // TODO: make more specific invalid assembly code errors
     case unknownError
 }
@@ -24,8 +24,6 @@ typealias interpretedRegister = (oppCode: String, leadingLabel: String?, trailin
 class LittleManComputerModel {
     
     weak var delegate: LMCDelegate?
-    
-    private var negativeFlag = false
     
     private var accumulator = 0
     private var programCounter = 0
@@ -43,6 +41,7 @@ class LittleManComputerModel {
     }
     
     func compileAndStep(completion: (_ stepDetail: String?, _ programCounter: Int, _ accumulator: Int, _ needInput: Bool, _ halt: Bool, _ error: CompileError?) -> Void) {
+        delegate?.setCurrentRegisterBeingEvaluated(programCounter)
         let registerValue = registers[programCounter]
         
         let oppCode = getOppCode(registerValue: registerValue)
@@ -64,16 +63,13 @@ class LittleManComputerModel {
             completion(message, programCounter, accumulator, false, false, nil)
             
         } catch let error as CompileError {
-            //halt = true
             completion(nil, programCounter, accumulator, false, false, error)
         } catch {
-            //halt = true
             completion(nil, programCounter, accumulator, false, false, CompileError.unknownError)
         }
     }
     
     func reset() {
-        negativeFlag = false
         inboxSet = false
         accumulator = 0
         programCounter = 0
@@ -148,37 +144,35 @@ class LittleManComputerModel {
         case .add:
             let accumulatorCopy = accumulator
             accumulator += registers[mailbox]
-            returnString = "Add \(accumulatorCopy) from the accumulator to the value in register \(mailbox); \(registers[mailbox])"
+            returnString = "Add \(accumulatorCopy) from the accumulator to the value in register \(mailbox) (\(registers[mailbox]))"
         case .subtract:
             accumulator -= registers[mailbox]
-            returnString = "Subtract \(registers[mailbox]) in register \(mailbox) from the accumulator value; \(accumulator)"
+            returnString = "Subtract \(registers[mailbox]) in register \(mailbox) from the accumulator value (\(accumulator))"
         case .store:
-            registers[mailbox] = accumulator
+            registers[mailbox] = accumulator // TODO: update register value
             returnString = "Store the accumulator value \(accumulator) in register \(mailbox)"
         case .load:
             accumulator = registers[mailbox]
-            returnString = "Load the value in register \(mailbox); \(registers[mailbox]) into the accumulator"
+            returnString = "Load the value in register \(mailbox) (\(registers[mailbox])) into the accumulator"
         case .branch:
-            programCounter = registers[mailbox]
+            programCounter = mailbox
             return "Branch: change the program counter to the value in register \(mailbox)"
         case .branchIfZero:
             
-            if accumulator == 0 && !negativeFlag {
-                programCounter = registers[mailbox]
-                return "Branch if zero: If accumulator == 0 change the program counter to the value in register \(mailbox)"
-            } else {
-                throw CompileError.branchError
+            if accumulator == 0 {
+                programCounter = mailbox
+                return "Branch if zero: Accumulator == 0 is true. Program counter sets to \(mailbox)"
             }
             
+            returnString = "Branch if zero: The accumulator != 0. Do not branch; increment program counter"
         case .branchIfPositive:
             
-            if accumulator >= 0 && !negativeFlag {
-                programCounter = registers[mailbox]
-                return "branch if positive: If accumulator >= 0 change the program counter to the value in register \(mailbox)"
-            } else {
-                throw CompileError.branchError
+            if accumulator >= 0 {
+                programCounter = mailbox
+                return "Branch if positive: Accumulator >= 0 is true. Program counter sets to \(mailbox)"
             }
             
+            returnString = "Branch if positive: Accumulator is not possitive. Do not branch"
         case .input:
             inboxSet = false
             accumulator = inbox
@@ -194,15 +188,7 @@ class LittleManComputerModel {
             returnString = "Halt"
         }
         
-        if accumulator < 0 || accumulator > 999 {
-            negativeFlag = true
-        }
-        else {
-            negativeFlag = false
-        }
-        
         programCounter += 1
-        
         return returnString
     }
     
@@ -329,7 +315,7 @@ class LittleManComputerModel {
             if lineOne == "dat" {
                 code = lineOne
                 value = Int(lineTwo)
-            } else if lineTwo == "dat" {
+            } else if lineTwo == "dat" || lineTwo == "hlt" {
                 code = lineTwo
                 leadingLabel = lineOne
             } else {

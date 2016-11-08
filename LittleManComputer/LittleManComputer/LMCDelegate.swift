@@ -8,4 +8,5 @@
 
 protocol LMCDelegate: class {
     func setOutbox(_ outboxValue: Int)
+    func setCurrentRegisterBeingEvaluated(_ register: Int)
 }

@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--More-->
+        <!--LMC Wiki-->
         <scene sceneID="KTV-hq-UvK">
             <objects>
                 <viewController id="6jc-k6-6Nv" customClass="MoreViewController" customModule="LittleManComputer" customModuleProvider="target" sceneMemberID="viewController">
@@ -25,6 +25,9 @@
                                 <rect key="frame" x="0.0" y="64" width="1024" height="534"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <dataDetectorType key="dataDetectorTypes"/>
+                                <connections>
+                                    <outlet property="delegate" destination="6jc-k6-6Nv" id="uvU-9J-FkY"/>
+                                </connections>
                             </webView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ye9-DA-vd1">
                                 <rect key="frame" x="432" y="656" width="160" height="60"/>
@@ -42,7 +45,7 @@ By Thomas Rademaker
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e8V-m1-J6M">
                                 <rect key="frame" x="0.0" y="598" width="1024" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bik-P3-beZ" userLabel="Back Button">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bik-P3-beZ" userLabel="Back Button">
                                         <rect key="frame" x="8" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="l5B-dL-yFx"/>
@@ -62,13 +65,37 @@ By Thomas Rademaker
                                     <constraint firstAttribute="bottom" secondItem="Bik-P3-beZ" secondAttribute="bottom" id="xzw-eJ-SsK"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Uzl-M0-ssK">
+                                <rect key="frame" x="494" y="313" width="37" height="37"/>
+                                <color key="color" red="0.29803921570000003" green="0.51372549020000002" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qdH-3W-8MB">
+                                <rect key="frame" x="462" y="316" width="100" height="30"/>
+                                <color key="backgroundColor" red="0.29803921570000003" green="0.51372549020000002" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="GaM-M0-0Ts"/>
+                                </constraints>
+                                <state key="normal" title="Retry loading">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="reloadWiki" destination="6jc-k6-6Nv" eventType="touchUpInside" id="clc-0c-gIB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Uzl-M0-ssK" firstAttribute="centerY" secondItem="F02-gm-wX3" secondAttribute="centerY" id="4y0-qs-r92"/>
+                            <constraint firstItem="Uzl-M0-ssK" firstAttribute="centerX" secondItem="F02-gm-wX3" secondAttribute="centerX" id="7qz-DK-nWf"/>
                             <constraint firstItem="F02-gm-wX3" firstAttribute="leading" secondItem="5t4-i1-GSh" secondAttribute="leading" id="AaZ-yi-Mwg"/>
                             <constraint firstItem="e8V-m1-J6M" firstAttribute="top" secondItem="F02-gm-wX3" secondAttribute="bottom" id="CqP-ha-mVa"/>
                             <constraint firstItem="e8V-m1-J6M" firstAttribute="leading" secondItem="5t4-i1-GSh" secondAttribute="leading" id="TDC-7N-jhm"/>
+                            <constraint firstItem="qdH-3W-8MB" firstAttribute="centerX" secondItem="F02-gm-wX3" secondAttribute="centerX" id="XUg-3n-RaS"/>
                             <constraint firstItem="ye9-DA-vd1" firstAttribute="top" secondItem="e8V-m1-J6M" secondAttribute="bottom" constant="8" id="ZHj-8n-MJc"/>
+                            <constraint firstItem="qdH-3W-8MB" firstAttribute="centerY" secondItem="F02-gm-wX3" secondAttribute="centerY" id="cYQ-O0-ObV"/>
                             <constraint firstItem="ye9-DA-vd1" firstAttribute="centerX" secondItem="5t4-i1-GSh" secondAttribute="centerX" id="sjC-WR-sTg"/>
                             <constraint firstAttribute="trailing" secondItem="e8V-m1-J6M" secondAttribute="trailing" id="tzm-fl-hNe"/>
                             <constraint firstItem="F02-gm-wX3" firstAttribute="top" secondItem="vFf-T6-Z4f" secondAttribute="bottom" id="vXB-BT-NOA"/>
@@ -77,9 +104,12 @@ By Thomas Rademaker
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="More" id="dXb-Ho-zMs"/>
+                    <navigationItem key="navigationItem" title="LMC Wiki" id="dXb-Ho-zMs"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Uzl-M0-ssK" id="SsJ-RM-pfe"/>
+                        <outlet property="reloadWikiButton" destination="qdH-3W-8MB" id="FxZ-Tw-Ejc"/>
+                        <outlet property="webBackButton" destination="Bik-P3-beZ" id="7V4-vf-ErI"/>
                         <outlet property="wikiWebView" destination="F02-gm-wX3" id="mOR-q1-HAC"/>
                     </connections>
                 </viewController>
@@ -117,6 +147,9 @@ By Thomas Rademaker
                                     <constraint firstAttribute="height" constant="30" id="qgy-wL-o0v"/>
                                 </constraints>
                                 <state key="normal" title="Assemble into RAM"/>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="assembleIntoRam" destination="F0k-Cs-hZp" eventType="touchUpInside" id="Qhf-fm-Bv1"/>
                                 </connections>
@@ -129,6 +162,9 @@ By Thomas Rademaker
                                     <constraint firstAttribute="width" constant="175" id="hFe-sa-RAf"/>
                                 </constraints>
                                 <state key="normal" title="Reset"/>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="reset" destination="F0k-Cs-hZp" eventType="touchUpInside" id="WV8-cZ-qEr"/>
                                 </connections>
@@ -141,6 +177,9 @@ By Thomas Rademaker
                                     <constraint firstAttribute="width" constant="175" id="Xmt-72-VrY"/>
                                 </constraints>
                                 <state key="normal" title="Step"/>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="step" destination="F0k-Cs-hZp" eventType="touchUpInside" id="Q8v-Cn-i3L"/>
                                 </connections>
@@ -153,6 +192,9 @@ By Thomas Rademaker
                                     <constraint firstAttribute="width" constant="175" id="dj9-93-Mlv"/>
                                 </constraints>
                                 <state key="normal" title="Run"/>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="run" destination="F0k-Cs-hZp" eventType="touchUpInside" id="ond-mZ-EN2"/>
                                 </connections>
@@ -228,20 +270,20 @@ By Thomas Rademaker
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9Z-9H-c3u">
-                                <rect key="frame" x="270" y="596" width="600" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter assembly code or register values" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9Z-9H-c3u">
+                                <rect key="frame" x="270" y="575.5" width="600" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.29803921570000003" green="0.51372549020000002" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7iK-Xe-aHt" userLabel="Registers View">
-                                <rect key="frame" x="269" y="101" width="735" height="487"/>
+                                <rect key="frame" x="269" y="101" width="735" height="466.5"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8GA-fI-Gg3" userLabel="Registers Scroll View">
-                                        <rect key="frame" x="0.0" y="0.0" width="735" height="487"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="735" height="466.5"/>
                                         <subviews>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ztd-yx-ct4" userLabel="Registers Container View">
-                                                <rect key="frame" x="0.0" y="0.0" width="735" height="487"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="735" height="466.5"/>
                                                 <connections>
                                                     <segue destination="YzP-pJ-DQ4" kind="embed" identifier="RegistersSegue" id="pR7-8n-4Q5"/>
                                                 </connections>
@@ -355,7 +397,7 @@ By Thomas Rademaker
                         <viewControllerLayoutGuide type="bottom" id="WLb-lj-J12"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xEm-9a-EWm">
-                        <rect key="frame" x="0.0" y="0.0" width="735" height="487"/>
+                        <rect key="frame" x="0.0" y="0.0" width="735" height="466.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pwf-Bm-4pf">
@@ -379,7 +421,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqa-Um-DxA">
-                                <rect key="frame" x="164.5" y="8" width="42" height="10"/>
+                                <rect key="frame" x="165" y="8" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="DCb-sq-IXg"/>
                                     <constraint firstAttribute="height" constant="10" id="yh2-tH-Bi0"/>
@@ -399,7 +441,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSY-1i-Q3y">
-                                <rect key="frame" x="310.5" y="8" width="42" height="10"/>
+                                <rect key="frame" x="311" y="8" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="Pog-W1-8OE"/>
                                     <constraint firstAttribute="height" constant="10" id="bun-5Y-MvO"/>
@@ -459,7 +501,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qp3-ER-9i2">
-                                <rect key="frame" x="20" y="56" width="42" height="10"/>
+                                <rect key="frame" x="20" y="54" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="DYo-bv-RIc"/>
                                     <constraint firstAttribute="height" constant="10" id="DkH-Hv-N6N"/>
@@ -469,7 +511,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGa-VY-JNA">
-                                <rect key="frame" x="92" y="56" width="42" height="10"/>
+                                <rect key="frame" x="92" y="54" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="f2f-Yj-mke"/>
                                     <constraint firstAttribute="height" constant="10" id="gdn-lC-1eW"/>
@@ -479,7 +521,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDk-Cm-ohz">
-                                <rect key="frame" x="165.5" y="56" width="42" height="10"/>
+                                <rect key="frame" x="165" y="54" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="k0z-1K-PZH"/>
                                     <constraint firstAttribute="height" constant="10" id="y0T-Op-7Zp"/>
@@ -489,7 +531,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wjO-Oj-Xdi">
-                                <rect key="frame" x="238" y="56" width="42" height="10"/>
+                                <rect key="frame" x="238" y="54" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="0ug-tk-PgI"/>
                                     <constraint firstAttribute="height" constant="10" id="WHV-7I-Tp2"/>
@@ -499,7 +541,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NY1-j0-vDt">
-                                <rect key="frame" x="310.5" y="56" width="42" height="10"/>
+                                <rect key="frame" x="311" y="54" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="UIc-sY-N9Z"/>
                                     <constraint firstAttribute="width" constant="42" id="oAK-jv-xGr"/>
@@ -509,7 +551,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dr-GM-SlF">
-                                <rect key="frame" x="383" y="56" width="42" height="10"/>
+                                <rect key="frame" x="383" y="54" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="H05-ha-y5s"/>
                                     <constraint firstAttribute="width" constant="42" id="Yp8-UK-3fq"/>
@@ -519,7 +561,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1R-CC-gC3">
-                                <rect key="frame" x="456" y="56" width="42" height="10"/>
+                                <rect key="frame" x="456" y="54" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="817-XP-WPu"/>
                                     <constraint firstAttribute="height" constant="10" id="eZn-k2-rLy"/>
@@ -529,7 +571,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIO-jf-3Wo">
-                                <rect key="frame" x="529" y="56" width="42" height="10"/>
+                                <rect key="frame" x="529" y="54" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="hSy-Ui-dV1"/>
                                     <constraint firstAttribute="width" constant="42" id="v7X-mw-Rlp"/>
@@ -539,7 +581,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ev-ny-3WY">
-                                <rect key="frame" x="601" y="56" width="42" height="10"/>
+                                <rect key="frame" x="601" y="54" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="LCc-Ff-rW5"/>
                                     <constraint firstAttribute="height" constant="10" id="Zqr-hT-3fY"/>
@@ -549,7 +591,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3w-nH-mdj">
-                                <rect key="frame" x="674" y="56" width="42" height="10"/>
+                                <rect key="frame" x="674" y="54" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="05C-zd-fNo"/>
                                     <constraint firstAttribute="height" constant="10" id="Yg8-3M-I7U"/>
@@ -559,7 +601,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXG-ht-jiL" userLabel="20">
-                                <rect key="frame" x="20" y="103.5" width="42" height="10"/>
+                                <rect key="frame" x="20" y="100" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="DRj-9D-QZd"/>
                                     <constraint firstAttribute="width" constant="42" id="VN2-LG-4vU"/>
@@ -569,7 +611,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyr-eW-kDQ">
-                                <rect key="frame" x="92" y="103.5" width="42" height="10"/>
+                                <rect key="frame" x="92" y="100" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="fD4-rV-cv9"/>
                                     <constraint firstAttribute="height" constant="10" id="nRv-W9-2a1"/>
@@ -579,7 +621,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSx-MZ-z0M">
-                                <rect key="frame" x="165.5" y="103.5" width="42" height="10"/>
+                                <rect key="frame" x="165" y="100" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="gJD-uj-Eyz"/>
                                     <constraint firstAttribute="height" constant="10" id="yuy-Ex-Lut"/>
@@ -589,7 +631,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSR-jQ-zEY">
-                                <rect key="frame" x="238" y="103.5" width="42" height="10"/>
+                                <rect key="frame" x="238" y="100" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="cj0-GQ-AU4"/>
                                     <constraint firstAttribute="width" constant="42" id="nva-m8-997"/>
@@ -599,7 +641,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPT-jE-1rg">
-                                <rect key="frame" x="310.5" y="103.5" width="42" height="10"/>
+                                <rect key="frame" x="311" y="100" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="3BG-Vg-p0c"/>
                                     <constraint firstAttribute="width" constant="42" id="SAf-JN-aXE"/>
@@ -609,7 +651,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaM-p9-ne9">
-                                <rect key="frame" x="383" y="103.5" width="42" height="10"/>
+                                <rect key="frame" x="383" y="100" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="DO6-uC-exl"/>
                                     <constraint firstAttribute="width" constant="42" id="QsG-sy-7rm"/>
@@ -619,7 +661,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="26" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYq-E2-En1">
-                                <rect key="frame" x="456" y="103.5" width="42" height="10"/>
+                                <rect key="frame" x="456" y="100" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="ynf-ox-ikz"/>
                                     <constraint firstAttribute="width" constant="42" id="zhH-8s-Igx"/>
@@ -629,7 +671,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdS-Ke-LLs">
-                                <rect key="frame" x="529" y="103.5" width="42" height="10"/>
+                                <rect key="frame" x="529" y="100" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="E2Y-UV-c6A"/>
                                     <constraint firstAttribute="height" constant="10" id="Ku5-l8-hr8"/>
@@ -639,7 +681,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5W-ee-HAD">
-                                <rect key="frame" x="601" y="103.5" width="42" height="10"/>
+                                <rect key="frame" x="601" y="100" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="2x5-OE-yod"/>
                                     <constraint firstAttribute="width" constant="42" id="lkc-5u-53P"/>
@@ -649,7 +691,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="29" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOX-Jl-IUM">
-                                <rect key="frame" x="674" y="103.5" width="42" height="10"/>
+                                <rect key="frame" x="674" y="100" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="YTU-ta-bgn"/>
                                     <constraint firstAttribute="height" constant="10" id="rjm-A4-X0o"/>
@@ -659,7 +701,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3qr-da-Iar">
-                                <rect key="frame" x="20" y="152" width="42" height="10"/>
+                                <rect key="frame" x="20" y="146" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="Uqm-r1-ckM"/>
                                     <constraint firstAttribute="width" constant="42" id="d4v-SL-err"/>
@@ -669,7 +711,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="31" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tHr-S1-pGy">
-                                <rect key="frame" x="92" y="152" width="42" height="10"/>
+                                <rect key="frame" x="92" y="146" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="YVL-Bu-gTC"/>
                                     <constraint firstAttribute="width" constant="42" id="vd3-6k-vF8"/>
@@ -679,7 +721,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qe6-l1-PeP">
-                                <rect key="frame" x="165.5" y="152" width="42" height="10"/>
+                                <rect key="frame" x="165" y="146" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="KL3-yH-ixB"/>
                                     <constraint firstAttribute="height" constant="10" id="eXx-bx-ayg"/>
@@ -689,7 +731,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="33" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PT3-Od-KGv">
-                                <rect key="frame" x="238" y="152" width="42" height="10"/>
+                                <rect key="frame" x="238" y="146" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="ghT-ne-tQX"/>
                                     <constraint firstAttribute="width" constant="42" id="wcC-rk-kPf"/>
@@ -699,7 +741,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="34" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g72-3c-Zlv">
-                                <rect key="frame" x="310.5" y="152" width="42" height="10"/>
+                                <rect key="frame" x="311" y="146" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="7g4-sf-Spz"/>
                                     <constraint firstAttribute="height" constant="10" id="tb1-bG-MSd"/>
@@ -709,7 +751,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="35" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vEO-TP-dY6">
-                                <rect key="frame" x="383" y="152" width="42" height="10"/>
+                                <rect key="frame" x="383" y="146" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="DyQ-lj-9hE"/>
                                     <constraint firstAttribute="height" constant="10" id="t0d-XR-G4L"/>
@@ -719,7 +761,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="36" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHJ-Iq-rq9">
-                                <rect key="frame" x="456" y="152" width="42" height="10"/>
+                                <rect key="frame" x="456" y="146" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="97u-SX-ROc"/>
                                     <constraint firstAttribute="width" constant="42" id="n38-eq-tbT"/>
@@ -729,7 +771,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="37" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNf-qc-Ej7">
-                                <rect key="frame" x="529" y="152" width="42" height="10"/>
+                                <rect key="frame" x="529" y="146" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="5Pa-CQ-SbX"/>
                                     <constraint firstAttribute="width" constant="42" id="rrR-Es-jPP"/>
@@ -739,7 +781,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="38" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZC-X9-qJg">
-                                <rect key="frame" x="601" y="152" width="42" height="10"/>
+                                <rect key="frame" x="601" y="146" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="adh-au-y8H"/>
                                     <constraint firstAttribute="height" constant="10" id="p9i-GX-FHL"/>
@@ -749,7 +791,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="39" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hog-ke-C6J">
-                                <rect key="frame" x="674" y="152" width="42" height="10"/>
+                                <rect key="frame" x="674" y="146" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="V7a-WP-LHe"/>
                                     <constraint firstAttribute="height" constant="10" id="Zbb-ES-DlE"/>
@@ -759,7 +801,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="40" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRh-oj-alB">
-                                <rect key="frame" x="20" y="199.5" width="42" height="10"/>
+                                <rect key="frame" x="20" y="192" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="aef-Nj-5SF"/>
                                     <constraint firstAttribute="width" constant="42" id="vyB-ye-vyz"/>
@@ -769,7 +811,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="41" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sx9-zW-65h">
-                                <rect key="frame" x="92" y="199.5" width="42" height="10"/>
+                                <rect key="frame" x="92" y="192" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="7EW-PO-JMc"/>
                                     <constraint firstAttribute="width" constant="42" id="uki-3e-G8s"/>
@@ -779,7 +821,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="42" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YsK-Wo-fJA">
-                                <rect key="frame" x="165.5" y="199.5" width="42" height="10"/>
+                                <rect key="frame" x="165" y="192" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="3HR-nD-3HX"/>
                                     <constraint firstAttribute="width" constant="42" id="YBS-kR-XMP"/>
@@ -789,7 +831,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="43" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkv-h9-70c">
-                                <rect key="frame" x="238" y="199.5" width="42" height="10"/>
+                                <rect key="frame" x="238" y="192" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="6fZ-vm-g5f"/>
                                     <constraint firstAttribute="height" constant="10" id="brh-8H-WSv"/>
@@ -799,7 +841,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="44" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OiQ-Za-MQG">
-                                <rect key="frame" x="310.5" y="199.5" width="42" height="10"/>
+                                <rect key="frame" x="311" y="192" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="99Y-uf-cVp"/>
                                     <constraint firstAttribute="height" constant="10" id="fQf-DM-gH2"/>
@@ -809,7 +851,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVf-U3-c4m">
-                                <rect key="frame" x="383" y="199.5" width="42" height="10"/>
+                                <rect key="frame" x="383" y="192" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="qmH-1Y-73A"/>
                                     <constraint firstAttribute="width" constant="42" id="r4s-gw-96K"/>
@@ -819,7 +861,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="46" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaC-pI-v2N">
-                                <rect key="frame" x="456" y="199.5" width="42" height="10"/>
+                                <rect key="frame" x="456" y="192" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="Su8-ED-wzE"/>
                                     <constraint firstAttribute="height" constant="10" id="lqo-2q-EJv"/>
@@ -829,7 +871,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="47" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ji5-xV-YsR">
-                                <rect key="frame" x="529" y="199.5" width="42" height="10"/>
+                                <rect key="frame" x="529" y="192" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="gVH-ap-4fw"/>
                                     <constraint firstAttribute="width" constant="42" id="qM0-Yk-3ik"/>
@@ -839,7 +881,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="48" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZyM-Y9-e8h">
-                                <rect key="frame" x="601" y="199.5" width="42" height="10"/>
+                                <rect key="frame" x="601" y="192" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="Pkx-3z-QaR"/>
                                     <constraint firstAttribute="width" constant="42" id="gGZ-v9-fiv"/>
@@ -849,7 +891,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="49" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bF6-pc-A73">
-                                <rect key="frame" x="674" y="199.5" width="42" height="10"/>
+                                <rect key="frame" x="674" y="192" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="SLb-MI-V7t"/>
                                     <constraint firstAttribute="width" constant="42" id="f5A-3n-vBH"/>
@@ -859,7 +901,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUg-xO-2oX">
-                                <rect key="frame" x="20" y="247.5" width="42" height="10"/>
+                                <rect key="frame" x="20" y="238" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="Qr2-Zp-jCe"/>
                                     <constraint firstAttribute="width" constant="42" id="nA3-Lz-KvO"/>
@@ -869,7 +911,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="51" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMn-s2-7tc">
-                                <rect key="frame" x="92" y="247.5" width="42" height="10"/>
+                                <rect key="frame" x="92" y="238" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="bNs-5L-UFe"/>
                                     <constraint firstAttribute="width" constant="42" id="mv8-8o-IET"/>
@@ -879,7 +921,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="52" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uF-fj-frh">
-                                <rect key="frame" x="165.5" y="247.5" width="42" height="10"/>
+                                <rect key="frame" x="165" y="238" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="agD-HW-Zfc"/>
                                     <constraint firstAttribute="width" constant="42" id="mxM-V5-r9W"/>
@@ -889,7 +931,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="53" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWb-LL-8GU">
-                                <rect key="frame" x="238" y="247.5" width="42" height="10"/>
+                                <rect key="frame" x="238" y="238" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="Vop-V9-aHR"/>
                                     <constraint firstAttribute="width" constant="42" id="sNl-o1-KMC"/>
@@ -899,7 +941,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="54" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oFa-6f-jOI">
-                                <rect key="frame" x="310.5" y="247.5" width="42" height="10"/>
+                                <rect key="frame" x="311" y="238" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="3it-ry-JEh"/>
                                     <constraint firstAttribute="width" constant="42" id="OoI-48-cOJ"/>
@@ -909,7 +951,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFS-za-tP8">
-                                <rect key="frame" x="383" y="247.5" width="42" height="10"/>
+                                <rect key="frame" x="383" y="238" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="SwM-Zo-Z3o"/>
                                     <constraint firstAttribute="height" constant="10" id="ewZ-ms-m42"/>
@@ -919,7 +961,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGq-TG-3Hq">
-                                <rect key="frame" x="456" y="247.5" width="42" height="10"/>
+                                <rect key="frame" x="456" y="238" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="NyO-h1-ofk"/>
                                     <constraint firstAttribute="width" constant="42" id="dw1-c6-kCV"/>
@@ -929,7 +971,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="57" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLD-Ab-nBS">
-                                <rect key="frame" x="529" y="247.5" width="42" height="10"/>
+                                <rect key="frame" x="529" y="238" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="S4r-av-425"/>
                                     <constraint firstAttribute="height" constant="10" id="w5o-n5-RBW"/>
@@ -939,7 +981,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="58" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzL-xN-097">
-                                <rect key="frame" x="601" y="247.5" width="42" height="10"/>
+                                <rect key="frame" x="601" y="238" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="lau-gV-i56"/>
                                     <constraint firstAttribute="height" constant="10" id="xtz-zC-Zlt"/>
@@ -949,7 +991,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="59" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvM-Ul-sX2">
-                                <rect key="frame" x="674" y="247.5" width="42" height="10"/>
+                                <rect key="frame" x="674" y="238" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="LdM-Oe-UVi"/>
                                     <constraint firstAttribute="width" constant="42" id="vyQ-9T-SzC"/>
@@ -959,7 +1001,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3i-iM-SpG">
-                                <rect key="frame" x="20" y="295.5" width="42" height="10"/>
+                                <rect key="frame" x="20" y="283" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="5wQ-Yb-bwb"/>
                                     <constraint firstAttribute="width" constant="42" id="Bzu-Cx-CdX"/>
@@ -969,7 +1011,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="61" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Hv-tY-fCj">
-                                <rect key="frame" x="92" y="295.5" width="42" height="10"/>
+                                <rect key="frame" x="92" y="283" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="5nj-Kn-ytN"/>
                                     <constraint firstAttribute="width" constant="42" id="i2o-uq-AQY"/>
@@ -979,7 +1021,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="62" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ymk-OA-afi">
-                                <rect key="frame" x="165.5" y="295.5" width="42" height="10"/>
+                                <rect key="frame" x="165" y="283" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="4gi-Bk-Hpn"/>
                                     <constraint firstAttribute="width" constant="42" id="JIf-iJ-Sx4"/>
@@ -989,7 +1031,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="63" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cH8-KJ-pMn">
-                                <rect key="frame" x="238" y="295.5" width="42" height="10"/>
+                                <rect key="frame" x="238" y="283" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="bfK-5F-NLt"/>
                                     <constraint firstAttribute="width" constant="42" id="efO-WA-w87"/>
@@ -999,7 +1041,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="64" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BTt-mJ-Ceo">
-                                <rect key="frame" x="310.5" y="295.5" width="42" height="10"/>
+                                <rect key="frame" x="311" y="283" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="DNA-zK-982"/>
                                     <constraint firstAttribute="width" constant="42" id="kLg-Gm-9Jp"/>
@@ -1009,7 +1051,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="65" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cto-8a-5Yf">
-                                <rect key="frame" x="383" y="295.5" width="42" height="10"/>
+                                <rect key="frame" x="383" y="283" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="OCK-8y-2Dt"/>
                                     <constraint firstAttribute="width" constant="42" id="TSB-4T-MVh"/>
@@ -1019,7 +1061,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="66" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZBP-oS-zhd">
-                                <rect key="frame" x="456" y="295.5" width="42" height="10"/>
+                                <rect key="frame" x="456" y="283" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="CQt-GE-hgt"/>
                                     <constraint firstAttribute="width" constant="42" id="q2W-us-BCB"/>
@@ -1029,7 +1071,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="67" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="woO-d2-Gq2">
-                                <rect key="frame" x="529" y="295.5" width="42" height="10"/>
+                                <rect key="frame" x="529" y="283" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="3mZ-eF-SE9"/>
                                     <constraint firstAttribute="width" constant="42" id="ROe-7l-nNc"/>
@@ -1039,7 +1081,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="68" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MsR-0U-PZd">
-                                <rect key="frame" x="601" y="295.5" width="42" height="10"/>
+                                <rect key="frame" x="601" y="283" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="aKs-2G-4Um"/>
                                     <constraint firstAttribute="height" constant="10" id="kwX-yF-T2E"/>
@@ -1049,7 +1091,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="69" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4BK-gM-b4W">
-                                <rect key="frame" x="674" y="295.5" width="42" height="10"/>
+                                <rect key="frame" x="674" y="283" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="LWU-GU-QDd"/>
                                     <constraint firstAttribute="height" constant="10" id="Pwj-yq-Vse"/>
@@ -1059,7 +1101,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="70" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAx-Ro-IKf">
-                                <rect key="frame" x="20" y="343" width="42" height="10"/>
+                                <rect key="frame" x="20" y="329" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="O34-UD-FjE"/>
                                     <constraint firstAttribute="height" constant="10" id="Uxr-2l-7O5"/>
@@ -1069,7 +1111,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="71" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOX-iZ-thV">
-                                <rect key="frame" x="92" y="343" width="42" height="10"/>
+                                <rect key="frame" x="92" y="329" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="QlP-jV-9K8"/>
                                     <constraint firstAttribute="height" constant="10" id="q9c-Re-lKH"/>
@@ -1079,7 +1121,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="72" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkb-hk-dci">
-                                <rect key="frame" x="165.5" y="343" width="42" height="10"/>
+                                <rect key="frame" x="165" y="329" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="dDV-60-JYn"/>
                                     <constraint firstAttribute="width" constant="42" id="ive-CZ-DMc"/>
@@ -1089,7 +1131,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="73" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0UR-Ip-vfu">
-                                <rect key="frame" x="238" y="343" width="42" height="10"/>
+                                <rect key="frame" x="238" y="329" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="BIH-oT-MqQ"/>
                                     <constraint firstAttribute="width" constant="42" id="yhr-BN-qeY"/>
@@ -1099,7 +1141,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="74" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pb0-ue-TKr">
-                                <rect key="frame" x="310.5" y="343" width="42" height="10"/>
+                                <rect key="frame" x="311" y="329" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="qWA-3l-Bej"/>
                                     <constraint firstAttribute="width" constant="42" id="x2P-Bo-0RP"/>
@@ -1109,7 +1151,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="75" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2GN-fd-kSa">
-                                <rect key="frame" x="383" y="343" width="42" height="10"/>
+                                <rect key="frame" x="383" y="329" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="Zas-CO-EOp"/>
                                     <constraint firstAttribute="width" constant="42" id="xHv-jo-4oj"/>
@@ -1119,7 +1161,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="76" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10d-Ht-0Cg">
-                                <rect key="frame" x="456" y="343" width="42" height="10"/>
+                                <rect key="frame" x="456" y="329" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="3xW-Lb-I4N"/>
                                     <constraint firstAttribute="width" constant="42" id="dDD-hU-iDC"/>
@@ -1129,7 +1171,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="77" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEZ-ga-WFI">
-                                <rect key="frame" x="529" y="343" width="42" height="10"/>
+                                <rect key="frame" x="529" y="329" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="iJL-nB-3NN"/>
                                     <constraint firstAttribute="height" constant="10" id="kvE-uo-K4S"/>
@@ -1139,7 +1181,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="78" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjM-MY-QzU">
-                                <rect key="frame" x="601" y="343" width="42" height="10"/>
+                                <rect key="frame" x="601" y="329" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="Lph-o0-qaR"/>
                                     <constraint firstAttribute="width" constant="42" id="b4m-iF-jcb"/>
@@ -1149,7 +1191,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="79" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7G0-Yf-7TP">
-                                <rect key="frame" x="674" y="343" width="42" height="10"/>
+                                <rect key="frame" x="674" y="329" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="Kda-J4-hg9"/>
                                     <constraint firstAttribute="height" constant="10" id="QIN-eG-eiH"/>
@@ -1159,7 +1201,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="80" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQ1-ZH-jwq">
-                                <rect key="frame" x="20" y="391.5" width="42" height="10"/>
+                                <rect key="frame" x="20" y="375" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="Fda-15-7kl"/>
                                     <constraint firstAttribute="width" constant="42" id="iQh-Pb-6VB"/>
@@ -1169,7 +1211,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="81" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YF8-6d-5Kc">
-                                <rect key="frame" x="92" y="391.5" width="42" height="10"/>
+                                <rect key="frame" x="92" y="375" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="OGy-tB-Wu0"/>
                                     <constraint firstAttribute="width" constant="42" id="dgq-ys-o0e"/>
@@ -1179,7 +1221,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="82" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfL-iX-58o">
-                                <rect key="frame" x="165.5" y="391.5" width="42" height="10"/>
+                                <rect key="frame" x="165" y="375" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="ajD-pY-djD"/>
                                     <constraint firstAttribute="height" constant="10" id="oHK-y7-sek"/>
@@ -1189,7 +1231,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="83" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTx-Eb-aU3">
-                                <rect key="frame" x="238" y="391.5" width="42" height="10"/>
+                                <rect key="frame" x="238" y="375" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="0jn-Sb-PUR"/>
                                     <constraint firstAttribute="width" constant="42" id="hJF-7c-Dht"/>
@@ -1199,7 +1241,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="84" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ry3-GG-QRS">
-                                <rect key="frame" x="310.5" y="391.5" width="42" height="10"/>
+                                <rect key="frame" x="311" y="375" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="BKc-ii-CrG"/>
                                     <constraint firstAttribute="height" constant="10" id="faB-ck-w6p"/>
@@ -1209,7 +1251,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="85" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVF-uW-4G0">
-                                <rect key="frame" x="383" y="391.5" width="42" height="10"/>
+                                <rect key="frame" x="383" y="375" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="HrP-3a-Xgb"/>
                                     <constraint firstAttribute="height" constant="10" id="Leg-Wh-DWO"/>
@@ -1219,7 +1261,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="86" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZ4-0u-uJg">
-                                <rect key="frame" x="456" y="391.5" width="42" height="10"/>
+                                <rect key="frame" x="456" y="375" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="Gh0-Dn-cfW"/>
                                     <constraint firstAttribute="width" constant="42" id="nD7-TY-HIQ"/>
@@ -1229,7 +1271,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="87" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1c-sg-iTe">
-                                <rect key="frame" x="529" y="391.5" width="42" height="10"/>
+                                <rect key="frame" x="529" y="375" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="UeH-Cv-Xe5"/>
                                     <constraint firstAttribute="height" constant="10" id="zCQ-qo-vtW"/>
@@ -1239,7 +1281,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gvi-H4-Hew">
-                                <rect key="frame" x="601" y="391.5" width="42" height="10"/>
+                                <rect key="frame" x="601" y="375" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="4NZ-fv-wC5"/>
                                     <constraint firstAttribute="width" constant="42" id="Yhe-6l-Yi4"/>
@@ -1249,7 +1291,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="89" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hy1-En-iWB">
-                                <rect key="frame" x="674" y="391.5" width="42" height="10"/>
+                                <rect key="frame" x="674" y="375" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="8Gb-hn-eIZ"/>
                                     <constraint firstAttribute="width" constant="42" id="Vyn-zW-PNN"/>
@@ -1259,7 +1301,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="90" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xj-d6-ds8">
-                                <rect key="frame" x="20" y="439" width="42" height="10"/>
+                                <rect key="frame" x="20" y="421" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="YzA-4L-gTn"/>
                                     <constraint firstAttribute="height" constant="10" id="bKn-m6-6Es"/>
@@ -1269,7 +1311,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="91" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GU0-WQ-6jl">
-                                <rect key="frame" x="92" y="439" width="42" height="10"/>
+                                <rect key="frame" x="92" y="421" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="9mN-fB-U4W"/>
                                     <constraint firstAttribute="height" constant="10" id="Zcw-AB-EZl"/>
@@ -1279,7 +1321,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="92" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wvd-I2-FUA">
-                                <rect key="frame" x="165.5" y="439" width="42" height="10"/>
+                                <rect key="frame" x="165" y="421" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="UXO-EW-kjx"/>
                                     <constraint firstAttribute="width" constant="42" id="dqZ-62-4rU"/>
@@ -1289,7 +1331,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="93" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4c-fp-TcR">
-                                <rect key="frame" x="238" y="439" width="42" height="10"/>
+                                <rect key="frame" x="238" y="421" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="Doc-Xb-GQO"/>
                                     <constraint firstAttribute="height" constant="10" id="F0L-dU-o6g"/>
@@ -1299,7 +1341,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="94" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efy-2C-iNi">
-                                <rect key="frame" x="310.5" y="439" width="42" height="10"/>
+                                <rect key="frame" x="311" y="421" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="AgQ-sJ-R9T"/>
                                     <constraint firstAttribute="width" constant="42" id="o1Y-GS-XEH"/>
@@ -1309,7 +1351,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="95" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5r1-LG-jOc">
-                                <rect key="frame" x="383" y="439" width="42" height="10"/>
+                                <rect key="frame" x="383" y="421" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="P0c-QC-QS0"/>
                                     <constraint firstAttribute="width" constant="42" id="uw4-mT-zo3"/>
@@ -1319,7 +1361,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="96" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D7K-RI-ERv">
-                                <rect key="frame" x="456" y="439" width="42" height="10"/>
+                                <rect key="frame" x="456" y="421" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="7D1-LL-6Ze"/>
                                     <constraint firstAttribute="width" constant="42" id="btq-bH-xPq"/>
@@ -1329,7 +1371,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="97" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Toq-LZ-GA2">
-                                <rect key="frame" x="529" y="439" width="42" height="10"/>
+                                <rect key="frame" x="529" y="421" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="n8m-3K-Hbp"/>
                                     <constraint firstAttribute="height" constant="10" id="sK5-Sq-2Ds"/>
@@ -1339,7 +1381,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="98" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jzP-K3-Zg0">
-                                <rect key="frame" x="601" y="439" width="42" height="10"/>
+                                <rect key="frame" x="601" y="421" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="bOx-zq-bIv"/>
                                     <constraint firstAttribute="height" constant="10" id="kRR-rI-DGr"/>
@@ -1349,7 +1391,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ErU-i4-kqI">
-                                <rect key="frame" x="674" y="439" width="42" height="10"/>
+                                <rect key="frame" x="674" y="421" width="42" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="am5-Rw-Fb6"/>
                                     <constraint firstAttribute="height" constant="10" id="puy-ns-OOY"/>
@@ -1359,7 +1401,7 @@ By Thomas Rademaker
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QZv-sR-ur3" userLabel="0">
-                                <rect key="frame" x="8" y="20" width="64.5" height="28"/>
+                                <rect key="frame" x="8" y="20" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1368,7 +1410,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h6Z-CX-jTw" userLabel="1">
-                                <rect key="frame" x="80.5" y="20" width="65" height="28"/>
+                                <rect key="frame" x="81" y="20" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1377,7 +1419,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1so-0u-Dgx" userLabel="2">
-                                <rect key="frame" x="153.5" y="20" width="64.5" height="28"/>
+                                <rect key="frame" x="153" y="20" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1386,7 +1428,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mlg-uu-jfx" userLabel="3">
-                                <rect key="frame" x="226" y="20" width="65" height="28"/>
+                                <rect key="frame" x="226" y="20" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1395,7 +1437,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E8h-OM-RQI" userLabel="4">
-                                <rect key="frame" x="299" y="20" width="64.5" height="28"/>
+                                <rect key="frame" x="299" y="20" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1404,7 +1446,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cpj-Ng-aT6" userLabel="5">
-                                <rect key="frame" x="371.5" y="20" width="64.5" height="28"/>
+                                <rect key="frame" x="372" y="20" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1413,7 +1455,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zsI-eO-nrw" userLabel="6">
-                                <rect key="frame" x="444" y="20" width="65" height="28"/>
+                                <rect key="frame" x="444" y="20" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1422,7 +1464,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yD4-RR-lYQ" userLabel="7">
-                                <rect key="frame" x="517" y="20" width="64.5" height="28"/>
+                                <rect key="frame" x="517" y="20" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1431,7 +1473,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pcS-QR-WZX" userLabel="8">
-                                <rect key="frame" x="589.5" y="20" width="65" height="28"/>
+                                <rect key="frame" x="590" y="20" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1440,7 +1482,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gYl-6z-2oX" userLabel="9">
-                                <rect key="frame" x="662.5" y="20" width="64.5" height="28"/>
+                                <rect key="frame" x="662" y="20" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1449,7 +1491,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="No5-mD-Deb" userLabel="10">
-                                <rect key="frame" x="8" y="68" width="64.5" height="27.5"/>
+                                <rect key="frame" x="8" y="66" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1458,7 +1500,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hgX-kG-Euy" userLabel="11">
-                                <rect key="frame" x="80.5" y="68" width="65" height="27.5"/>
+                                <rect key="frame" x="81" y="66" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1467,7 +1509,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rzB-Fj-qmT" userLabel="12">
-                                <rect key="frame" x="153.5" y="68" width="64.5" height="27.5"/>
+                                <rect key="frame" x="153" y="66" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1476,7 +1518,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cck-Is-kmF" userLabel="13">
-                                <rect key="frame" x="226" y="68" width="65" height="27.5"/>
+                                <rect key="frame" x="226" y="66" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1485,7 +1527,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Im-PU-GJ5" userLabel="14">
-                                <rect key="frame" x="299" y="68" width="64.5" height="27.5"/>
+                                <rect key="frame" x="299" y="66" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1494,7 +1536,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iCQ-rI-r6L" userLabel="15">
-                                <rect key="frame" x="371.5" y="68" width="64.5" height="27.5"/>
+                                <rect key="frame" x="372" y="66" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1503,7 +1545,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="09Q-NI-75J" userLabel="16">
-                                <rect key="frame" x="444" y="68" width="65" height="27.5"/>
+                                <rect key="frame" x="444" y="66" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1512,7 +1554,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Xt-a9-PzA" userLabel="17">
-                                <rect key="frame" x="517" y="68" width="64.5" height="27.5"/>
+                                <rect key="frame" x="517" y="66" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1521,7 +1563,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aUI-mz-B3P" userLabel="18">
-                                <rect key="frame" x="589.5" y="68" width="65" height="27.5"/>
+                                <rect key="frame" x="590" y="66" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1530,7 +1572,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cFk-gy-3GQ" userLabel="19">
-                                <rect key="frame" x="662.5" y="68" width="64.5" height="27.5"/>
+                                <rect key="frame" x="662" y="66" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1539,7 +1581,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EaZ-op-ATF" userLabel="20">
-                                <rect key="frame" x="8" y="115.5" width="64.5" height="28.5"/>
+                                <rect key="frame" x="8" y="112" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1548,7 +1590,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2lv-YJ-knE" userLabel="21">
-                                <rect key="frame" x="80.5" y="115.5" width="65" height="28.5"/>
+                                <rect key="frame" x="81" y="112" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1557,7 +1599,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KBa-bs-mFR" userLabel="22">
-                                <rect key="frame" x="153.5" y="115.5" width="64.5" height="28.5"/>
+                                <rect key="frame" x="153" y="112" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1566,7 +1608,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sBd-jb-SXJ" userLabel="23">
-                                <rect key="frame" x="226" y="115.5" width="65" height="28.5"/>
+                                <rect key="frame" x="226" y="112" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1575,7 +1617,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Dy-gP-bBb" userLabel="24">
-                                <rect key="frame" x="299" y="115.5" width="64.5" height="28.5"/>
+                                <rect key="frame" x="299" y="112" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1584,7 +1626,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HmS-Kg-gat" userLabel="25">
-                                <rect key="frame" x="371.5" y="115.5" width="64.5" height="28.5"/>
+                                <rect key="frame" x="372" y="112" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1593,7 +1635,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R3U-6B-gfv" userLabel="26">
-                                <rect key="frame" x="444" y="115.5" width="65" height="28.5"/>
+                                <rect key="frame" x="444" y="112" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1602,7 +1644,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sae-kv-fBN" userLabel="27">
-                                <rect key="frame" x="517" y="115.5" width="64.5" height="28.5"/>
+                                <rect key="frame" x="517" y="112" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1611,7 +1653,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hY3-9d-4et" userLabel="28">
-                                <rect key="frame" x="589.5" y="115.5" width="65" height="28.5"/>
+                                <rect key="frame" x="590" y="112" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1620,7 +1662,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ycQ-oW-BA0" userLabel="29">
-                                <rect key="frame" x="662.5" y="115.5" width="64.5" height="28.5"/>
+                                <rect key="frame" x="662" y="112" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1629,7 +1671,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zLt-Ib-rOp" userLabel="30">
-                                <rect key="frame" x="8" y="164" width="64.5" height="27.5"/>
+                                <rect key="frame" x="8" y="158" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1638,7 +1680,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TtY-dA-uOz" userLabel="31">
-                                <rect key="frame" x="80.5" y="164" width="65" height="27.5"/>
+                                <rect key="frame" x="81" y="158" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1647,7 +1689,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CEN-uN-0nM" userLabel="32">
-                                <rect key="frame" x="153.5" y="164" width="64.5" height="27.5"/>
+                                <rect key="frame" x="153" y="158" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1656,7 +1698,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R1T-KW-j7E" userLabel="33">
-                                <rect key="frame" x="226" y="164" width="65" height="27.5"/>
+                                <rect key="frame" x="226" y="158" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1665,7 +1707,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qpk-Z8-Tl8" userLabel="34">
-                                <rect key="frame" x="299" y="164" width="64.5" height="27.5"/>
+                                <rect key="frame" x="299" y="158" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1674,7 +1716,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LMx-fd-NRa" userLabel="35">
-                                <rect key="frame" x="371.5" y="164" width="64.5" height="27.5"/>
+                                <rect key="frame" x="372" y="158" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1683,7 +1725,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FNg-gz-xhB" userLabel="36">
-                                <rect key="frame" x="444" y="164" width="65" height="27.5"/>
+                                <rect key="frame" x="444" y="158" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1692,7 +1734,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M8U-h3-7SZ" userLabel="37">
-                                <rect key="frame" x="517" y="164" width="64.5" height="27.5"/>
+                                <rect key="frame" x="517" y="158" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1701,7 +1743,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VmI-l4-dkR" userLabel="38">
-                                <rect key="frame" x="589.5" y="164" width="65" height="27.5"/>
+                                <rect key="frame" x="590" y="158" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1710,7 +1752,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4ls-ZU-3vh" userLabel="39">
-                                <rect key="frame" x="662.5" y="164" width="64.5" height="27.5"/>
+                                <rect key="frame" x="662" y="158" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1719,7 +1761,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jYz-jC-vh8" userLabel="40">
-                                <rect key="frame" x="8" y="211.5" width="64.5" height="28"/>
+                                <rect key="frame" x="8" y="204" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1728,7 +1770,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ll3-Ph-ye6" userLabel="41">
-                                <rect key="frame" x="80.5" y="211.5" width="65" height="28"/>
+                                <rect key="frame" x="81" y="204" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1737,7 +1779,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fV1-d7-32y" userLabel="42">
-                                <rect key="frame" x="153.5" y="211.5" width="64.5" height="28"/>
+                                <rect key="frame" x="153" y="204" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1746,7 +1788,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hfr-c4-KDS" userLabel="43">
-                                <rect key="frame" x="226" y="211.5" width="65" height="28"/>
+                                <rect key="frame" x="226" y="204" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1755,7 +1797,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c0j-SL-v6F" userLabel="44">
-                                <rect key="frame" x="299" y="211.5" width="64.5" height="28"/>
+                                <rect key="frame" x="299" y="204" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1764,7 +1806,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hdH-Y2-LQc" userLabel="45">
-                                <rect key="frame" x="371.5" y="211.5" width="64.5" height="28"/>
+                                <rect key="frame" x="372" y="204" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1773,7 +1815,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5PJ-vW-BaI" userLabel="46">
-                                <rect key="frame" x="444" y="211.5" width="65" height="28"/>
+                                <rect key="frame" x="444" y="204" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1782,7 +1824,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qAi-MG-vGl" userLabel="47">
-                                <rect key="frame" x="517" y="211.5" width="64.5" height="28"/>
+                                <rect key="frame" x="517" y="204" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1791,7 +1833,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vrU-hv-aNY" userLabel="48">
-                                <rect key="frame" x="589.5" y="211.5" width="65" height="28"/>
+                                <rect key="frame" x="590" y="204" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1800,7 +1842,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ITY-k2-9bD" userLabel="49">
-                                <rect key="frame" x="662.5" y="211.5" width="64.5" height="28"/>
+                                <rect key="frame" x="662" y="204" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1809,7 +1851,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tJp-Qa-lqk" userLabel="50">
-                                <rect key="frame" x="8" y="259.5" width="64.5" height="28"/>
+                                <rect key="frame" x="8" y="250" width="65" height="25"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1818,7 +1860,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Quo-Mv-9UA" userLabel="51">
-                                <rect key="frame" x="80.5" y="259.5" width="65" height="28"/>
+                                <rect key="frame" x="81" y="250" width="64" height="25"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1827,7 +1869,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y3D-Cc-Aft" userLabel="52">
-                                <rect key="frame" x="153.5" y="259.5" width="64.5" height="28"/>
+                                <rect key="frame" x="153" y="250" width="65" height="25"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1836,7 +1878,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6GA-qd-2KM" userLabel="53">
-                                <rect key="frame" x="226" y="259.5" width="65" height="28"/>
+                                <rect key="frame" x="226" y="250" width="65" height="25"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1845,7 +1887,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cbh-eb-1Ck" userLabel="54">
-                                <rect key="frame" x="299" y="259.5" width="64.5" height="28"/>
+                                <rect key="frame" x="299" y="250" width="65" height="25"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1854,7 +1896,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wo2-db-nrB" userLabel="55">
-                                <rect key="frame" x="371.5" y="259.5" width="64.5" height="28"/>
+                                <rect key="frame" x="372" y="250" width="64" height="25"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1863,7 +1905,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yEt-Lq-SdA" userLabel="56">
-                                <rect key="frame" x="444" y="259.5" width="65" height="28"/>
+                                <rect key="frame" x="444" y="250" width="65" height="25"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1872,7 +1914,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Odp-x6-nue" userLabel="57">
-                                <rect key="frame" x="517" y="259.5" width="64.5" height="28"/>
+                                <rect key="frame" x="517" y="250" width="65" height="25"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1881,7 +1923,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jKX-9e-wHE" userLabel="58">
-                                <rect key="frame" x="589.5" y="259.5" width="65" height="28"/>
+                                <rect key="frame" x="590" y="250" width="64" height="25"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1890,7 +1932,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7yr-ER-NhM" userLabel="59">
-                                <rect key="frame" x="662.5" y="259.5" width="64.5" height="28"/>
+                                <rect key="frame" x="662" y="250" width="65" height="25"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1899,7 +1941,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cKB-4e-LsE" userLabel="60">
-                                <rect key="frame" x="8" y="307.5" width="64.5" height="27.5"/>
+                                <rect key="frame" x="8" y="295" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1908,7 +1950,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GE2-yA-Mq7" userLabel="61">
-                                <rect key="frame" x="80.5" y="307.5" width="65" height="27.5"/>
+                                <rect key="frame" x="81" y="295" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1917,7 +1959,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KVg-gm-tRM" userLabel="62">
-                                <rect key="frame" x="153.5" y="307.5" width="64.5" height="27.5"/>
+                                <rect key="frame" x="153" y="295" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1926,7 +1968,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UV2-fF-1wi" userLabel="63">
-                                <rect key="frame" x="226" y="307.5" width="65" height="27.5"/>
+                                <rect key="frame" x="226" y="295" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1935,7 +1977,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cRZ-WK-sU0" userLabel="64">
-                                <rect key="frame" x="299" y="307.5" width="64.5" height="27.5"/>
+                                <rect key="frame" x="299" y="295" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1944,7 +1986,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gXA-bV-W8F" userLabel="65">
-                                <rect key="frame" x="371.5" y="307.5" width="64.5" height="27.5"/>
+                                <rect key="frame" x="372" y="295" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1953,7 +1995,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lge-2y-KVa" userLabel="66">
-                                <rect key="frame" x="444" y="307.5" width="65" height="27.5"/>
+                                <rect key="frame" x="444" y="295" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1962,7 +2004,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BJV-Rl-Dpx" userLabel="67">
-                                <rect key="frame" x="517" y="307.5" width="64.5" height="27.5"/>
+                                <rect key="frame" x="517" y="295" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1971,7 +2013,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lT7-Sp-Sk3" userLabel="68">
-                                <rect key="frame" x="589.5" y="307.5" width="65" height="27.5"/>
+                                <rect key="frame" x="590" y="295" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1980,7 +2022,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="99Q-JC-KbR" userLabel="69">
-                                <rect key="frame" x="662.5" y="307.5" width="64.5" height="27.5"/>
+                                <rect key="frame" x="662" y="295" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1989,7 +2031,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZBA-nA-c6a" userLabel="70">
-                                <rect key="frame" x="8" y="355" width="64.5" height="28.5"/>
+                                <rect key="frame" x="8" y="341" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -1998,7 +2040,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qlv-0X-3G9" userLabel="71">
-                                <rect key="frame" x="80.5" y="355" width="65" height="28.5"/>
+                                <rect key="frame" x="81" y="341" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2007,7 +2049,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WfK-aL-sNn" userLabel="72">
-                                <rect key="frame" x="153.5" y="355" width="64.5" height="28.5"/>
+                                <rect key="frame" x="153" y="341" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2016,7 +2058,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9QD-3a-YS7" userLabel="73">
-                                <rect key="frame" x="226" y="355" width="65" height="28.5"/>
+                                <rect key="frame" x="226" y="341" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2025,7 +2067,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3IL-Ko-2bZ" userLabel="74">
-                                <rect key="frame" x="299" y="355" width="64.5" height="28.5"/>
+                                <rect key="frame" x="299" y="341" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2034,7 +2076,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QCf-Mg-wcz" userLabel="75">
-                                <rect key="frame" x="371.5" y="355" width="64.5" height="28.5"/>
+                                <rect key="frame" x="372" y="341" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2043,7 +2085,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jfg-FZ-Xlc" userLabel="76">
-                                <rect key="frame" x="444" y="355" width="65" height="28.5"/>
+                                <rect key="frame" x="444" y="341" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2052,7 +2094,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xhR-bV-kcb" userLabel="77">
-                                <rect key="frame" x="517" y="355" width="64.5" height="28.5"/>
+                                <rect key="frame" x="517" y="341" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2061,7 +2103,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RdH-31-6mJ" userLabel="78">
-                                <rect key="frame" x="589.5" y="355" width="65" height="28.5"/>
+                                <rect key="frame" x="590" y="341" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2070,7 +2112,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2v9-vD-pFw" userLabel="79">
-                                <rect key="frame" x="662.5" y="355" width="64.5" height="28.5"/>
+                                <rect key="frame" x="662" y="341" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2079,7 +2121,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DH2-74-brB" userLabel="80">
-                                <rect key="frame" x="8" y="403.5" width="64.5" height="27.5"/>
+                                <rect key="frame" x="8" y="387" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2088,7 +2130,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sJc-0p-c3u" userLabel="81">
-                                <rect key="frame" x="80.5" y="403.5" width="65" height="27.5"/>
+                                <rect key="frame" x="81" y="387" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2097,7 +2139,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VJu-QK-nGn" userLabel="82">
-                                <rect key="frame" x="153.5" y="403.5" width="64.5" height="27.5"/>
+                                <rect key="frame" x="153" y="387" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2106,7 +2148,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5hb-AY-oTw" userLabel="83">
-                                <rect key="frame" x="226" y="403.5" width="65" height="27.5"/>
+                                <rect key="frame" x="226" y="387" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2115,7 +2157,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p54-Tb-B1J" userLabel="84">
-                                <rect key="frame" x="299" y="403.5" width="64.5" height="27.5"/>
+                                <rect key="frame" x="299" y="387" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2124,7 +2166,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jtc-CQ-atV" userLabel="85">
-                                <rect key="frame" x="371.5" y="403.5" width="64.5" height="27.5"/>
+                                <rect key="frame" x="372" y="387" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2133,7 +2175,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eon-kX-ZmL" userLabel="86">
-                                <rect key="frame" x="444" y="403.5" width="65" height="27.5"/>
+                                <rect key="frame" x="444" y="387" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2142,7 +2184,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ou5-4J-w4C" userLabel="87">
-                                <rect key="frame" x="517" y="403.5" width="64.5" height="27.5"/>
+                                <rect key="frame" x="517" y="387" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2151,7 +2193,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pOk-3v-G4y" userLabel="88">
-                                <rect key="frame" x="589.5" y="403.5" width="65" height="27.5"/>
+                                <rect key="frame" x="590" y="387" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2160,7 +2202,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3o8-rO-EHB" userLabel="89">
-                                <rect key="frame" x="662.5" y="403.5" width="64.5" height="27.5"/>
+                                <rect key="frame" x="662" y="387" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2169,7 +2211,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HkH-kv-F2n" userLabel="90">
-                                <rect key="frame" x="8" y="451" width="64.5" height="28"/>
+                                <rect key="frame" x="8" y="433" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2178,7 +2220,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AXk-PX-wBH" userLabel="91">
-                                <rect key="frame" x="80.5" y="451" width="65" height="28"/>
+                                <rect key="frame" x="81" y="433" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2187,7 +2229,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9QB-7l-7dr" userLabel="92">
-                                <rect key="frame" x="153.5" y="451" width="64.5" height="28"/>
+                                <rect key="frame" x="153" y="433" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2196,7 +2238,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kll-9Q-jVf" userLabel="93">
-                                <rect key="frame" x="226" y="451" width="65" height="28"/>
+                                <rect key="frame" x="226" y="433" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2205,7 +2247,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K27-td-hVn" userLabel="94">
-                                <rect key="frame" x="299" y="451" width="64.5" height="28"/>
+                                <rect key="frame" x="299" y="433" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2214,7 +2256,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gaB-No-Vjz" userLabel="95">
-                                <rect key="frame" x="371.5" y="451" width="64.5" height="28"/>
+                                <rect key="frame" x="372" y="433" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2223,7 +2265,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NJa-0g-Fc0" userLabel="96">
-                                <rect key="frame" x="444" y="451" width="65" height="28"/>
+                                <rect key="frame" x="444" y="433" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2232,7 +2274,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RqC-Ol-WgC" userLabel="97">
-                                <rect key="frame" x="517" y="451" width="64.5" height="28"/>
+                                <rect key="frame" x="517" y="433" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2241,7 +2283,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YES-X3-cUs" userLabel="98">
-                                <rect key="frame" x="589.5" y="451" width="65" height="28"/>
+                                <rect key="frame" x="590" y="433" width="64" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2250,7 +2292,7 @@ By Thomas Rademaker
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sKm-ya-3Nk" userLabel="99">
-                                <rect key="frame" x="662.5" y="451" width="64.5" height="28"/>
+                                <rect key="frame" x="662" y="433" width="65" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -2999,7 +3041,7 @@ By Thomas Rademaker
         <scene sceneID="Kll-7C-8Ox">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cUe-N3-ApX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="LMC" id="5Ec-So-qjK"/>
+                    <tabBarItem key="tabBarItem" title="LMC" image="LMC icon" id="5Ec-So-qjK"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="go0-LE-ecS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -3035,6 +3077,7 @@ By Thomas Rademaker
         </scene>
     </scenes>
     <resources>
+        <image name="LMC icon" width="30" height="30"/>
         <image name="back arrow" width="100" height="100"/>
     </resources>
 </document>
