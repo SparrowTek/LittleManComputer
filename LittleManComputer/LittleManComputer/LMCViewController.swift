@@ -31,10 +31,14 @@ class LMCViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // initalize the LMC model and set its delegate
         littleManComputerModel = LittleManComputerModel(registers: registers)
         littleManComputerModel.delegate = self
+        
+        // add a gesture recognizer to the view
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(touches:)))
         view.addGestureRecognizer(gestureRecognizer)
+        
         setupButtons()
     }
     
@@ -48,6 +52,7 @@ class LMCViewController: UIViewController {
         unregisterFromKeyboardNotifications()
     }
     
+    // adjust the appearance of the buttons in the view
     private func setupButtons(){
         assembleIntoRamButton.layer.cornerRadius = 5  // creates rounded corners
         assembleIntoRamButton.clipsToBounds = true
@@ -61,6 +66,7 @@ class LMCViewController: UIViewController {
         
     }
     
+    // resets the view and loads the registers using the LMC model
     private func assembleAndReset() {
         littleManComputerModel.reset()
         resetView()
@@ -90,10 +96,12 @@ class LMCViewController: UIViewController {
         registersVC.resetApperanceOfRegisters()
     }
     
+    // runs the program. automatically steps through the program at the rate of 'runSteppingSpeed'
     private func executeRun() {
         perform(#selector(executeStep), with: nil, afterDelay: runSteppingSpeed)
     }
     
+    // uses the LMC model to execute the next step of the program
     func executeStep() {
         littleManComputerModel.compileAndStep(completion: { (stepDetail: String?, programCounter: Int, accumulator: Int, needInput: Bool, halt: Bool, error: CompileError?) -> Void in
             
@@ -101,6 +109,7 @@ class LMCViewController: UIViewController {
         })
     }
     
+    // adjusts the view UI based on the feedback from the executed step provided by the LMC model
     private func stepAndRunHelper(stepDetail: String?, programCounter: Int, accumulator: Int, needInput: Bool, halt: Bool, error: CompileError?) {
         
         if needInput {
@@ -132,6 +141,8 @@ class LMCViewController: UIViewController {
         }
     }
     
+    // gets an input value from the user when an input command is executed
+    // handles all unsupported inputs from the user with a message to the user
     private func getInput() {
         let alert = UIAlertController(title: "Enter Input", message: "Enter an integer between 0 and 999 to continue", preferredStyle: .alert)
         
@@ -168,6 +179,7 @@ class LMCViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    // display an error message to the user based on the error type
     private func handleError(error: CompileError) {
         switch error {
         case CompileError.invalidAssemblyCode:
@@ -185,6 +197,7 @@ class LMCViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    // updates the view to display the proper value in each register
     private func setRegisters(resetToZero: Bool) {
         
         func ensureThreeDigitsInRegister(index: Int) -> String {
@@ -218,6 +231,7 @@ class LMCViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
     
+    // adjusts the UI so that the content of the view is still visible while the keyboard is on screen
     func keyboardWasShown(notification: NSNotification) {
         
         if assemblyCodeTextView.isFirstResponder { // TODO: adjust how high scrolling occurs when keyboard is displayed
@@ -245,6 +259,7 @@ class LMCViewController: UIViewController {
         }
     }
  
+    // adjusts the ui to adjust for the keyboard to be removed from the screen
     func keyboadWillBeHidden(notification: NSNotification) {
         let contentInsets = UIEdgeInsets.zero
         registersScrollView.contentInset = contentInsets
@@ -254,8 +269,7 @@ class LMCViewController: UIViewController {
         assemblyCodeTextView.scrollIndicatorInsets = contentInsets
     }
     
-    
-    
+    // hides the keyboard
     func hideKeyboard(touches: AnyObject) {
         registersVC.activeTextField?.resignFirstResponder()
         
@@ -265,6 +279,8 @@ class LMCViewController: UIViewController {
     }
     
     // MARK: button actions
+    
+    // Run the program without the user manually stepping through each command
     @IBAction func run() {
         if programHalted {
             resetView()
@@ -273,6 +289,7 @@ class LMCViewController: UIViewController {
         executeRun()
     }
     
+    // Run the program one regiter at a time and only advance when the user selects the "step" button
     @IBAction func step() {
         
         if programHalted {
@@ -282,10 +299,12 @@ class LMCViewController: UIViewController {
         executeStep()
     }
     
+    // analyze assembly language code and fill the memory registers
     @IBAction func assembleIntoRam() {
         assembleAndReset()
     }
     
+    // reset the UI
     @IBAction func reset() {
         setRegisters(resetToZero: true)
         assembleAndReset()

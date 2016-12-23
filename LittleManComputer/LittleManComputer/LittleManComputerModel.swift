@@ -8,10 +8,12 @@
 
 import Foundation
 
+// enum of Oppcodes used in LMC assembly language
 enum Oppcode {
     case add, subtract, store, load, branch, branchIfZero, branchIfPositive, input, output, halt
 }
 
+// Error enum
 enum CompileError: Error {
     case mailboxOutOfBounds // Mailbox xx is either less than 0 or greater than 99
     //case branchError // Not needed for now
@@ -19,6 +21,7 @@ enum CompileError: Error {
     case unknownError
 }
 
+// interpretedRegister consists of an oppcode, a leading label optional, trailing label optional, and an optional int value.
 typealias interpretedRegister = (oppCode: String, leadingLabel: String?, trailingLabel: String?, value: Int?)
 
 class LittleManComputerModel {
@@ -32,7 +35,7 @@ class LittleManComputerModel {
     var inboxSet = false
     
     private var assemblyCodeRegisterCount = 0
-    private var leadingLabelDictionary = [String : Int]()
+    private var leadingLabelDictionary = [String : Int]() // keeps track of all registers that are associated with a leading label
     
     private let registers: Registers!
     
@@ -40,18 +43,21 @@ class LittleManComputerModel {
         self.registers = registers
     }
     
+    //compiles the data from the next register and executes the command
     func compileAndStep(completion: (_ stepDetail: String?, _ programCounter: Int, _ accumulator: Int, _ needInput: Bool, _ halt: Bool, _ error: CompileError?) -> Void) {
         delegate?.setCurrentRegisterBeingEvaluated(programCounter)
-        let registerValue = registers[programCounter]
+        let registerValue = registers[programCounter] // the register value for the programs current stack position
         
-        let oppCode = getOppCode(registerValue: registerValue)
-        let mailbox = getMailbox(registerValue: registerValue)
+        let oppCode = getOppCode(registerValue: registerValue) // gets the Oppcode for the given register value
+        let mailbox = getMailbox(registerValue: registerValue) // gets the mailbox for the given register value
         
+        // a user input is needed. execute the completion fuction and return
         if oppCode == Oppcode.input && !inboxSet {
             completion("Enter input", programCounter, accumulator, true, false, nil)
             return
         }
         
+        // the program has completed. halt execution
         if oppCode == Oppcode.halt {
             completion("Program Complete", programCounter, accumulator, false, true, nil)
             return
@@ -59,8 +65,8 @@ class LittleManComputerModel {
         
         
         do {
-            let message = try evaluateRegister(oppCode: oppCode, mailbox: mailbox)
-            completion(message, programCounter, accumulator, false, false, nil)
+            let message = try evaluateRegister(oppCode: oppCode, mailbox: mailbox) // execute the code in the register
+            completion(message, programCounter, accumulator, false, false, nil) // call the completion function and pass along the data from the executed code
             
         } catch let error as CompileError {
             completion(nil, programCounter, accumulator, false, false, error)
@@ -69,6 +75,7 @@ class LittleManComputerModel {
         }
     }
     
+    // reset the LMC model
     func reset() {
         inboxSet = false
         accumulator = 0
@@ -77,21 +84,23 @@ class LittleManComputerModel {
         outbox = 0
     }
     
+    // parse the assembly code that was input by the user and load the registers with the proper value
+    // check that the assembly code entered is valid and can compile into the memory registers
     func loadRegisters(code: String, completion: ((_ error: CompileError?) -> Void)) {
         
         for index in 0...99 {
-            registers[index] = 0
+            registers[index] = 0 // reset the register data in all registers to '0'
         }
         
-        let codeWithoutLeadingAndTrailingWhiteSpace = code.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        let linesArray = splitLines(code: codeWithoutLeadingAndTrailingWhiteSpace.lowercased())
+        let codeWithoutLeadingAndTrailingWhiteSpace = code.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) // remove whitespace
+        let linesArray = splitLines(code: codeWithoutLeadingAndTrailingWhiteSpace.lowercased()) // create an array of strings. this seperates each assembly command into its own string
         assemblyCodeRegisterCount = 0
         leadingLabelDictionary = [ : ]
         
         do {
-            let interpretedLines = try createInterpretedLinesArray(linesArray: linesArray)
-            trackLabels(assemblyCode: interpretedLines)
-            try setRegistersFrominterpretedRegisterArray(interpretedLines: interpretedLines, arrayCount: linesArray.count)
+            let interpretedLines = try createInterpretedLinesArray(linesArray: linesArray) // interpret each line in linesArray and get an array of type interpretedRegister (see Typealias at begining of this file)
+            trackLabels(assemblyCode: interpretedLines) // populate leadingLabelDictionary for each interpretedRegister object that has a label
+            try setRegistersFrominterpretedRegisterArray(interpretedLines: interpretedLines, arrayCount: linesArray.count) // set each register
             completion(nil)
         } catch let error as CompileError {
             completion(error)
@@ -100,6 +109,7 @@ class LittleManComputerModel {
         }
     }
     
+    // return the Oppcode from the Int register value parameter
     private func getOppCode(registerValue: Int) -> Oppcode {
         let oppCode = (registerValue - (registerValue % 100)) / 100
         
@@ -128,10 +138,12 @@ class LittleManComputerModel {
         }
     }
     
+    // returns the mailbox Int based on the register value Int parameter
     private func getMailbox(registerValue: Int) -> Int {
         return registerValue % 100
     }
     
+    // given the Oppcode and the mailbox(Int) return a String about what action has been executed
     private func evaluateRegister(oppCode: Oppcode, mailbox: Int) throws -> String {
         
         guard mailbox >= 0 && mailbox <= 99 && programCounter >= 0 && programCounter <= 99 else {
@@ -296,6 +308,9 @@ class LittleManComputerModel {
         }
     }
     
+    // Interpret the line String and return an interpretedRegister object
+    // lines can have 3 parts; leading label, code, and trailing label.
+    // but each line can have only the code, or code and either a leading label or a trailing label, or have all 3 parts
     private func interpretLine(line: String) throws -> interpretedRegister {
         let splitLine = line.components(separatedBy: .whitespaces)//.flatMap(String.init)
         let code: String
