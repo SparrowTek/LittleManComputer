@@ -20,6 +20,8 @@
 		E976E0DF1D8EF8DB005142B5 /* LittleManComputerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E976E0DE1D8EF8DB005142B5 /* LittleManComputerTests.swift */; };
 		E99BDF631DD16F6600CA1D4D /* ClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99BDF621DD16F6600CA1D4D /* ClassExtensions.swift */; };
 		E9C6C2961D988C2D00C8BC5A /* RegistersDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6C2951D988C2D00C8BC5A /* RegistersDelegate.swift */; };
+		E9D5D79E201594B1007A517E /* LMCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D5D79D201594B1007A517E /* LMCView.swift */; };
+		E9D5D7A0201594C1007A517E /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D5D79F201594C1007A517E /* MoreView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		E976E0E01D8EF8DB005142B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E99BDF621DD16F6600CA1D4D /* ClassExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassExtensions.swift; sourceTree = "<group>"; };
 		E9C6C2951D988C2D00C8BC5A /* RegistersDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistersDelegate.swift; sourceTree = "<group>"; };
+		E9D5D79D201594B1007A517E /* LMCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LMCView.swift; path = Views/LMCView.swift; sourceTree = "<group>"; };
+		E9D5D79F201594C1007A517E /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MoreView.swift; path = Views/MoreView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 		E976E0C81D8EF8DB005142B5 /* LittleManComputer */ = {
 			isa = PBXGroup;
 			children = (
+				E9D5D79C2015945D007A517E /* Views */,
 				E967ED3D1D8F660F005B4540 /* ViewControllers */,
 				E976E0C91D8EF8DB005142B5 /* AppDelegate.swift */,
 				E976E0CD1D8EF8DB005142B5 /* Main.storyboard */,
@@ -123,6 +128,15 @@
 				E976E0E01D8EF8DB005142B5 /* Info.plist */,
 			);
 			path = LittleManComputerTests;
+			sourceTree = "<group>";
+		};
+		E9D5D79C2015945D007A517E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E9D5D79D201594B1007A517E /* LMCView.swift */,
+				E9D5D79F201594C1007A517E /* MoreView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,7 +251,9 @@
 				E9C6C2961D988C2D00C8BC5A /* RegistersDelegate.swift in Sources */,
 				E967ED411D8F665B005B4540 /* Registers.swift in Sources */,
 				E93E83AA1DC6C26C0016576A /* MoreViewController.swift in Sources */,
+				E9D5D79E201594B1007A517E /* LMCView.swift in Sources */,
 				E967ED451D8F667E005B4540 /* LMCDelegate.swift in Sources */,
+				E9D5D7A0201594C1007A517E /* MoreView.swift in Sources */,
 				E976E0CA1D8EF8DB005142B5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
