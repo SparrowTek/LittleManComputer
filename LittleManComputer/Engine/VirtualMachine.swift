@@ -14,7 +14,7 @@ struct State {
     var inbox: Int? = nil
     var outbox: [Int] = []
     var accumulator: Int = 0
-    var ram: RAM
+    var ram: [Register]
 }
 
 enum Opcode: String {
@@ -36,10 +36,6 @@ enum Opcode: String {
 //}
 
 typealias Register = Int
-
-struct RAM: Equatable {
-    var registers: [Register]
-}
 
 struct Instruction {
     var opcode: Opcode
@@ -71,7 +67,7 @@ class VirtualMachine {
     func step() {
         let ogState = state.value
         //    1 - Check the Program Counter for the mailbox number that contains a program instruction (i.e. zero at the start of the program)
-        let register = state.value.ram.registers[state.value.programCounter]
+        let register = state.value.ram[state.value.programCounter]
         
         //    2 - Fetch the instruction from the mailbox with that number. Each instruction contains two fields: An opcode (indicating the operation to perform) and the address field (indicating where to find the data to perform the operation on).
         let instruction = getInstruction(for: register)

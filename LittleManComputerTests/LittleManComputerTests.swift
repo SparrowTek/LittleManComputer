@@ -18,18 +18,6 @@ class LittleManComputerTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
     
     // MARK: Compiler Tests
     func testCompile() {
@@ -56,11 +44,11 @@ class LittleManComputerTests: XCTestCase {
                              000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
                              000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
                              000, 000, 000, 000, 000, 000, 000, 000, 000, 000]
-            let ram = RAM(registers: registers)
+            
             let compiler = Compiler()
             let state = try compiler.compile(code)
             
-            XCTAssert(state.ram == ram, "STATE: \(state)")
+            XCTAssert(state.ram == registers, "STATE: \(state)")
         } catch let error {
             XCTAssert(false, "Error: \(error)")
         }
