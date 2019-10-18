@@ -9,94 +9,183 @@
 import Foundation
 
 enum CompileError: Error {
-    case mailboxOutOfBounds // Mailbox xx is either less than 0 or greater than 99
-    //case branchError // Not needed for now
     case invalidAssemblyCode // TODO: make more specific invalid assembly code errors
-    case unknownError
-}
-
-// interpretedAssemblyCodeLine consists of an oppcode, a leading label optional, trailing label optional, and an optional int value.
-struct InterpretedAssemblyCodeLine {
-    var opCode: String
-    var leadingLabel: String?
-    var trailingLabel: String?
-    var value: Int?
+    case intExpected
 }
 
 class Compiler {
-    private var assemblyCodeRegisterCount = 0
-    private var leadingLabelDictionary = [String : Int]() // keeps track of all registers that are associated with a leading label
     
-    
-    func assembleIntoRam(_ code: String, completion: @escaping ((_ result: Result<Data, CompileError>) -> Void)) {
-        // create array of lines
-        let codeWithoutLeadingAndTrailingWhiteSpace = code.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).lowercased()
-        let lineArray = codeWithoutLeadingAndTrailingWhiteSpace.components(separatedBy: .newlines)
+    struct InterpretedAssemblyCodeLine {
+        var opCode: String
+        var leadingLabel: String? = nil
+        var trailingLabel: String? = nil
+        var value: Int? = nil
     }
     
     // parse the assembly code that was input by the user and load the registers with the proper value
-        // check that the assembly code entered is valid and can compile into the memory registers
-        func compile(_ code: String, completion: @escaping ((_ error: CompileError?) -> Void)) {
-
-//            resetRegisters()
-
-            let codeWithoutLeadingAndTrailingWhiteSpace = code.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).lowercased() // remove whitespace
-            let lineArray = codeWithoutLeadingAndTrailingWhiteSpace.components(separatedBy: .newlines) // create an array of strings. this seperates each assembly command into its own string
-            assemblyCodeRegisterCount = 0
-            leadingLabelDictionary = [ : ]
-
-            do {
-                let interpretedLines = try createInterpretedLinesArray(with: lineArray) // interpret each line in linesArray and get an array of type InterpretedAssemblyCodeLine (see Typealias at begining of this file)
-                trackLabels(for: interpretedLines) // populate leadingLabelDictionary for each InterpretedAssemblyCodeLine object that has a label
-                try setRegistersFromInterpretedAssemblyCodeLineArray(interpretedLines, arrayCount: lineArray.count) // set each register
-                completion(nil)
-    //            delegate?.compileSuccess()
-            } catch let error as CompileError {
-                completion(error)
-            } catch {
-                completion(CompileError.unknownError)
-            }
-        }
-    
-    // MARK: Methods to help load registers from assembly code
-    private func setRegistersFromInterpretedAssemblyCodeLineArray(_ interpretedLines: [InterpretedAssemblyCodeLine], arrayCount: Int) throws {
+    // check that the assembly code entered is valid and can compile into the memory registers
+    func compile(_ code: String) throws -> State {
+        
         do {
-            for index in 0..<arrayCount {
-//                registers[index].value = try getRegisterValue(for: interpretedLines[index])
-            }
+            let linesOfCode = createStringArray(from: code, seperatedBy: .newlines)
+            let interpretedLinesOfCode = try interpretLinesOfCode(linesOfCode)
+            return try stateFromInterpretedCode(interpretedLinesOfCode)
         } catch let error as CompileError {
             throw error
         }
     }
     
-    private func createInterpretedLinesArray(with linesArray: [String]) throws -> [InterpretedAssemblyCodeLine] {
+    private func stateFromInterpretedCode(_ interpretedLinesOfCode: [InterpretedAssemblyCodeLine]) throws -> State {
+        do {
+            let leadingLabels = trackLabels(for: interpretedLinesOfCode)
+            let registers = try setRegistersFromInterpretedAssemblyCodeLineArray(interpretedLinesOfCode, leadingLabels: leadingLabels)
+            return State(ram: RAM(registers: registers))
+        } catch let error as CompileError {
+            throw error
+        }
+    }
+    
+    private func createStringArray(from code: String, seperatedBy characterSet: CharacterSet) -> [String] {
+        let codeWithoutLeadingAndTrailingWhiteSpace = code.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        return codeWithoutLeadingAndTrailingWhiteSpace.components(separatedBy: characterSet)
+    }
+    
+    private func interpretLinesOfCodeWith1Arg(_ args: [String]) throws -> InterpretedAssemblyCodeLine {
+        let opCode = args[0]
+        try testForValidCodeLine(opCode: opCode, value: nil, leadingLabel: nil)
+        return InterpretedAssemblyCodeLine(opCode: opCode)
+    }
+    
+    private func interpretLinesOfCodeWith2Args(_ args: [String]) throws -> InterpretedAssemblyCodeLine {
+        let arg1 = args[0]
+        let arg2 = args[1]
+        let opCode: String
+        var value: Int?
+        var leadingLabel: String?
+        var trailingLabel: String?
+        
+        if arg1 == "dat" {
+            opCode = arg1
+            guard let argAsInt = Int(arg2) else { throw CompileError.intExpected }
+            value = argAsInt
+        } else if arg2 == "dat" || arg2 == "hlt" {
+            opCode = arg2
+            leadingLabel = arg1
+        } else {
+            opCode = arg1
+            trailingLabel = arg2
+        }
+        
+        try testForValidCodeLine(opCode: opCode, value: value, leadingLabel: leadingLabel)
+        return InterpretedAssemblyCodeLine(opCode: opCode, leadingLabel: leadingLabel, trailingLabel: trailingLabel, value: value)
+    }
+    
+    private func interpretLinesOfCodeWith3Args(_ args: [String]) throws -> InterpretedAssemblyCodeLine {
+        var value: Int?
+        var trailingLabel: String?
+        let leadingLabel = args[0]
+        let opCode = args[1]
+        
+        if opCode == "dat" {
+            guard let argAsInt = Int(args[2]) else { throw CompileError.intExpected }
+            value = argAsInt
+        } else {
+            trailingLabel = args[2]
+        }
+        
+        try testForValidCodeLine(opCode: opCode, value: value, leadingLabel: leadingLabel)
+        return InterpretedAssemblyCodeLine(opCode: opCode, leadingLabel: leadingLabel, trailingLabel: trailingLabel, value: value)
+    }
+    
+    private func testForValidCodeLine(opCode: String, value: Int?, leadingLabel: String?) throws {
+        if opCode == "dat" && value == nil && leadingLabel == nil {
+            throw CompileError.invalidAssemblyCode
+        }
+    }
+    
+    /** lines can have 3 parts; leading label, code, and trailing label.
+ but each line can have only the code, or code and either a leading label or a trailing label, or have all 3 parts */
+    private func interpretLinesOfCode(_ linesOfCode: [String]) throws -> [InterpretedAssemblyCodeLine] {
         var interpretedLines = [InterpretedAssemblyCodeLine]()
         
-        for line in linesArray {
+        for line in linesOfCode {
+            let args = createStringArray(from: line, seperatedBy: .whitespaces)
             
-            do {
-                try interpretedLines.append(interpretLine(line))
-            } catch let error as CompileError {
-                throw error
+            switch args.count {
+            case 1:
+                try interpretedLines.append(interpretLinesOfCodeWith1Arg(args))
+            case 2:
+                try interpretedLines.append(interpretLinesOfCodeWith2Args(args))
+            case 3:
+                try interpretedLines.append(interpretLinesOfCodeWith3Args(args))
+            default:
+                throw CompileError.invalidAssemblyCode
             }
         }
         
         return interpretedLines
     }
     
-    private func trackLabels(for assemblyCode: [InterpretedAssemblyCodeLine]) {
-        
-        for interpretedAssemblyCodeLine in assemblyCode {
+    private func trackLabels(for code: [InterpretedAssemblyCodeLine]) -> [String : Int] {
+        var registerCount = 0
+        var leadingLabelDictionary = [String : Int]()
+        for interpretedAssemblyCodeLine in code {
             
             if let leadingLabel = interpretedAssemblyCodeLine.leadingLabel {
-                leadingLabelDictionary[leadingLabel] = assemblyCodeRegisterCount
+                leadingLabelDictionary[leadingLabel] = registerCount
             }
             
-            assemblyCodeRegisterCount += 1
+            registerCount += 1
+        }
+        
+        return leadingLabelDictionary
+    }
+    
+    private func convertCodeStringToOppCode(code: String) throws -> Opcode {
+        
+        switch code {
+        case "add":
+            return .add
+        case "sub":
+            return .subtract
+        case "sta":
+            return .store
+        case "lda":
+            return .load
+        case "bra":
+            return .branch
+        case "brz":
+            return .branchIfZero
+        case "brp":
+            return .branchIfPositive
+        case "inp":
+            return .input
+        case "out":
+            return .output
+        case "hlt":
+            return .halt
+        default:
+            throw CompileError.invalidAssemblyCode
         }
     }
     
-    private func getRegisterValue(for assemblyCode: InterpretedAssemblyCodeLine) throws -> Int16 {
+    // MARK: Methods to help load registers from assembly code
+    private func setRegistersFromInterpretedAssemblyCodeLineArray(_ interpretedLines: [InterpretedAssemblyCodeLine], leadingLabels: [String : Int]) throws -> [Register] {
+        
+        do {
+            var registers = [Register]()
+            
+            for index in 0..<interpretedLines.count {
+                registers[index] = try getRegisterValue(for: interpretedLines[index], leadingLabels: leadingLabels)
+            }
+            
+            return registers
+        } catch let error as CompileError {
+            throw error
+        }
+    }
+    
+    private func getRegisterValue(for assemblyCode: InterpretedAssemblyCodeLine, leadingLabels: [String : Int]) throws -> Int {
         
         guard let opCode = Opcode(rawValue: assemblyCode.opCode) else {
             throw CompileError.invalidAssemblyCode
@@ -104,32 +193,32 @@ class Compiler {
         
         if opCode == .data {
             if assemblyCode.leadingLabel != nil, let value = assemblyCode.value {
-                return Int16(value)
+                return Int(value)
             } else if assemblyCode.leadingLabel != nil {
                 return 0
             } else if let value = assemblyCode.value {
-                return Int16(value)
+                return Int(value)
             } else {
                 throw CompileError.invalidAssemblyCode
             }
         }
         
         if opCode == .input || opCode == .output || opCode == .halt {
-            return Int16(getDigitFromOppCode(opCode))
+            return Int(getDigitFromOpCode(opCode))
         }
         
         do {
-            let mailbox = try setMailboxWith(trailingLabel: assemblyCode.trailingLabel)
-            return Int16(getDigitFromOppCode(opCode) + mailbox)
+            let mailbox = try setMailboxWith(trailingLabel: assemblyCode.trailingLabel, leadingLabel: leadingLabels)
+            return Int(getDigitFromOpCode(opCode) + mailbox)
             
         } catch let error as CompileError {
             throw error
         }
     }
     
-    private func setMailboxWith(trailingLabel: String?) throws -> Int {
+    private func setMailboxWith(trailingLabel: String?, leadingLabel: [String : Int]) throws -> Int {
         
-        if let label = trailingLabel, let mailbox = leadingLabelDictionary[label] {
+        if let label = trailingLabel, let mailbox = leadingLabel[label] {
             return mailbox
         }
         else {
@@ -137,9 +226,9 @@ class Compiler {
         }
     }
     
-    private func getDigitFromOppCode(_ oppCode: Opcode) -> Int {
+    private func getDigitFromOpCode(_ opCode: Opcode) -> Int {
         
-        switch oppCode {
+        switch opCode {
         case .add:
             return 100
         case .subtract:
@@ -162,53 +251,4 @@ class Compiler {
             return 000
         }
     }
-    
-    // Interpret the line String and return an InterpretedAssemblyCodeLine object
-    // lines can have 3 parts; leading label, code, and trailing label.
-    // but each line can have only the code, or code and either a leading label or a trailing label, or have all 3 parts
-    private func interpretLine(_ line: String) throws -> InterpretedAssemblyCodeLine {
-        let splitLine = line.components(separatedBy: .whitespaces)
-        let opCode: String
-        var leadingLabel: String?
-        var trailingLabel: String?
-        var value: Int?
-        let count = splitLine.count
-        
-        switch count {
-            
-        case 1:
-            opCode = splitLine[0]
-        case 2:
-            let lineOne = splitLine[0]
-            let lineTwo = splitLine[1]
-            
-            if lineOne == "dat" {
-                opCode = lineOne
-                value = Int(lineTwo)
-            } else if lineTwo == "dat" || lineTwo == "hlt" {
-                opCode = lineTwo
-                leadingLabel = lineOne
-            } else {
-                opCode = lineOne
-                trailingLabel = lineTwo
-            }
-        case 3:
-            leadingLabel = splitLine[0]
-            opCode = splitLine[1]
-            if opCode == "dat" {
-                value = Int(splitLine[2])
-            } else {
-                trailingLabel = splitLine[2]
-            }
-        default:
-            throw CompileError.invalidAssemblyCode
-        }
-        
-        if opCode == "dat" && value == nil && leadingLabel == nil {
-            throw CompileError.invalidAssemblyCode
-        }
-        
-        return InterpretedAssemblyCodeLine(opCode: opCode, leadingLabel: leadingLabel, trailingLabel: trailingLabel, value: value)
-    }
-    
 }

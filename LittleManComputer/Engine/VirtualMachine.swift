@@ -10,10 +10,10 @@ import Foundation
 import Combine
 
 struct State {
-    var programCounter: Int
-    var inbox: Int?
-    var outbox: [Int]
-    var accumulator: Int
+    var programCounter: Int = 0
+    var inbox: Int? = nil
+    var outbox: [Int] = []
+    var accumulator: Int = 0
     var ram: RAM
 }
 
@@ -31,9 +31,11 @@ enum Opcode: String {
     case halt = "hlt"
 }
 
-struct Register {
-    var value: Int
-}
+//struct Register {
+//    var value: Int
+//}
+
+typealias Register = Int
 
 struct RAM {
     var registers: [Register]
