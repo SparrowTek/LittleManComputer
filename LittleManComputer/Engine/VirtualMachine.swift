@@ -37,7 +37,7 @@ enum Opcode: String {
 
 typealias Register = Int
 
-struct RAM {
+struct RAM: Equatable {
     var registers: [Register]
 }
 

@@ -173,7 +173,7 @@ class Compiler {
     private func setRegistersFromInterpretedAssemblyCodeLineArray(_ interpretedLines: [InterpretedAssemblyCodeLine], leadingLabels: [String : Int]) throws -> [Register] {
         
         do {
-            var registers = [Register]()
+            var registers = [Register](repeating: 000, count: 100)
             
             for index in 0..<interpretedLines.count {
                 registers[index] = try getRegisterValue(for: interpretedLines[index], leadingLabels: leadingLabels)

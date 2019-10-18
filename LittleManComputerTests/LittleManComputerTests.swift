@@ -30,5 +30,42 @@ class LittleManComputerTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    // MARK: Compiler Tests
+    func testCompile() {
+        do {
+            let code = """
+                       LDA ONE
+                       ADD TEN
+                       OUT
+                       INP
+                       ADD THREE
+                       OUT
+                       HLT
+                       ONE DAT 001
+                       TEN DAT 010
+                       THREE DAT 003
+                       """
+            let registers = [507, 108, 902, 901, 109, 902, 000, 001, 010, 003,
+                             000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+                             000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+                             000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+                             000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+                             000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+                             000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+                             000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+                             000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+                             000, 000, 000, 000, 000, 000, 000, 000, 000, 000]
+            let ram = RAM(registers: registers)
+            let compiler = Compiler()
+            let state = try compiler.compile(code)
+            
+            XCTAssert(state.ram == ram, "STATE: \(state)")
+        } catch let error {
+            XCTAssert(false, "Error: \(error)")
+        }
+    }
+    
+    // MARK: Virtual Machine Tests
 
 }
