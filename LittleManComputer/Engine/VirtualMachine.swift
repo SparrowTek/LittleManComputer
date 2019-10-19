@@ -14,7 +14,8 @@ struct State {
     var inbox: Int? = nil
     var outbox: [Int] = []
     var accumulator: Int = 0
-    var ram: [Register]
+    var registers: [Register]
+    var printStatement: String = ""
 }
 
 enum Opcode: String {
@@ -27,33 +28,32 @@ enum Opcode: String {
     case branchIfPositive = "brp"
     case input = "inp"
     case output = "out"
-    case data = "dat"
     case halt = "hlt"
+    case data = "dat"
 }
 
-//struct Register {
-//    var value: Int
-//}
-
 typealias Register = Int
+typealias Mailbox = Int
 
 struct Instruction {
     var opcode: Opcode
-    var address: Int
+    var address: Int = 0
 }
 
 struct Program {
     var sourceCode: String
-//    var ram: RAM
+//    var registers: [Register]
 }
 
-//enum StateError: Error {
-//    case generic
-//}
+enum StateError: Error {
+    case generic
+    case mailboxOutOfBounds
+    case needInput
+}
 
 class VirtualMachine {
     
-    var state: CurrentValueSubject<State, /*StateError*/ Never>
+    var state: CurrentValueSubject<State, StateError>
     var input: Int? {
         didSet {
             state.value.inbox = input
@@ -61,52 +61,196 @@ class VirtualMachine {
     }
     
     init(state: State) {
-        self.state = CurrentValueSubject<State, Never>(state)
+        self.state = CurrentValueSubject<State, StateError>(state)
     }
     
     func step() {
-        let ogState = state.value
-        //    1 - Check the Program Counter for the mailbox number that contains a program instruction (i.e. zero at the start of the program)
-        let register = state.value.ram[state.value.programCounter]
-        
-        //    2 - Fetch the instruction from the mailbox with that number. Each instruction contains two fields: An opcode (indicating the operation to perform) and the address field (indicating where to find the data to perform the operation on).
-        let instruction = getInstruction(for: register)
-        
-        //    3 - Increment the Program Counter (so that it contains the mailbox number of the next instruction)
-        let programCounter = state.value.programCounter + 1
-        
-        //    4 - Decode the instruction. If the instruction utilises data stored in another mailbox then use the address field to find the mailbox number for the data it will work on, e.g. 'get data from mailbox 42')
-        
-        //    5 - Fetch the data (from the input, accumulator, or mailbox with the address determined in step 4)
-        
-        // if input needed { check for inbox to be non nil
-        guard let inbox = state.value.inbox else {
-            return
+        do {
+            let register = state.value.registers[state.value.programCounter]
+            let instruction = getInstruction(for: register)
+            state.value = try evaluate(instruction: instruction, for: state.value)
+        } catch let error as StateError {
+            state.send(completion: .failure(error))
+        } catch {
+            state.send(completion: .failure(.generic))
         }
-        //    6 - Execute the instruction based on the opcode given
-        //    7 - Branch or store the result (in the output, accumulator, or mailbox with the address determined in step 4)
-        //    8 - Return to the Program Counter to repeat the cycle or halt
-        
-        state.value = ogState
-        
-    }
-    
-    func getInstruction(for register: Register) -> Instruction {
-        let opcode = Opcode.add
-        let address = 02
-        
-        return Instruction(opcode: opcode, address: address)
     }
     
     func run(speed: Int) {
+        // Subscribe to state to make sure nothing fails and to pause when input is needed?
+    }
+    
+    private func getInstruction(for register: Register) -> Instruction {
+        let registerOpcode = opcode(for: register)
+        
+        switch registerOpcode {
+        case .input, .output, .halt:
+            return Instruction(opcode: registerOpcode)
+        default:
+            let mailboxAddress = address(for: register)
+            return Instruction(opcode: registerOpcode, address: mailboxAddress)
+        }
+    }
+    
+    private func address(for register: Register) -> Mailbox {
+        let registerHundredsDigit = (register - (register % 100))
+        return register - registerHundredsDigit
+    }
+    
+    private func opcode(for register: Register) -> Opcode {
+        let registerFirstDigit = (register - (register % 100)) / 100
+        
+        switch registerFirstDigit {
+        case 1:
+            return .add
+        case 2:
+            return .subtract
+        case 3:
+            return .store
+        case 5:
+            return .load
+        case 6:
+            return .branch
+        case 7:
+            return .branchIfZero
+        case 8:
+            return .branchIfPositive
+        case 9:
+            if register == 901 { return .input }
+            return .output
+        default:
+            return .halt
+        }
         
     }
     
-    func arithmaticUnit() {
-
+    private func evaluate(instruction: Instruction, for state: State) throws -> State {
+        let opcode = instruction.opcode
+        let mailbox = instruction.address
+        guard mailbox >= 0 && mailbox <= 99 else { throw StateError.mailboxOutOfBounds }
+        
+        switch opcode {
+        case .add:
+            return add(mailbox: mailbox, for: state)
+        case .subtract:
+            return subtract(mailbox: mailbox, for: state)
+        case .store:
+            return store(mailbox: mailbox, for: state)
+        case .load:
+            return load(mailbox: mailbox, for: state)
+        case .branch:
+            return branch(mailbox: mailbox, for: state)
+        case .branchIfZero:
+            return branchIfZero(mailbox: mailbox, for: state)
+        case .branchIfPositive:
+            return branchIfPositive(mailbox: mailbox, for: state)
+        case .input:
+            do {
+                return try input(for: state)
+            } catch let error as StateError {
+                throw error
+            }
+        case .output:
+            return output(for: state)
+        case .halt:
+            return halt(for: state)
+        case .data:
+            throw StateError.generic
+        }
     }
     
-    func accumulator() {
+    private func add(mailbox: Mailbox, for state: State) -> State {
+        var ogState = state
+        let accumulator = state.accumulator
+        let registerValue = state.registers[mailbox]
         
+        ogState.accumulator += registerValue
+        ogState.programCounter += 1
+        ogState.printStatement = "Add \(accumulator) from the accumulator to the value in register \(mailbox) (\(registerValue))"
+        return ogState
+    }
+    
+    private func subtract(mailbox: Mailbox, for state: State) -> State {
+        var ogState = state
+        let accumulator = state.accumulator
+        let registerValue = state.registers[mailbox]
+        
+        ogState.accumulator -= registerValue
+        ogState.programCounter += 1
+        ogState.printStatement = "Subtract \(registerValue) in register \(mailbox) from the accumulator value (\(accumulator))"
+        return ogState
+    }
+    
+    private func store(mailbox: Mailbox, for state: State) -> State {
+        var ogState = state
+        ogState.registers[mailbox] = ogState.accumulator
+        ogState.programCounter += 1
+        ogState.printStatement = "Store the accumulator value \(ogState.accumulator) in register \(mailbox)"
+        return ogState
+    }
+    
+    private func load(mailbox: Mailbox, for state: State) -> State {
+        var ogState = state
+        ogState.accumulator = ogState.registers[mailbox]
+        ogState.programCounter += 1
+        ogState.printStatement = "Load the value in register \(mailbox) (\(ogState.registers[mailbox])) into the accumulator"
+        return ogState
+    }
+    
+    private func branch(mailbox: Mailbox, for state: State) -> State {
+        var ogState = state
+        ogState.programCounter = mailbox
+        ogState.printStatement = "Branch: change the program counter to the value in register \(mailbox)"
+        return ogState
+    }
+    
+    private func branchIfZero(mailbox: Mailbox, for state: State) -> State {
+        var ogState = state
+        
+        if ogState.accumulator == 0 {
+            ogState.programCounter = mailbox
+            ogState.printStatement = "Branch if zero: Accumulator == 0 is true. Program counter sets to \(mailbox)"
+        } else {
+            ogState.programCounter += 1
+            ogState.printStatement = "Branch if zero: The accumulator != 0. Do not branch; increment program counter"
+        }
+        
+        return ogState
+    }
+    
+    private func branchIfPositive(mailbox: Mailbox, for state: State) -> State {
+        var ogState = state
+        
+        if ogState.accumulator >= 0 {
+            ogState.programCounter = mailbox
+            ogState.printStatement = "Branch if positive: Accumulator >= 0 is true. Program counter sets to \(mailbox)"
+        } else {
+            ogState.programCounter += 1
+            ogState.printStatement = "Branch if positive: Accumulator is not possitive. Do not branch"
+        }
+        
+        return ogState
+    }
+    
+    private func input(for state: State) throws -> State {
+        guard let inbox = state.inbox else { throw StateError.needInput }
+        var ogState = state
+        ogState.accumulator = inbox
+        ogState.printStatement = "Input"
+        return ogState
+    }
+    
+    private func output(for state: State) -> State {
+        var ogState = state
+        ogState.outbox.append(ogState.accumulator)
+        ogState.programCounter += 1
+        ogState.printStatement = "Output: output the value in the accumulator, \(ogState.accumulator) into the output box"
+        return state
+    }
+    
+    private func halt(for state: State) -> State {
+        var ogState = state
+        ogState.printStatement = "Program Complete"
+        return ogState
     }
 }

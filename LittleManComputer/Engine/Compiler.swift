@@ -39,7 +39,7 @@ class Compiler {
         do {
             let leadingLabels = trackLabels(for: interpretedLinesOfCode)
             let registers = try setRegistersFromInterpretedAssemblyCodeLineArray(interpretedLinesOfCode, leadingLabels: leadingLabels)
-            return State(ram: registers)
+            return State(registers: registers)
         } catch let error as CompileError {
             throw error
         }

@@ -48,7 +48,7 @@ class LittleManComputerTests: XCTestCase {
             let compiler = Compiler()
             let state = try compiler.compile(code)
             
-            XCTAssert(state.ram == registers, "STATE: \(state)")
+            XCTAssert(state.registers == registers, "STATE: \(state)")
         } catch let error {
             XCTAssert(false, "Error: \(error)")
         }
