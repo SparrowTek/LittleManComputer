@@ -68,7 +68,7 @@ class VirtualMachine {
         do {
             let register = state.value.registers[state.value.programCounter]
             let instruction = getInstruction(for: register)
-            state.value = try evaluate(instruction: instruction, for: state.value)
+            state.value = try execute(instruction: instruction, for: state.value)
         } catch let error as StateError {
             state.send(completion: .failure(error))
         } catch {
@@ -77,17 +77,24 @@ class VirtualMachine {
     }
     
     func run(speed: Double) {
-        let queue = DispatchQueue.main
-        let cancellable = queue.schedule(
-            after: queue.now,
-            interval: .seconds(speed)
-        ) { [weak self] in
-            self?.step()
-        }
+//        let timer = Timer.scheduledTimer(withTimeInterval: speed, repeats: true) { _ in
+////            print("Timer fired!")
+//            self.step()
+//        }
         
-        let _ = state.sink(receiveCompletion: { _ in
-            cancellable.cancel()
-        }, receiveValue: {_ in })
+//        state.value.printStatement = "WORKING!!"
+//        let queue = DispatchQueue.main
+//        let cancellable = queue.schedule(
+//            after: queue.now,
+//            interval: .seconds(speed)
+//        ) { /*[weak self] in
+//            self?*/ self.step()
+//        }
+        
+//        let _ = state.sink(receiveCompletion: { _ in
+////            cancellable.cancel()
+//            timer.invalidate()
+//        }, receiveValue: {_ in })
     }
     
     private func getInstruction(for register: Register) -> Instruction {
@@ -134,7 +141,7 @@ class VirtualMachine {
         
     }
     
-    private func evaluate(instruction: Instruction, for state: State) throws -> State {
+    private func execute(instruction: Instruction, for state: State) throws -> State {
         let opcode = instruction.opcode
         let mailbox = instruction.address
         guard mailbox >= 0 && mailbox <= 99 else { throw StateError.mailboxOutOfBounds }
@@ -255,7 +262,7 @@ class VirtualMachine {
         ogState.outbox.append(ogState.accumulator)
         ogState.programCounter += 1
         ogState.printStatement = "Output: output the value in the accumulator, \(ogState.accumulator) into the output box"
-        return state
+        return ogState
     }
     
     private func halt(for state: State) -> State {
