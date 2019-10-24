@@ -2,7 +2,7 @@
 //  LittleManComputerTests.swift
 //  LittleManComputerTests
 //
-//  Created by SparrowTek on 8/13/19.
+//  Created by Thomas J. Rademaker on 8/13/19.
 //  Copyright © 2019 SparrowTek LLC. All rights reserved.
 //
 
