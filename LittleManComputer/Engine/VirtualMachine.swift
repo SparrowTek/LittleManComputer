@@ -77,7 +77,17 @@ class VirtualMachine {
     }
     
     func run(speed: Int) {
-        // Subscribe to state to make sure nothing fails and to pause when input is needed?
+        let queue = DispatchQueue.main
+        let cancellable = queue.schedule(
+            after: queue.now,
+            interval: .seconds(speed)
+        ) { [weak self] in
+            self?.step()
+        }
+        
+        let _ = state.sink(receiveCompletion: { _ in
+            cancellable.cancel()
+        }, receiveValue: {_ in })
     }
     
     private func getInstruction(for register: Register) -> Instruction {
