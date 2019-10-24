@@ -76,7 +76,7 @@ class VirtualMachine {
         }
     }
     
-    func run(speed: Int) {
+    func run(speed: Double) {
         let queue = DispatchQueue.main
         let cancellable = queue.schedule(
             after: queue.now,
