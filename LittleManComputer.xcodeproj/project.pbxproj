@@ -16,6 +16,10 @@
 		2E2E65E923037BED007AF298 /* LittleManComputerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65E823037BED007AF298 /* LittleManComputerTests.swift */; };
 		2E2E65F623037C4A007AF298 /* Compiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65F523037C4A007AF298 /* Compiler.swift */; };
 		2E2E65F823037CDB007AF298 /* VirtualMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65F723037CDB007AF298 /* VirtualMachine.swift */; };
+		2ED864832363711500DBFFD3 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED864822363711500DBFFD3 /* State.swift */; };
+		2ED864852363717E00DBFFD3 /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED864842363717E00DBFFD3 /* Instruction.swift */; };
+		2ED86487236371AA00DBFFD3 /* Opcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED86486236371AA00DBFFD3 /* Opcode.swift */; };
+		2ED86489236371E200DBFFD3 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED86488236371E200DBFFD3 /* Program.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +46,10 @@
 		2E2E65EA23037BED007AF298 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E2E65F523037C4A007AF298 /* Compiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compiler.swift; sourceTree = "<group>"; };
 		2E2E65F723037CDB007AF298 /* VirtualMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualMachine.swift; sourceTree = "<group>"; };
+		2ED864822363711500DBFFD3 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		2ED864842363717E00DBFFD3 /* Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
+		2ED86486236371AA00DBFFD3 /* Opcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opcode.swift; sourceTree = "<group>"; };
+		2ED86488236371E200DBFFD3 /* Program.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				2E2E65F423037C28007AF298 /* Engine */,
-				2E2E65F323037C15007AF298 /* Model */,
+				2ED86481236370FF00DBFFD3 /* Model */,
 				2E2E65D123037BEB007AF298 /* AppDelegate.swift */,
 				2E2E65D323037BEB007AF298 /* SceneDelegate.swift */,
 				2E2E65D523037BEB007AF298 /* ContentView.swift */,
@@ -113,13 +121,6 @@
 			path = LittleManComputerTests;
 			sourceTree = "<group>";
 		};
-		2E2E65F323037C15007AF298 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		2E2E65F423037C28007AF298 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +128,17 @@
 				2E2E65F723037CDB007AF298 /* VirtualMachine.swift */,
 			);
 			path = Engine;
+			sourceTree = "<group>";
+		};
+		2ED86481236370FF00DBFFD3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2ED864822363711500DBFFD3 /* State.swift */,
+				2ED864842363717E00DBFFD3 /* Instruction.swift */,
+				2ED86486236371AA00DBFFD3 /* Opcode.swift */,
+				2ED86488236371E200DBFFD3 /* Program.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,10 +243,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E2E65F623037C4A007AF298 /* Compiler.swift in Sources */,
+				2ED86487236371AA00DBFFD3 /* Opcode.swift in Sources */,
 				2E2E65F823037CDB007AF298 /* VirtualMachine.swift in Sources */,
 				2E2E65D223037BEB007AF298 /* AppDelegate.swift in Sources */,
+				2ED864852363717E00DBFFD3 /* Instruction.swift in Sources */,
+				2ED86489236371E200DBFFD3 /* Program.swift in Sources */,
 				2E2E65D423037BEB007AF298 /* SceneDelegate.swift in Sources */,
 				2E2E65D623037BEB007AF298 /* ContentView.swift in Sources */,
+				2ED864832363711500DBFFD3 /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

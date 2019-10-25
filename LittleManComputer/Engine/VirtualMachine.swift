@@ -9,41 +9,7 @@
 import Foundation
 import Combine
 
-struct State {
-    var programCounter: Int = 0
-    var inbox: Int? = nil
-    var outbox: [Int] = []
-    var accumulator: Int = 0
-    var registers: [Register]
-    var printStatement: String = ""
-}
-
-enum Opcode: String {
-    case add = "add"
-    case subtract = "sub"
-    case store = "sta"
-    case load = "lda"
-    case branch = "bra"
-    case branchIfZero = "brz"
-    case branchIfPositive = "brp"
-    case input = "inp"
-    case output = "out"
-    case halt = "hlt"
-    case data = "dat"
-}
-
-typealias Register = Int
 typealias Mailbox = Int
-
-struct Instruction {
-    var opcode: Opcode
-    var address: Int = 0
-}
-
-struct Program {
-    var sourceCode: String
-//    var registers: [Register]
-}
 
 enum StateError: Error {
     case generic
