@@ -20,7 +20,7 @@ class LittleManComputerTests: XCTestCase {
     }
     
     func createTestState() -> State {
-        let registers = [507, 108, 902, 901, 109, 902, 000, 001, 010, 003,
+        let registers = [506, 107, 902, 108, 902, 000, 001, 010, 003, 000,
         000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
         000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
         000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
@@ -41,7 +41,6 @@ class LittleManComputerTests: XCTestCase {
                        LDA ONE
                        ADD TEN
                        OUT
-                       INP
                        ADD THREE
                        OUT
                        HLT
@@ -73,12 +72,36 @@ class LittleManComputerTests: XCTestCase {
             expectation.fulfill()
         })
         
-        wait(for: [expectation], timeout: 3)
         vm.step()
+        wait(for: [expectation], timeout: 3)
         XCTAssert(vm.state.value.programCounter == 1, "Program counter should have incremented to 1. \n program counter: \(vm.state.value.programCounter)")
-        let printStatement = "Load the value in register 7 (1) into the accumulator"
+        let printStatement = "Load the value in register 6 (1) into the accumulator"
         XCTAssert(vm.state.value.printStatement == printStatement, "wrong print statement: \n \(vm.state.value.printStatement)")
         XCTAssertNotNil(cancelable, "The subscription should not be nil")
+    }
+    
+    func testVirtualMachineRun() {
+        let state = createTestState()
+        let vm = VirtualMachine(state: state)
+        var count = 0
+        let expectation = XCTestExpectation(description: "program complete")
+        let cancelable = vm.state.sink(receiveCompletion: { _ in },
+                                       receiveValue: { state in
+                                        count += 1
+                                        if count >= 7 {
+                                            expectation.fulfill()
+                                        }
+        })
+        vm.run(speed: 0.1)
+        wait(for: [expectation], timeout: 2)
+
+        let executedState = vm.state.value
+        XCTAssertNotNil(cancelable, "The subscription should not be nil")
+        XCTAssertEqual(executedState.programCounter, 5, "Program Counter: \(executedState.programCounter)")
+        XCTAssertEqual(executedState.printStatement, "Program Complete", "Print Statement: \(executedState.printStatement)")
+        XCTAssertEqual(executedState.outbox, [11, 14], "Outbox: \(executedState.outbox)")
+        XCTAssertEqual(executedState.accumulator, 14, "Accumulator: \(executedState.accumulator)")
+        XCTAssertNil(executedState.inbox, "Inbox should be nil but is \(String(describing: executedState.inbox))")
     }
 
 }
