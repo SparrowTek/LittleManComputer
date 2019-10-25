@@ -77,24 +77,13 @@ class VirtualMachine {
     }
     
     func run(speed: Double) {
-//        let timer = Timer.scheduledTimer(withTimeInterval: speed, repeats: true) { _ in
-////            print("Timer fired!")
-//            self.step()
-//        }
+        let timer = Timer.scheduledTimer(withTimeInterval: speed, repeats: true) { [weak self] _ in
+            self?.step()
+        }
         
-//        state.value.printStatement = "WORKING!!"
-//        let queue = DispatchQueue.main
-//        let cancellable = queue.schedule(
-//            after: queue.now,
-//            interval: .seconds(speed)
-//        ) { /*[weak self] in
-//            self?*/ self.step()
-//        }
-        
-//        let _ = state.sink(receiveCompletion: { _ in
-////            cancellable.cancel()
-//            timer.invalidate()
-//        }, receiveValue: {_ in })
+        let _ = state.sink(receiveCompletion: { _ in
+            timer.invalidate()
+        }, receiveValue: {_ in })
     }
     
     private func getInstruction(for register: Register) -> Instruction {
