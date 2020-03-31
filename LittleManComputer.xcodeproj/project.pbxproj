@@ -9,17 +9,22 @@
 /* Begin PBXBuildFile section */
 		2E2E65D223037BEB007AF298 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65D123037BEB007AF298 /* AppDelegate.swift */; };
 		2E2E65D423037BEB007AF298 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65D323037BEB007AF298 /* SceneDelegate.swift */; };
-		2E2E65D623037BEB007AF298 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65D523037BEB007AF298 /* ContentView.swift */; };
 		2E2E65D823037BED007AF298 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E2E65D723037BED007AF298 /* Assets.xcassets */; };
 		2E2E65DB23037BED007AF298 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E2E65DA23037BED007AF298 /* Preview Assets.xcassets */; };
 		2E2E65DE23037BED007AF298 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E2E65DC23037BED007AF298 /* LaunchScreen.storyboard */; };
 		2E2E65E923037BED007AF298 /* LittleManComputerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65E823037BED007AF298 /* LittleManComputerTests.swift */; };
 		2E2E65F623037C4A007AF298 /* Compiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65F523037C4A007AF298 /* Compiler.swift */; };
 		2E2E65F823037CDB007AF298 /* VirtualMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65F723037CDB007AF298 /* VirtualMachine.swift */; };
-		2ED864832363711500DBFFD3 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED864822363711500DBFFD3 /* State.swift */; };
+		2EA193A02433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA1939F2433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift */; };
+		2EA193A42433D367001C0309 /* MainCompactPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA193A32433D367001C0309 /* MainCompactPhoneView.swift */; };
+		2EA193A62433D373001C0309 /* MainRegularPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA193A52433D373001C0309 /* MainRegularPhoneView.swift */; };
+		2ED864832363711500DBFFD3 /* ProgramState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED864822363711500DBFFD3 /* ProgramState.swift */; };
 		2ED864852363717E00DBFFD3 /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED864842363717E00DBFFD3 /* Instruction.swift */; };
 		2ED86487236371AA00DBFFD3 /* Opcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED86486236371AA00DBFFD3 /* Opcode.swift */; };
 		2ED86489236371E200DBFFD3 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED86488236371E200DBFFD3 /* Program.swift */; };
+		2EEDD94D2431545B002D2DD2 /* MainTabletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDD94C2431545B002D2DD2 /* MainTabletView.swift */; };
+		2EEDD94F24315465002D2DD2 /* MainPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDD94E24315465002D2DD2 /* MainPhoneView.swift */; };
+		2EEDD95224315ED4002D2DD2 /* AssemblyCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDD95124315ED4002D2DD2 /* AssemblyCodeEditor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +41,6 @@
 		2E2E65CE23037BEB007AF298 /* LittleManComputer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LittleManComputer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E2E65D123037BEB007AF298 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E2E65D323037BEB007AF298 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2E2E65D523037BEB007AF298 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2E2E65D723037BED007AF298 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E2E65DA23037BED007AF298 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2E2E65DD23037BED007AF298 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -46,10 +50,16 @@
 		2E2E65EA23037BED007AF298 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E2E65F523037C4A007AF298 /* Compiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compiler.swift; sourceTree = "<group>"; };
 		2E2E65F723037CDB007AF298 /* VirtualMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualMachine.swift; sourceTree = "<group>"; };
-		2ED864822363711500DBFFD3 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		2EA1939F2433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAssemblyCodeEditorButton.swift; sourceTree = "<group>"; };
+		2EA193A32433D367001C0309 /* MainCompactPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCompactPhoneView.swift; sourceTree = "<group>"; };
+		2EA193A52433D373001C0309 /* MainRegularPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRegularPhoneView.swift; sourceTree = "<group>"; };
+		2ED864822363711500DBFFD3 /* ProgramState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramState.swift; sourceTree = "<group>"; };
 		2ED864842363717E00DBFFD3 /* Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
 		2ED86486236371AA00DBFFD3 /* Opcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opcode.swift; sourceTree = "<group>"; };
 		2ED86488236371E200DBFFD3 /* Program.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
+		2EEDD94C2431545B002D2DD2 /* MainTabletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabletView.swift; sourceTree = "<group>"; };
+		2EEDD94E24315465002D2DD2 /* MainPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPhoneView.swift; sourceTree = "<group>"; };
+		2EEDD95124315ED4002D2DD2 /* AssemblyCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyCodeEditor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,11 +101,11 @@
 		2E2E65D023037BEB007AF298 /* LittleManComputer */ = {
 			isa = PBXGroup;
 			children = (
+				2EEDD94B24315418002D2DD2 /* Modules */,
 				2E2E65F423037C28007AF298 /* Engine */,
 				2ED86481236370FF00DBFFD3 /* Model */,
 				2E2E65D123037BEB007AF298 /* AppDelegate.swift */,
 				2E2E65D323037BEB007AF298 /* SceneDelegate.swift */,
-				2E2E65D523037BEB007AF298 /* ContentView.swift */,
 				2E2E65D723037BED007AF298 /* Assets.xcassets */,
 				2E2E65DC23037BED007AF298 /* LaunchScreen.storyboard */,
 				2E2E65DF23037BED007AF298 /* Info.plist */,
@@ -130,15 +140,52 @@
 			path = Engine;
 			sourceTree = "<group>";
 		};
+		2EA193A12433D331001C0309 /* Tablet */ = {
+			isa = PBXGroup;
+			children = (
+				2EEDD94C2431545B002D2DD2 /* MainTabletView.swift */,
+			);
+			path = Tablet;
+			sourceTree = "<group>";
+		};
+		2EA193A22433D338001C0309 /* Phone */ = {
+			isa = PBXGroup;
+			children = (
+				2EEDD94E24315465002D2DD2 /* MainPhoneView.swift */,
+				2EA193A32433D367001C0309 /* MainCompactPhoneView.swift */,
+				2EA193A52433D373001C0309 /* MainRegularPhoneView.swift */,
+			);
+			path = Phone;
+			sourceTree = "<group>";
+		};
 		2ED86481236370FF00DBFFD3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2ED864822363711500DBFFD3 /* State.swift */,
+				2ED864822363711500DBFFD3 /* ProgramState.swift */,
 				2ED864842363717E00DBFFD3 /* Instruction.swift */,
 				2ED86486236371AA00DBFFD3 /* Opcode.swift */,
 				2ED86488236371E200DBFFD3 /* Program.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2EEDD94B24315418002D2DD2 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				2EA193A22433D338001C0309 /* Phone */,
+				2EA193A12433D331001C0309 /* Tablet */,
+				2EEDD95024315EB9002D2DD2 /* AssemblyCode */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		2EEDD95024315EB9002D2DD2 /* AssemblyCode */ = {
+			isa = PBXGroup;
+			children = (
+				2EEDD95124315ED4002D2DD2 /* AssemblyCodeEditor.swift */,
+				2EA1939F2433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift */,
+			);
+			path = AssemblyCode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,14 +290,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E2E65F623037C4A007AF298 /* Compiler.swift in Sources */,
+				2EEDD95224315ED4002D2DD2 /* AssemblyCodeEditor.swift in Sources */,
+				2EEDD94F24315465002D2DD2 /* MainPhoneView.swift in Sources */,
 				2ED86487236371AA00DBFFD3 /* Opcode.swift in Sources */,
+				2EA193A02433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift in Sources */,
 				2E2E65F823037CDB007AF298 /* VirtualMachine.swift in Sources */,
 				2E2E65D223037BEB007AF298 /* AppDelegate.swift in Sources */,
 				2ED864852363717E00DBFFD3 /* Instruction.swift in Sources */,
+				2EA193A42433D367001C0309 /* MainCompactPhoneView.swift in Sources */,
 				2ED86489236371E200DBFFD3 /* Program.swift in Sources */,
 				2E2E65D423037BEB007AF298 /* SceneDelegate.swift in Sources */,
-				2E2E65D623037BEB007AF298 /* ContentView.swift in Sources */,
-				2ED864832363711500DBFFD3 /* State.swift in Sources */,
+				2EEDD94D2431545B002D2DD2 /* MainTabletView.swift in Sources */,
+				2ED864832363711500DBFFD3 /* ProgramState.swift in Sources */,
+				2EA193A62433D373001C0309 /* MainRegularPhoneView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

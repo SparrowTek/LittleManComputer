@@ -24,7 +24,7 @@ class Compiler {
     
     // parse the assembly code that was input by the user and load the registers with the proper value
     // check that the assembly code entered is valid and can compile into the memory registers
-    func compile(_ code: String) throws -> State {
+    func compile(_ code: String) throws -> ProgramState {
         
         do {
             let linesOfCode = createStringArray(from: code, seperatedBy: .newlines)
@@ -35,11 +35,11 @@ class Compiler {
         }
     }
     
-    private func stateFromInterpretedCode(_ interpretedLinesOfCode: [InterpretedAssemblyCodeLine]) throws -> State {
+    private func stateFromInterpretedCode(_ interpretedLinesOfCode: [InterpretedAssemblyCodeLine]) throws -> ProgramState {
         do {
             let leadingLabels = trackLabels(for: interpretedLinesOfCode)
             let registers = try setRegistersFromInterpretedAssemblyCodeLineArray(interpretedLinesOfCode, leadingLabels: leadingLabels)
-            return State(registers: registers)
+            return ProgramState(registers: registers)
         } catch let error as CompileError {
             throw error
         }

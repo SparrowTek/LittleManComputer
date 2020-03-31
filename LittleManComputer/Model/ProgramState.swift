@@ -8,7 +8,7 @@
 
 typealias Register = Int
 
-struct State {
+struct ProgramState {
     var programCounter: Int = 0
     var inbox: Int? = nil
     var outbox: [Int] = []

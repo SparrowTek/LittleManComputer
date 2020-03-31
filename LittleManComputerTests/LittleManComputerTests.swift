@@ -19,7 +19,7 @@ class LittleManComputerTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func createTestState() -> State {
+    func createTestState() -> ProgramState {
         let registers = [506, 107, 902, 108, 902, 000, 001, 010, 003, 000,
         000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
         000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
@@ -31,7 +31,7 @@ class LittleManComputerTests: XCTestCase {
         000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
         000, 000, 000, 000, 000, 000, 000, 000, 000, 000]
         
-        return State(registers: registers)
+        return ProgramState(registers: registers)
     }
     
     // MARK: Compiler Tests

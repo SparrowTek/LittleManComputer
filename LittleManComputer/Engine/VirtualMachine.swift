@@ -19,15 +19,15 @@ enum StateError: Error {
 
 class VirtualMachine {
     
-    var state: CurrentValueSubject<State, StateError>
+    var state: CurrentValueSubject<ProgramState, StateError>
     var input: Int? {
         didSet {
             state.value.inbox = input
         }
     }
     
-    init(state: State) {
-        self.state = CurrentValueSubject<State, StateError>(state)
+    init(state: ProgramState) {
+        self.state = CurrentValueSubject<ProgramState, StateError>(state)
     }
     
     func step() {
@@ -96,7 +96,7 @@ class VirtualMachine {
         
     }
     
-    private func execute(instruction: Instruction, for state: State) throws -> State {
+    private func execute(instruction: Instruction, for state: ProgramState) throws -> ProgramState {
         let opcode = instruction.opcode
         let mailbox = instruction.address
         guard mailbox >= 0 && mailbox <= 99 else { throw StateError.mailboxOutOfBounds }
@@ -131,7 +131,7 @@ class VirtualMachine {
         }
     }
     
-    private func add(mailbox: Mailbox, for state: State) -> State {
+    private func add(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
         let accumulator = state.accumulator
         let registerValue = state.registers[mailbox]
@@ -142,7 +142,7 @@ class VirtualMachine {
         return ogState
     }
     
-    private func subtract(mailbox: Mailbox, for state: State) -> State {
+    private func subtract(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
         let accumulator = state.accumulator
         let registerValue = state.registers[mailbox]
@@ -153,7 +153,7 @@ class VirtualMachine {
         return ogState
     }
     
-    private func store(mailbox: Mailbox, for state: State) -> State {
+    private func store(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
         ogState.registers[mailbox] = ogState.accumulator
         ogState.programCounter += 1
@@ -161,7 +161,7 @@ class VirtualMachine {
         return ogState
     }
     
-    private func load(mailbox: Mailbox, for state: State) -> State {
+    private func load(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
         ogState.accumulator = ogState.registers[mailbox]
         ogState.programCounter += 1
@@ -169,14 +169,14 @@ class VirtualMachine {
         return ogState
     }
     
-    private func branch(mailbox: Mailbox, for state: State) -> State {
+    private func branch(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
         ogState.programCounter = mailbox
         ogState.printStatement = "Branch: change the program counter to the value in register \(mailbox)"
         return ogState
     }
     
-    private func branchIfZero(mailbox: Mailbox, for state: State) -> State {
+    private func branchIfZero(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
         
         if ogState.accumulator == 0 {
@@ -190,7 +190,7 @@ class VirtualMachine {
         return ogState
     }
     
-    private func branchIfPositive(mailbox: Mailbox, for state: State) -> State {
+    private func branchIfPositive(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
         
         if ogState.accumulator >= 0 {
@@ -204,7 +204,7 @@ class VirtualMachine {
         return ogState
     }
     
-    private func input(for state: State) throws -> State {
+    private func input(for state: ProgramState) throws -> ProgramState {
         guard let inbox = state.inbox else { throw StateError.needInput }
         var ogState = state
         ogState.accumulator = inbox
@@ -212,7 +212,7 @@ class VirtualMachine {
         return ogState
     }
     
-    private func output(for state: State) -> State {
+    private func output(for state: ProgramState) -> ProgramState {
         var ogState = state
         ogState.outbox.append(ogState.accumulator)
         ogState.programCounter += 1
@@ -220,7 +220,7 @@ class VirtualMachine {
         return ogState
     }
     
-    private func halt(for state: State) -> State {
+    private func halt(for state: ProgramState) -> ProgramState {
         var ogState = state
         ogState.printStatement = "Program Complete"
         return ogState
