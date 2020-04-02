@@ -18,6 +18,8 @@
 		2EA193A02433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA1939F2433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift */; };
 		2EA193A42433D367001C0309 /* MainCompactPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA193A32433D367001C0309 /* MainCompactPhoneView.swift */; };
 		2EA193A62433D373001C0309 /* MainRegularPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA193A52433D373001C0309 /* MainRegularPhoneView.swift */; };
+		2EA193A824369F10001C0309 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EA193A724369F10001C0309 /* Colors.xcassets */; };
+		2EA193AC2436A179001C0309 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA193AB2436A179001C0309 /* Constants.swift */; };
 		2ED864832363711500DBFFD3 /* ProgramState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED864822363711500DBFFD3 /* ProgramState.swift */; };
 		2ED864852363717E00DBFFD3 /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED864842363717E00DBFFD3 /* Instruction.swift */; };
 		2ED86487236371AA00DBFFD3 /* Opcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED86486236371AA00DBFFD3 /* Opcode.swift */; };
@@ -53,6 +55,8 @@
 		2EA1939F2433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAssemblyCodeEditorButton.swift; sourceTree = "<group>"; };
 		2EA193A32433D367001C0309 /* MainCompactPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCompactPhoneView.swift; sourceTree = "<group>"; };
 		2EA193A52433D373001C0309 /* MainRegularPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRegularPhoneView.swift; sourceTree = "<group>"; };
+		2EA193A724369F10001C0309 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		2EA193AB2436A179001C0309 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2ED864822363711500DBFFD3 /* ProgramState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramState.swift; sourceTree = "<group>"; };
 		2ED864842363717E00DBFFD3 /* Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
 		2ED86486236371AA00DBFFD3 /* Opcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opcode.swift; sourceTree = "<group>"; };
@@ -101,13 +105,13 @@
 		2E2E65D023037BEB007AF298 /* LittleManComputer */ = {
 			isa = PBXGroup;
 			children = (
+				2EA193AA2436A152001C0309 /* Common */,
+				2EA193A924369F75001C0309 /* Assets */,
 				2EEDD94B24315418002D2DD2 /* Modules */,
 				2E2E65F423037C28007AF298 /* Engine */,
 				2ED86481236370FF00DBFFD3 /* Model */,
 				2E2E65D123037BEB007AF298 /* AppDelegate.swift */,
 				2E2E65D323037BEB007AF298 /* SceneDelegate.swift */,
-				2E2E65D723037BED007AF298 /* Assets.xcassets */,
-				2E2E65DC23037BED007AF298 /* LaunchScreen.storyboard */,
 				2E2E65DF23037BED007AF298 /* Info.plist */,
 				2E2E65D923037BED007AF298 /* Preview Content */,
 			);
@@ -156,6 +160,24 @@
 				2EA193A52433D373001C0309 /* MainRegularPhoneView.swift */,
 			);
 			path = Phone;
+			sourceTree = "<group>";
+		};
+		2EA193A924369F75001C0309 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				2E2E65DC23037BED007AF298 /* LaunchScreen.storyboard */,
+				2EA193A724369F10001C0309 /* Colors.xcassets */,
+				2E2E65D723037BED007AF298 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		2EA193AA2436A152001C0309 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2EA193AB2436A179001C0309 /* Constants.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		2ED86481236370FF00DBFFD3 /* Model */ = {
@@ -270,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E2E65DE23037BED007AF298 /* LaunchScreen.storyboard in Resources */,
+				2EA193A824369F10001C0309 /* Colors.xcassets in Resources */,
 				2E2E65DB23037BED007AF298 /* Preview Assets.xcassets in Resources */,
 				2E2E65D823037BED007AF298 /* Assets.xcassets in Resources */,
 			);
@@ -294,6 +317,7 @@
 				2EEDD94F24315465002D2DD2 /* MainPhoneView.swift in Sources */,
 				2ED86487236371AA00DBFFD3 /* Opcode.swift in Sources */,
 				2EA193A02433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift in Sources */,
+				2EA193AC2436A179001C0309 /* Constants.swift in Sources */,
 				2E2E65F823037CDB007AF298 /* VirtualMachine.swift in Sources */,
 				2E2E65D223037BEB007AF298 /* AppDelegate.swift in Sources */,
 				2ED864852363717E00DBFFD3 /* Instruction.swift in Sources */,

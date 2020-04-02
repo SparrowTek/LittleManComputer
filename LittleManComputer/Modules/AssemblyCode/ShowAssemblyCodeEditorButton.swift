@@ -26,7 +26,7 @@ struct ShowAssemblyCodeEditorButtonContent: View {
     var body: some View {
         VStack {
             RoundedRectangle(cornerRadius: 8, style: .continuous)
-                .fill(Color.black)
+                .fill(Color(Colors.sheetHandle))
                 .frame(width: 80, height: 8)
             Text("Assembly Code")
         }
