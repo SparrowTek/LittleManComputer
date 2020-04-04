@@ -11,6 +11,19 @@ import SwiftUI
 struct RegisterCollectionView: View {
     var body: some View {
         VStack {
+            HStack {
+                Text("ram").padding([.leading, .bottom], 16)
+                    .font(.system(size: 20, weight: .bold))
+                Spacer()
+            }
+            AllRegisters()
+        }
+    }
+}
+
+struct AllRegisters: View {
+    var body: some View {
+        VStack {
             RegisterRow(range: (0...9))
             RegisterRow(range: (10...19))
             RegisterRow(range: (20...29))
@@ -22,6 +35,12 @@ struct RegisterCollectionView: View {
             RegisterRow(range: (80...89))
             RegisterRow(range: (90...99))
         }
+        .overlay(
+        Rectangle()
+            .stroke(Color(Colors.registerBorder), lineWidth: 1)
+            .padding(-8)
+            
+        )
     }
 }
 

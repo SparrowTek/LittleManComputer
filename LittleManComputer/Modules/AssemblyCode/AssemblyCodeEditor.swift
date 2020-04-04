@@ -16,6 +16,7 @@ struct AssemblyCodeEditor: View {
                 Text("assemblyCodeEditorTitle")
                     .padding([.leading], 32)
                     .padding(.top, 16)
+                    .font(.system(size: 20, weight: .bold))
                 Spacer()
             }
             Rectangle()

@@ -9,3 +9,7 @@
 "navigationBarTitle" = "LMC";
 "assemblyCodeButton" = "Assembly Code";
 "assemblyCodeEditorTitle" = "Assembly Code";
+"runButton" = "Run";
+"stepButton" = "Step";
+"resetButton" = "Reset";
+"ram" = "RAM";
