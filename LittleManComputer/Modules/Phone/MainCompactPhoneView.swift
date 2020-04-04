@@ -15,18 +15,11 @@ struct MainCompactPhoneView: View {
         NavigationView {
             VStack {
                 Spacer()
+                RegisterCollectionView()
                 ShowAssemblyCodeEditorButton()
                     .frame(maxHeight: 64)
                     .navigationBarTitle("Little Man Computer", displayMode: .inline)
-//                    .gesture(
-//                        DragGesture()
-//                            .onChanged { gesture in
-//                                self.showAssemblyCodeEditor = true
-//                        }
-//                )
-//                    .sheet(isPresented: $showAssemblyCodeEditor) {
-//                        AssemblyCodeEditor()
-//                }
+                .navigationBarItems(trailing: HelpButton())
             }
             
         }

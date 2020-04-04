@@ -22,6 +22,9 @@
 		2EA193AC2436A179001C0309 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA193AB2436A179001C0309 /* Constants.swift */; };
 		2EA193B22438EC15001C0309 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2EA193B02438EC15001C0309 /* Localizable.strings */; };
 		2EA193B62438ED7C001C0309 /* LMCButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA193B52438ED7C001C0309 /* LMCButton.swift */; };
+		2EA193B924391368001C0309 /* HelpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA193B824391368001C0309 /* HelpButton.swift */; };
+		2EA193BC2439259D001C0309 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA193BB2439259D001C0309 /* RegisterView.swift */; };
+		2EA193BE243925AA001C0309 /* RegisterCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA193BD243925AA001C0309 /* RegisterCollectionView.swift */; };
 		2ED864832363711500DBFFD3 /* ProgramState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED864822363711500DBFFD3 /* ProgramState.swift */; };
 		2ED864852363717E00DBFFD3 /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED864842363717E00DBFFD3 /* Instruction.swift */; };
 		2ED86487236371AA00DBFFD3 /* Opcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED86486236371AA00DBFFD3 /* Opcode.swift */; };
@@ -63,6 +66,9 @@
 		2EA193B32438EC28001C0309 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2EA193B52438ED7C001C0309 /* LMCButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMCButton.swift; sourceTree = "<group>"; };
 		2EA193B7243906BD001C0309 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2EA193B824391368001C0309 /* HelpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpButton.swift; sourceTree = "<group>"; };
+		2EA193BB2439259D001C0309 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		2EA193BD243925AA001C0309 /* RegisterCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCollectionView.swift; sourceTree = "<group>"; };
 		2ED864822363711500DBFFD3 /* ProgramState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramState.swift; sourceTree = "<group>"; };
 		2ED864842363717E00DBFFD3 /* Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
 		2ED86486236371AA00DBFFD3 /* Opcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opcode.swift; sourceTree = "<group>"; };
@@ -191,8 +197,18 @@
 			isa = PBXGroup;
 			children = (
 				2EA193B52438ED7C001C0309 /* LMCButton.swift */,
+				2EA193B824391368001C0309 /* HelpButton.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		2EA193BA2439255A001C0309 /* Registers */ = {
+			isa = PBXGroup;
+			children = (
+				2EA193BB2439259D001C0309 /* RegisterView.swift */,
+				2EA193BD243925AA001C0309 /* RegisterCollectionView.swift */,
+			);
+			path = Registers;
 			sourceTree = "<group>";
 		};
 		2ED86481236370FF00DBFFD3 /* Model */ = {
@@ -213,6 +229,7 @@
 				2EA193A22433D338001C0309 /* Phone */,
 				2EA193A12433D331001C0309 /* Tablet */,
 				2EEDD95024315EB9002D2DD2 /* AssemblyCode */,
+				2EA193BA2439255A001C0309 /* Registers */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -330,7 +347,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EA193B924391368001C0309 /* HelpButton.swift in Sources */,
 				2E2E65F623037C4A007AF298 /* Compiler.swift in Sources */,
+				2EA193BE243925AA001C0309 /* RegisterCollectionView.swift in Sources */,
 				2EEDD95224315ED4002D2DD2 /* AssemblyCodeEditor.swift in Sources */,
 				2EA193B62438ED7C001C0309 /* LMCButton.swift in Sources */,
 				2EEDD94F24315465002D2DD2 /* MainPhoneView.swift in Sources */,
@@ -338,6 +357,7 @@
 				2EA193A02433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift in Sources */,
 				2EA193AC2436A179001C0309 /* Constants.swift in Sources */,
 				2E2E65F823037CDB007AF298 /* VirtualMachine.swift in Sources */,
+				2EA193BC2439259D001C0309 /* RegisterView.swift in Sources */,
 				2E2E65D223037BEB007AF298 /* AppDelegate.swift in Sources */,
 				2ED864852363717E00DBFFD3 /* Instruction.swift in Sources */,
 				2EA193A42433D367001C0309 /* MainCompactPhoneView.swift in Sources */,
