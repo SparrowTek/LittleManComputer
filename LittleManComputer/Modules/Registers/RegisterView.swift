@@ -10,8 +10,15 @@ import SwiftUI
 
 struct RegisterView: View {
     var id = UUID()
-    @State private var memoryValue = "000"
     private var registerNumber: String
+    var isSelected = false {
+        didSet {
+            
+        }
+    }
+    @State private var memoryValue = "000"
+    @State private var backgroundColor = Color.white
+    @State private var textColor = Color.black
     
     init(registerNumber: String) {
         self.registerNumber = registerNumber
@@ -30,6 +37,8 @@ struct RegisterView: View {
                 .frame(width: 22, height: 12)
                 .multilineTextAlignment(.center)
                 .font(.system(size: 10))
+                .background(backgroundColor)
+                .foregroundColor(textColor)
                 .overlay(
                     Rectangle()
                         .stroke(Color(Colors.registerBorder), lineWidth: 1)

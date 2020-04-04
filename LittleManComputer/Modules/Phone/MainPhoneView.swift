@@ -9,15 +9,19 @@
 import SwiftUI
 
 struct MainPhoneView: View {
-    @Environment(\.horizontalSizeClass) var sizeClass
+    @State var showAssemblyCodeEditor = false
     
     var body: some View {
-        MainCompactPhoneView()
-//        if sizeClass == .compact {
-//            return MainCompactPhoneView()
-//        } else {
-//            return MainRegularPhoneView()
-//        }
+        NavigationView {
+            VStack {
+                Spacer()
+                RegisterCollectionView()
+                ShowAssemblyCodeEditorButton()
+                    .frame(maxHeight: 64)
+                    .navigationBarTitle("navigationBarTitle", displayMode: .inline)
+                .navigationBarItems(trailing: NavBarButtons())
+            }
+        }
     }
 }
 
