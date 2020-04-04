@@ -62,6 +62,7 @@
 		2EA193B12438EC15001C0309 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2EA193B32438EC28001C0309 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2EA193B52438ED7C001C0309 /* LMCButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMCButton.swift; sourceTree = "<group>"; };
+		2EA193B7243906BD001C0309 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2ED864822363711500DBFFD3 /* ProgramState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramState.swift; sourceTree = "<group>"; };
 		2ED864842363717E00DBFFD3 /* Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
 		2ED86486236371AA00DBFFD3 /* Opcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opcode.swift; sourceTree = "<group>"; };
@@ -110,14 +111,14 @@
 		2E2E65D023037BEB007AF298 /* LittleManComputer */ = {
 			isa = PBXGroup;
 			children = (
-				2EA193AA2436A152001C0309 /* Common */,
-				2EA193A924369F75001C0309 /* Assets */,
-				2EEDD94B24315418002D2DD2 /* Modules */,
-				2E2E65F423037C28007AF298 /* Engine */,
-				2ED86481236370FF00DBFFD3 /* Model */,
 				2E2E65D123037BEB007AF298 /* AppDelegate.swift */,
 				2E2E65D323037BEB007AF298 /* SceneDelegate.swift */,
 				2E2E65DF23037BED007AF298 /* Info.plist */,
+				2EEDD94B24315418002D2DD2 /* Modules */,
+				2E2E65F423037C28007AF298 /* Engine */,
+				2ED86481236370FF00DBFFD3 /* Model */,
+				2EA193AA2436A152001C0309 /* Common */,
+				2EA193A924369F75001C0309 /* Assets */,
 				2E2E65D923037BED007AF298 /* Preview Content */,
 			);
 			path = LittleManComputer;
@@ -380,6 +381,7 @@
 			children = (
 				2EA193B12438EC15001C0309 /* Base */,
 				2EA193B32438EC28001C0309 /* es-419 */,
+				2EA193B7243906BD001C0309 /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

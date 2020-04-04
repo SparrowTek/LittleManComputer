@@ -14,8 +14,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        setupGlobalUIElements()
         return true
+    }
+    
+    private func setupGlobalUIElements() {
+        UINavigationBar.appearance().barTintColor = UIColor(named: Colors.navBar)
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: Colors.navBarTitle) ?? UIColor.black]
+        UINavigationBar.appearance().shadowImage = UIImage()
     }
 
     // MARK: UISceneSession Lifecycle

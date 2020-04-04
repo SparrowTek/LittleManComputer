@@ -5,3 +5,7 @@
   Created by SparrowTek on 4/4/20.
   Copyright © 2020 SparrowTek LLC. All rights reserved.
 */
+
+"navigationBarTitle" = "Little Man Computer";
+"assemblyCodeButton" = "Assembly Code";
+"assemblyCodeEditorTitle" = "Assembly Code";

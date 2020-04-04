@@ -11,4 +11,7 @@ struct Colors {
     static let textEditorBackground = "TextEditorBackground"
     static let sheetBoarder = "SheetBoarder"
     static let lmcButton = "LMCButton"
+    static let lmcButtonTitle  = "LMCButtonTitle"
+    static let navBar = "NavBar"
+    static let navBarTitle = "NavBarTitle"
 }

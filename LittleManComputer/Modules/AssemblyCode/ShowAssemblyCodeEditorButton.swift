@@ -11,16 +11,14 @@ import SwiftUI
 struct ShowAssemblyCodeEditorButton: View {
     @State var showAssemblyCodeEditor = false
     var body: some View {
-        Button(action: {
-            self.showAssemblyCodeEditor.toggle()
-        }) {
-            Text("assemblyCodeButton")
-        }.sheet(isPresented: $showAssemblyCodeEditor) {
+        LMCButton(title: "assemblyCodeButton", action: assemblyButtonAction)
+        .sheet(isPresented: $showAssemblyCodeEditor) {
             AssemblyCodeEditor()
         }
-        .edgesIgnoringSafeArea(.bottom)
-//        ShowAssemblyCodeEditorButtonContent()
-//        .edgesIgnoringSafeArea(.bottom)
+    }
+    
+    private func assemblyButtonAction() {
+        showAssemblyCodeEditor.toggle()
     }
 }
 
@@ -46,7 +44,7 @@ struct ShowAssemblyCodeEditorButton: View {
 //        RoundedRectangle(cornerRadius: 16)
 //            .stroke(Color(Colors.sheetBoarder), lineWidth: 1)
 //        )
-//        
+//
 //    }
 //}
 

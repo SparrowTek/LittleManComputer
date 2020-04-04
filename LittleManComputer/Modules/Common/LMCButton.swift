@@ -11,10 +11,14 @@ import SwiftUI
 struct LMCButton: View {
     private var title: String
     private var action: (() -> Void)?
+    private var height: CGFloat
+    private var width: CGFloat
     
-    init(title: String, action: (() -> Void)?) {
+    init(title: String, height: CGFloat = 50, width: CGFloat = 200, action: (() -> Void)?) {
         self.title = title
         self.action = action
+        self.height = height
+        self.width = width
     }
     
     var body: some View {
@@ -22,14 +26,16 @@ struct LMCButton: View {
             self.action?()
         }) {
             Text(title)
+            .frame(width: width, height: height)
+            .background(Color(Colors.lmcButton))
+            .foregroundColor(Color(Colors.lmcButtonTitle))
+            .cornerRadius(16)
         }
-        
-            
     }
 }
 
 struct LMCButton_Previews: PreviewProvider {
     static var previews: some View {
-        LMCButton(title: "title", action: nil)
+        LMCButton(title: "assemblyCodeButton", action: nil)
     }
 }
