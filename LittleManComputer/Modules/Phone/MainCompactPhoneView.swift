@@ -9,11 +9,28 @@
 import SwiftUI
 
 struct MainCompactPhoneView: View {
+    @State var showAssemblyCodeEditor = false
+    
     var body: some View {
         NavigationView {
-            ShowAssemblyCodeEditorButton()
+            VStack {
+                Spacer()
+                ShowAssemblyCodeEditorButton()
+                    .frame(maxHeight: 64)
+                    .navigationBarTitle("Little Man Computer", displayMode: .inline)
+//                    .gesture(
+//                        DragGesture()
+//                            .onChanged { gesture in
+//                                self.showAssemblyCodeEditor = true
+//                        }
+//                )
+//                    .sheet(isPresented: $showAssemblyCodeEditor) {
+//                        AssemblyCodeEditor()
+//                }
+            }
+            
         }
-        .navigationBarTitle("Little Man Computer", displayMode: .inline)
+        
     }
 }
 

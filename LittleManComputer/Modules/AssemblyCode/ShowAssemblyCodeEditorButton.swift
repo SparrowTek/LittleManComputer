@@ -14,11 +14,13 @@ struct ShowAssemblyCodeEditorButton: View {
         Button(action: {
             self.showAssemblyCodeEditor.toggle()
         }) {
-            ShowAssemblyCodeEditorButtonContent()
+            Text("Assembly Code")
         }.sheet(isPresented: $showAssemblyCodeEditor) {
             AssemblyCodeEditor()
         }
-        
+        .edgesIgnoringSafeArea(.bottom)
+//        ShowAssemblyCodeEditorButtonContent()
+//        .edgesIgnoringSafeArea(.bottom)
     }
 }
 
@@ -28,8 +30,23 @@ struct ShowAssemblyCodeEditorButtonContent: View {
             RoundedRectangle(cornerRadius: 8, style: .continuous)
                 .fill(Color(Colors.sheetHandle))
                 .frame(width: 80, height: 8)
-            Text("Assembly Code")
-        }
+                .shadow(radius: 0.5)
+                .padding(.top, 8)
+            HStack {
+                Text("Assembly Code")
+                    .padding([.leading], 32)
+                Spacer()
+            }
+            Rectangle()
+                .fill(Color(Colors.textEditorBackground))
+                .frame(maxWidth: .infinity)
+                .padding([.leading, .trailing], 20)
+            }
+        .overlay(
+        RoundedRectangle(cornerRadius: 16)
+            .stroke(Color(Colors.sheetBoarder), lineWidth: 1)
+        )
+        
     }
 }
 
