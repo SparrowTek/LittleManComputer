@@ -14,7 +14,7 @@ struct ShowAssemblyCodeEditorButton: View {
         Button(action: {
             self.showAssemblyCodeEditor.toggle()
         }) {
-            Text("Assembly Code")
+            Text("assemblyCodeButton")
         }.sheet(isPresented: $showAssemblyCodeEditor) {
             AssemblyCodeEditor()
         }
@@ -24,31 +24,31 @@ struct ShowAssemblyCodeEditorButton: View {
     }
 }
 
-struct ShowAssemblyCodeEditorButtonContent: View {
-    var body: some View {
-        VStack {
-            RoundedRectangle(cornerRadius: 8, style: .continuous)
-                .fill(Color(Colors.sheetHandle))
-                .frame(width: 80, height: 8)
-                .shadow(radius: 0.5)
-                .padding(.top, 8)
-            HStack {
-                Text("Assembly Code")
-                    .padding([.leading], 32)
-                Spacer()
-            }
-            Rectangle()
-                .fill(Color(Colors.textEditorBackground))
-                .frame(maxWidth: .infinity)
-                .padding([.leading, .trailing], 20)
-            }
-        .overlay(
-        RoundedRectangle(cornerRadius: 16)
-            .stroke(Color(Colors.sheetBoarder), lineWidth: 1)
-        )
-        
-    }
-}
+//struct ShowAssemblyCodeEditorButtonContent: View {
+//    var body: some View {
+//        VStack {
+//            RoundedRectangle(cornerRadius: 8, style: .continuous)
+//                .fill(Color(Colors.sheetHandle))
+//                .frame(width: 80, height: 8)
+//                .shadow(radius: 0.5)
+//                .padding(.top, 8)
+//            HStack {
+//                Text("assemblyCodeButton")
+//                    .padding([.leading], 32)
+//                Spacer()
+//            }
+//            Rectangle()
+//                .fill(Color(Colors.textEditorBackground))
+//                .frame(maxWidth: .infinity)
+//                .padding([.leading, .trailing], 20)
+//            }
+//        .overlay(
+//        RoundedRectangle(cornerRadius: 16)
+//            .stroke(Color(Colors.sheetBoarder), lineWidth: 1)
+//        )
+//        
+//    }
+//}
 
 struct ShowAssemblyCodeEditorButton_Previews: PreviewProvider {
     static var previews: some View {

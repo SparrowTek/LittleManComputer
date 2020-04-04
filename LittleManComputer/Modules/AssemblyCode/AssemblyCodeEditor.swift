@@ -11,20 +11,7 @@ import SwiftUI
 struct AssemblyCodeEditor: View {
     
     var body: some View {
-//        HStack {
-//        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-//            .foregroundColor(.white)
-//        }
-//        .frame(maxWidth: .infinity, maxHeight: .infinity)
-//        .background(Color.black)
-//        .edgesIgnoringSafeArea(.all)
-        
         VStack {
-            RoundedRectangle(cornerRadius: 8, style: .continuous)
-                .fill(Color(Colors.sheetHandle))
-                .frame(width: 80, height: 8)
-                .shadow(radius: 0.5)
-                .padding(.top, 8)
             HStack {
                 Text("Assembly Code")
                     .padding([.leading], 32)
@@ -35,10 +22,6 @@ struct AssemblyCodeEditor: View {
                 .frame(maxWidth: .infinity)
                 .padding([.leading, .trailing], 20)
             }
-//        .overlay(
-//        RoundedRectangle(cornerRadius: 16)
-//            .stroke(Color(Colors.sheetBoarder), lineWidth: 1)
-//        )
     }
 }
 

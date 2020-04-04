@@ -20,6 +20,8 @@
 		2EA193A62433D373001C0309 /* MainRegularPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA193A52433D373001C0309 /* MainRegularPhoneView.swift */; };
 		2EA193A824369F10001C0309 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EA193A724369F10001C0309 /* Colors.xcassets */; };
 		2EA193AC2436A179001C0309 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA193AB2436A179001C0309 /* Constants.swift */; };
+		2EA193B22438EC15001C0309 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2EA193B02438EC15001C0309 /* Localizable.strings */; };
+		2EA193B62438ED7C001C0309 /* LMCButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA193B52438ED7C001C0309 /* LMCButton.swift */; };
 		2ED864832363711500DBFFD3 /* ProgramState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED864822363711500DBFFD3 /* ProgramState.swift */; };
 		2ED864852363717E00DBFFD3 /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED864842363717E00DBFFD3 /* Instruction.swift */; };
 		2ED86487236371AA00DBFFD3 /* Opcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED86486236371AA00DBFFD3 /* Opcode.swift */; };
@@ -57,6 +59,9 @@
 		2EA193A52433D373001C0309 /* MainRegularPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRegularPhoneView.swift; sourceTree = "<group>"; };
 		2EA193A724369F10001C0309 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		2EA193AB2436A179001C0309 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2EA193B12438EC15001C0309 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2EA193B32438EC28001C0309 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		2EA193B52438ED7C001C0309 /* LMCButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMCButton.swift; sourceTree = "<group>"; };
 		2ED864822363711500DBFFD3 /* ProgramState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramState.swift; sourceTree = "<group>"; };
 		2ED864842363717E00DBFFD3 /* Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
 		2ED86486236371AA00DBFFD3 /* Opcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opcode.swift; sourceTree = "<group>"; };
@@ -168,6 +173,7 @@
 				2E2E65DC23037BED007AF298 /* LaunchScreen.storyboard */,
 				2EA193A724369F10001C0309 /* Colors.xcassets */,
 				2E2E65D723037BED007AF298 /* Assets.xcassets */,
+				2EA193B02438EC15001C0309 /* Localizable.strings */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -176,6 +182,14 @@
 			isa = PBXGroup;
 			children = (
 				2EA193AB2436A179001C0309 /* Constants.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		2EA193B42438ED6B001C0309 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2EA193B52438ED7C001C0309 /* LMCButton.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -194,6 +208,7 @@
 		2EEDD94B24315418002D2DD2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				2EA193B42438ED6B001C0309 /* Common */,
 				2EA193A22433D338001C0309 /* Phone */,
 				2EA193A12433D331001C0309 /* Tablet */,
 				2EEDD95024315EB9002D2DD2 /* AssemblyCode */,
@@ -274,6 +289,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"es-419",
 			);
 			mainGroup = 2E2E65C523037BEB007AF298;
 			productRefGroup = 2E2E65CF23037BEB007AF298 /* Products */;
@@ -291,6 +307,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EA193B22438EC15001C0309 /* Localizable.strings in Resources */,
 				2E2E65DE23037BED007AF298 /* LaunchScreen.storyboard in Resources */,
 				2EA193A824369F10001C0309 /* Colors.xcassets in Resources */,
 				2E2E65DB23037BED007AF298 /* Preview Assets.xcassets in Resources */,
@@ -314,6 +331,7 @@
 			files = (
 				2E2E65F623037C4A007AF298 /* Compiler.swift in Sources */,
 				2EEDD95224315ED4002D2DD2 /* AssemblyCodeEditor.swift in Sources */,
+				2EA193B62438ED7C001C0309 /* LMCButton.swift in Sources */,
 				2EEDD94F24315465002D2DD2 /* MainPhoneView.swift in Sources */,
 				2ED86487236371AA00DBFFD3 /* Opcode.swift in Sources */,
 				2EA193A02433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift in Sources */,
@@ -357,6 +375,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		2EA193B02438EC15001C0309 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2EA193B12438EC15001C0309 /* Base */,
+				2EA193B32438EC28001C0309 /* es-419 */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -364,6 +391,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -424,6 +452,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
