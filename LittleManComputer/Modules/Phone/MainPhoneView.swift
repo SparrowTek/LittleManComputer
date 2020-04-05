@@ -46,7 +46,7 @@ struct MainPhoneView: View {
                         StateRepresentationView(title: "accumulator", value: $viewModel.programState.accumulator)
                     }
                     Spacer()
-                    OutboxView()
+                    OutboxView(outbox: $viewModel.programState.outbox)
                 }
                 Spacer()
                 Text(viewModel.programState.printStatement)
@@ -92,12 +92,18 @@ struct StateRepresentationView: View {
 }
 
 struct OutboxView: View {
+    @Binding var outbox: [Int]
+    
     var body: some View {
         VStack {
             Text("outboxTitle")
-            Text("23")
+            
+            // TODO: this really needs to be a scrollable view
+            ForEach(outbox, id: \.self) {
+                Text("\($0)")
                 .background(Color.gray)
                 .foregroundColor(.white)
+            }
             
             Spacer()
         }
@@ -105,26 +111,9 @@ struct OutboxView: View {
     }
 }
 
-//struct MainPhoneViewButtons: View {
-//    var body: some View {
-//        VStack {
-//
-//        }
-//    }
-
-
-//}
-
 /**
- Program counter
+ TODO:
  input alert
- details
- Accumulator
- output
- ram title
- run button
- step button
- reset button
  assemble into ram button should be in the AssemblyCodeEditor view
  */
 
