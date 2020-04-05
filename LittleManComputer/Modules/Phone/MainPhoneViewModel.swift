@@ -23,29 +23,43 @@ class MainPhoneViewModel: ObservableObject {
     000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
     000, 000, 000, 000, 000, 000, 000, 000, 000, 000]
     private let compiler = Compiler()
-    private lazy var virtualMachine = VirtualMachine(state: programState)
+//    private lazy var virtualMachine = VirtualMachine(state: programState)
+    private let vm: VirtualMachine
+    private var cancelable: AnyCancellable?
     
     init() {
-        programState = ProgramState(registers: registers)
+        let state = ProgramState(registers: registers)
+//        programState = ProgramState(registers: registers)
+        programState = state
+        vm = VirtualMachine(state: state)
+        subscribeToState()
+    }
+    
+    private func subscribeToState() {
+        cancelable = vm.state.sink(receiveCompletion: { completion in
+            print("completion: \n\(completion)")
+        }, receiveValue: { state in
+            self.programState = state
+        })
     }
     
     func run() {
-        virtualMachine.run(speed: 1)
+        vm.run(speed: 1)
     }
     
     func step() {
-        virtualMachine.step()
+        vm.step()
     }
     
     func reset() {
         #warning("implement reset()")
     }
     
-    func compile(_ code: String) {
-        do {
-            programState = try compiler.compile(code)
-        } catch {
-            #warning("handle catch")
-        }
-    }
+//    func compile(_ code: String) {
+//        do {
+//            programState = try compiler.compile(code)
+//        } catch {
+//            #warning("handle catch")
+//        }
+//    }
 }

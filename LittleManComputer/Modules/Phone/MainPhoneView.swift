@@ -10,8 +10,6 @@ import SwiftUI
 
 struct MainPhoneView: View {
     @State var showAssemblyCodeEditor = false
-    @State var printStatement = "printStatement"
-    
     @ObservedObject var viewModel: MainPhoneViewModel
     
     var body: some View {

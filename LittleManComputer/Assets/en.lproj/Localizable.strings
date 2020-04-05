@@ -16,3 +16,4 @@
 "outboxTitle" = "Outbox";
 "programCounter" = "Program counter";
 "accumulator" = "Accumulator";
+"initPrintStatement" = "Compile assembly code to begin";

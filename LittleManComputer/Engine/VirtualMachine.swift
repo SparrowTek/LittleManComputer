@@ -35,6 +35,7 @@ class VirtualMachine {
             let register = state.value.registers[state.value.programCounter]
             let instruction = getInstruction(for: register)
             state.value = try execute(instruction: instruction, for: state.value)
+            #warning("the program is not halting. Program complete goes forever...")
         } catch let error as StateError {
             state.send(completion: .failure(error))
         } catch {
