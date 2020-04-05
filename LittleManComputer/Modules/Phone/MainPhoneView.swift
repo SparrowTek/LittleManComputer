@@ -42,8 +42,8 @@ struct MainPhoneView: View {
                     }
                     .padding(.top, 8)
                     VStack {
-                        StateRepresentationView(title: "programCounter", value: "3")
-                        StateRepresentationView(title: "accumulator", value: "4")
+                        StateRepresentationView(title: "programCounter", value: $viewModel.programState.programCounter)
+                        StateRepresentationView(title: "accumulator", value: $viewModel.programState.accumulator)
                     }
                     Spacer()
                     OutboxView()
@@ -74,18 +74,18 @@ struct MainPhoneView: View {
 
 struct StateRepresentationView: View {
     private var title = ""
-    private var value = ""
+    @Binding var value: Int
     
-    init(title: String, value: String) {
+    init(title: String, value: Binding<Int>) {
         self.title = title
-        self.value = value
+        self._value = value
     }
     
     var body: some View {
         HStack {
             Text(title)
                 .font(.system(size: 12))
-            Text(value)
+            Text("\(value)")
                 .font(.system(size: 12))
         }
     }
