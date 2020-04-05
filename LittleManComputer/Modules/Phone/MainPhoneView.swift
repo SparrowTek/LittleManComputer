@@ -21,32 +21,40 @@ struct MainPhoneView: View {
                         .padding(.leading, 20)
                     Spacer()
                 }
-                .padding(.top, 16)
-                VStack {
-                    HStack {
-                        LMCButton(title: "runButton", height: 30, width: 100, action: runAction)
-                            .padding(.leading, 20)
-                        Spacer()
+                .padding([.top, .bottom], 8)
+                HStack {
+                    VStack {
+                        HStack {
+                            LMCButton(title: "runButton", height: 30, width: 100, action: runAction)
+                                .padding(.leading, 20)
+                            Spacer()
+                        }
+                        HStack {
+                            LMCButton(title: "StepButton", height: 30, width: 100, action: runAction)
+                                .padding(.leading, 20)
+                            Spacer()
+                        }.padding(.top, 8)
+                        HStack {
+                            LMCButton(title: "resetButton", height: 30, width: 100, action: runAction)
+                                .padding(.leading, 20)
+                            Spacer()
+                        }.padding(.top, 8)
                     }
-                    HStack {
-                        LMCButton(title: "StepButton", height: 30, width: 100, action: runAction)
-                            .padding(.leading, 20)
-                        Spacer()
-                    }.padding(.top, 8)
-                    HStack {
-                        LMCButton(title: "resetButton", height: 30, width: 100, action: runAction)
-                            .padding(.leading, 20)
-                        Spacer()
-                    }.padding(.top, 8)
+                    .padding(.top, 8)
+                    VStack {
+                        StateRepresentationView(title: "programCounter", value: "3")
+                        StateRepresentationView(title: "accumulator", value: "4")
+                    }
+                    Spacer()
+                    OutboxView()
                 }
-                .padding(.top, 8)
                 Spacer()
                 Text(printStatement)
                     .padding()
-                
-                .padding(.bottom, 16)
-                .navigationBarTitle("navigationBarTitle", displayMode: .inline)
-                .navigationBarItems(trailing: NavBarButtons())
+                    
+                    .padding(.bottom, 16)
+                    .navigationBarTitle("navigationBarTitle", displayMode: .inline)
+                    .navigationBarItems(trailing: NavBarButtons())
             }
         }
     }
@@ -56,8 +64,52 @@ struct MainPhoneView: View {
     }
 }
 
+struct StateRepresentationView: View {
+    private var title = ""
+    private var value = ""
+    
+    init(title: String, value: String) {
+        self.title = title
+        self.value = value
+    }
+    
+    var body: some View {
+        HStack {
+            Text(title)
+                .font(.system(size: 12))
+            Text(value)
+                .font(.system(size: 12))
+        }
+    }
+}
+
+struct OutboxView: View {
+    var body: some View {
+        VStack {
+            Text("outboxTitle")
+            Text("23")
+                .background(Color.gray)
+                .foregroundColor(.white)
+            
+            Spacer()
+        }
+        .frame(width: 150, height: 150)
+    }
+}
+
+//struct MainPhoneViewButtons: View {
+//    var body: some View {
+//        VStack {
+//
+//        }
+//    }
+
+
+//}
+
 /**
  Program counter
+ input alert
  details
  Accumulator
  output

@@ -13,3 +13,6 @@
 "stepButton" = "Step";
 "resetButton" = "Reset";
 "ram" = "RAM";
+"outboxTitle" = "Outbox";
+"programCounter" = "Program counter";
+"accumulator" = "Accumulator";
