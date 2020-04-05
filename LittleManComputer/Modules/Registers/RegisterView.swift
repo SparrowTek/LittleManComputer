@@ -16,12 +16,14 @@ struct RegisterView: View {
             
         }
     }
-    @State private var memoryValue = "000"
-    @State private var backgroundColor = Color.white
-    @State private var textColor = Color.black
+//    @State private var memoryValue = "000"
+    var backgroundColor = Color.white
+    var textColor = Color.black
+    @Binding var registerValue: Register
     
-    init(registerNumber: String) {
+    init(registerNumber: String, registerValue: Binding<Register>) {
         self.registerNumber = registerNumber
+        self._registerValue = registerValue
     }
     
     var body: some View {
@@ -29,11 +31,12 @@ struct RegisterView: View {
             Text(registerNumber)
                 .font(.system(size: 12))
                 .padding(.bottom, -8)
-            TextField("", text: $memoryValue, onEditingChanged: { _ in
-                
-            }, onCommit: {
-                
-            })
+            TextField("", value: $registerValue, formatter: NumberFormatter())
+//            TextField("", text: "\($registerValue)", onEditingChanged: { _ in
+//                
+//            }, onCommit: {
+//                
+//            })
                 .frame(width: 22, height: 12)
                 .multilineTextAlignment(.center)
                 .font(.system(size: 10))
@@ -50,6 +53,6 @@ struct RegisterView: View {
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView(registerNumber: "0")
+        RegisterView(registerNumber: "0", registerValue: .constant(000))
     }
 }

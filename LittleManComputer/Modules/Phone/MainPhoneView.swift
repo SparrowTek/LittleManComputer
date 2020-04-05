@@ -12,12 +12,12 @@ struct MainPhoneView: View {
     @State var showAssemblyCodeEditor = false
     @State var printStatement = "printStatement"
     
-    @ObservedObject var programState: MainPhoneViewModel
+    @ObservedObject var viewModel: MainPhoneViewModel
     
     var body: some View {
         NavigationView {
             VStack {
-                RegisterCollectionView()
+                RegisterCollectionView(programState: $viewModel.programState)
                 HStack {
                     ShowAssemblyCodeEditorButton()
                         .padding(.leading, 20)
@@ -32,12 +32,12 @@ struct MainPhoneView: View {
                             Spacer()
                         }
                         HStack {
-                            LMCButton(title: "StepButton", height: 30, width: 100, action: runAction)
+                            LMCButton(title: "StepButton", height: 30, width: 100, action: stepAction)
                                 .padding(.leading, 20)
                             Spacer()
                         }.padding(.top, 8)
                         HStack {
-                            LMCButton(title: "resetButton", height: 30, width: 100, action: runAction)
+                            LMCButton(title: "resetButton", height: 30, width: 100, action: resetAction)
                                 .padding(.leading, 20)
                             Spacer()
                         }.padding(.top, 8)
@@ -51,7 +51,7 @@ struct MainPhoneView: View {
                     OutboxView()
                 }
                 Spacer()
-                Text(printStatement)
+                Text(viewModel.programState.printStatement)
                     .padding()
                     
                     .padding(.bottom, 16)
@@ -62,7 +62,15 @@ struct MainPhoneView: View {
     }
     
     private func runAction() {
-        
+        viewModel.run()
+    }
+    
+    private func stepAction() {
+        viewModel.step()
+    }
+    
+    private func resetAction() {
+        viewModel.reset()
     }
 }
 
@@ -124,6 +132,6 @@ struct OutboxView: View {
 
 struct MainPhoneView_Previews: PreviewProvider {
     static var previews: some View {
-        MainPhoneView(programState: MainPhoneViewModel())
+        MainPhoneView(viewModel: MainPhoneViewModel())
     }
 }

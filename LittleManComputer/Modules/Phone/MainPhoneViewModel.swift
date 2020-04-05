@@ -11,7 +11,17 @@ import Combine
 
 class MainPhoneViewModel: ObservableObject {
     @Published var programState: ProgramState
-    private let registers = [Register](repeating: 000, count: 100)
+//    private let registers = [Register](repeating: 000, count: 100)
+    private let registers = [506, 107, 902, 108, 902, 000, 001, 010, 003, 000,
+    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+    000, 000, 000, 000, 000, 000, 000, 000, 000, 000]
     private let compiler = Compiler()
     private lazy var virtualMachine = VirtualMachine(state: programState)
     
@@ -25,6 +35,10 @@ class MainPhoneViewModel: ObservableObject {
     
     func step() {
         virtualMachine.step()
+    }
+    
+    func reset() {
+        #warning("implement reset()")
     }
     
     func compile(_ code: String) {

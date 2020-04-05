@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        }
 
         let mainPhoneViewModel = MainPhoneViewModel()
-        rootViewController = UIHostingController(rootView: MainPhoneView(programState: mainPhoneViewModel))
+        rootViewController = UIHostingController(rootView: MainPhoneView(viewModel: mainPhoneViewModel))
         // Use a UIHostingController as window root view controller
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
