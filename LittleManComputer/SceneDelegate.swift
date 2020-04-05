@@ -20,12 +20,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         let rootViewController: UIViewController
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            rootViewController = UIHostingController(rootView: MainTabletView())
-        } else {
-            rootViewController = UIHostingController(rootView: MainPhoneView())
-        }
-        
+//        if UIDevice.current.userInterfaceIdiom == .pad {
+//            rootViewController = UIHostingController(rootView: MainTabletView())
+//        } else {
+//            rootViewController = UIHostingController(rootView: MainPhoneView())
+//        }
+
+        let mainPhoneViewModel = MainPhoneViewModel()
+        rootViewController = UIHostingController(rootView: MainPhoneView(programState: mainPhoneViewModel))
         // Use a UIHostingController as window root view controller
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)

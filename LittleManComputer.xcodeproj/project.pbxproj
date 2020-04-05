@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E071955243A4A0700F1C9A5 /* MainPhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E071954243A4A0700F1C9A5 /* MainPhoneViewModel.swift */; };
 		2E2E65D223037BEB007AF298 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65D123037BEB007AF298 /* AppDelegate.swift */; };
 		2E2E65D423037BEB007AF298 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65D323037BEB007AF298 /* SceneDelegate.swift */; };
 		2E2E65D823037BED007AF298 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E2E65D723037BED007AF298 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E071954243A4A0700F1C9A5 /* MainPhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPhoneViewModel.swift; sourceTree = "<group>"; };
 		2E2E65CE23037BEB007AF298 /* LittleManComputer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LittleManComputer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E2E65D123037BEB007AF298 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E2E65D323037BEB007AF298 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				2EEDD94E24315465002D2DD2 /* MainPhoneView.swift */,
+				2E071954243A4A0700F1C9A5 /* MainPhoneViewModel.swift */,
 			);
 			path = Phone;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				2EA193C22439320C001C0309 /* FolderButton.swift in Sources */,
 				2EA193A02433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift in Sources */,
 				2EA193AC2436A179001C0309 /* Constants.swift in Sources */,
+				2E071955243A4A0700F1C9A5 /* MainPhoneViewModel.swift in Sources */,
 				2E2E65F823037CDB007AF298 /* VirtualMachine.swift in Sources */,
 				2EA193BC2439259D001C0309 /* RegisterView.swift in Sources */,
 				2EA193C02439317D001C0309 /* NavBarButtons.swift in Sources */,

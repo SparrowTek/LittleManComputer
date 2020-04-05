@@ -12,6 +12,8 @@ struct MainPhoneView: View {
     @State var showAssemblyCodeEditor = false
     @State var printStatement = "printStatement"
     
+    @ObservedObject var programState: MainPhoneViewModel
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -122,6 +124,6 @@ struct OutboxView: View {
 
 struct MainPhoneView_Previews: PreviewProvider {
     static var previews: some View {
-        MainPhoneView()
+        MainPhoneView(programState: MainPhoneViewModel())
     }
 }
