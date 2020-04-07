@@ -26,7 +26,7 @@ struct LMCButton: View {
             self.action?()
         }) {
             Text(title)
-            .frame(width: width, height: height)
+            .frame(maxWidth: width, maxHeight: height)
             .background(Color(Colors.lmcButton))
             .foregroundColor(Color(Colors.lmcButtonTitle))
             .cornerRadius(16)

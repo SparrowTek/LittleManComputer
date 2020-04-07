@@ -17,3 +17,4 @@
 "programCounter" = "Program counter";
 "accumulator" = "Accumulator";
 "initPrintStatement" = "Compile assembly code to begin";
+"compileCodeButton" = "Compile Code";

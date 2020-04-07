@@ -22,7 +22,6 @@ class MainPhoneViewModel: ObservableObject {
     000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
     000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
     000, 000, 000, 000, 000, 000, 000, 000, 000, 000]
-    private let compiler = Compiler()
 //    private lazy var virtualMachine = VirtualMachine(state: programState)
     private let vm: VirtualMachine
     private var cancelable: AnyCancellable?
@@ -54,12 +53,4 @@ class MainPhoneViewModel: ObservableObject {
     func reset() {
         #warning("implement reset()")
     }
-    
-//    func compile(_ code: String) {
-//        do {
-//            programState = try compiler.compile(code)
-//        } catch {
-//            #warning("handle catch")
-//        }
-//    }
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E071955243A4A0700F1C9A5 /* MainPhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E071954243A4A0700F1C9A5 /* MainPhoneViewModel.swift */; };
+		2E071957243BF48800F1C9A5 /* AssemblyCodeEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E071956243BF48800F1C9A5 /* AssemblyCodeEditorViewModel.swift */; };
 		2E2E65D223037BEB007AF298 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65D123037BEB007AF298 /* AppDelegate.swift */; };
 		2E2E65D423037BEB007AF298 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65D323037BEB007AF298 /* SceneDelegate.swift */; };
 		2E2E65D823037BED007AF298 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E2E65D723037BED007AF298 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		2E071954243A4A0700F1C9A5 /* MainPhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPhoneViewModel.swift; sourceTree = "<group>"; };
+		2E071956243BF48800F1C9A5 /* AssemblyCodeEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyCodeEditorViewModel.swift; sourceTree = "<group>"; };
 		2E2E65CE23037BEB007AF298 /* LittleManComputer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LittleManComputer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E2E65D123037BEB007AF298 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E2E65D323037BEB007AF298 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 			children = (
 				2EEDD95124315ED4002D2DD2 /* AssemblyCodeEditor.swift */,
 				2EA1939F2433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift */,
+				2E071956243BF48800F1C9A5 /* AssemblyCodeEditorViewModel.swift */,
 			);
 			path = AssemblyCode;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 			files = (
 				2EA193B924391368001C0309 /* HelpButton.swift in Sources */,
 				2E2E65F623037C4A007AF298 /* Compiler.swift in Sources */,
+				2E071957243BF48800F1C9A5 /* AssemblyCodeEditorViewModel.swift in Sources */,
 				2EA193BE243925AA001C0309 /* RegisterCollectionView.swift in Sources */,
 				2EEDD95224315ED4002D2DD2 /* AssemblyCodeEditor.swift in Sources */,
 				2EA193B62438ED7C001C0309 /* LMCButton.swift in Sources */,

@@ -17,7 +17,7 @@ struct MainPhoneView: View {
             VStack {
                 RegisterCollectionView(programState: $viewModel.programState)
                 HStack {
-                    ShowAssemblyCodeEditorButton()
+                    ShowAssemblyCodeEditorButton(programState: $viewModel.programState)
                         .padding(.leading, 20)
                     Spacer()
                 }

@@ -17,7 +17,7 @@ struct HelpButton: View {
                 .foregroundColor(Color(Colors.navBarTitle))
                 .frame(width: 30, height: 30)
         }.sheet(isPresented: $showHelp) {
-            AssemblyCodeEditor()
+            Text("Help")
         }
     }
     

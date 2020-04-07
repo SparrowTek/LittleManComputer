@@ -17,7 +17,7 @@ struct FolderButton: View {
                 .foregroundColor(Color(Colors.navBarTitle))
                 .frame(width: 30, height: 30)
         }.sheet(isPresented: $openFolder) {
-            AssemblyCodeEditor()
+            Text("Folder")
         }
     }
     

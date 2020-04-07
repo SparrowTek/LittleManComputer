@@ -9,6 +9,17 @@
 import SwiftUI
 
 struct AssemblyCodeEditor: View {
+    //    @ObservedObject var viewModel: AssemblyCodeEditorViewModel
+    let viewModel = AssemblyCodeEditorViewModel()
+    @State private var sourceCode = """
+INP
+OUT
+HLT
+wh
+okokok
+flkdflkmds
+
+"""
     
     var body: some View {
         VStack {
@@ -19,16 +30,25 @@ struct AssemblyCodeEditor: View {
                     .font(.system(size: 20, weight: .bold))
                 Spacer()
             }
-            Rectangle()
-                .fill(Color(Colors.textEditorBackground))
-                .frame(maxWidth: .infinity)
+            TextField("", text: $sourceCode)
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color(Colors.textEditorBackground))
                 .padding([.leading, .trailing], 20)
-            }
+            Spacer()
+            LMCButton(title: "compileCodeButton", width: .infinity, action: compile)
+            .padding([.leading, .trailing])
+        }
+    }
+    
+    private func compile() {
+        viewModel.compileCode(sourceCode)
     }
 }
 
 struct AssemblyCodeEditor_Previews: PreviewProvider {
     static var previews: some View {
+        //        AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(programState: ProgramState()))
         AssemblyCodeEditor()
     }
 }
