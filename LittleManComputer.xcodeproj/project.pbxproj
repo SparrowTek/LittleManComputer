@@ -18,6 +18,8 @@
 		2E2E65F623037C4A007AF298 /* Compiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65F523037C4A007AF298 /* Compiler.swift */; };
 		2E2E65F823037CDB007AF298 /* VirtualMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65F723037CDB007AF298 /* VirtualMachine.swift */; };
 		2E49B4DA2443431600127BBB /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E49B4D92443431600127BBB /* AppState.swift */; };
+		2E49B4DD2443ADA200127BBB /* KeyboardObserving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E49B4DC2443ADA200127BBB /* KeyboardObserving.swift */; };
+		2E49B4E02443ADF100127BBB /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E49B4DF2443ADF100127BBB /* View.swift */; };
 		2EA193A02433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA1939F2433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift */; };
 		2EA193A824369F10001C0309 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EA193A724369F10001C0309 /* Colors.xcassets */; };
 		2EA193AC2436A179001C0309 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA193AB2436A179001C0309 /* Constants.swift */; };
@@ -63,6 +65,8 @@
 		2E2E65F523037C4A007AF298 /* Compiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compiler.swift; sourceTree = "<group>"; };
 		2E2E65F723037CDB007AF298 /* VirtualMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualMachine.swift; sourceTree = "<group>"; };
 		2E49B4D92443431600127BBB /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		2E49B4DC2443ADA200127BBB /* KeyboardObserving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserving.swift; sourceTree = "<group>"; };
+		2E49B4DF2443ADF100127BBB /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		2EA1939F2433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAssemblyCodeEditorButton.swift; sourceTree = "<group>"; };
 		2EA193A724369F10001C0309 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		2EA193AB2436A179001C0309 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 		2E2E65D023037BEB007AF298 /* LittleManComputer */ = {
 			isa = PBXGroup;
 			children = (
+				2E49B4DE2443ADE500127BBB /* Extensions */,
 				2E49B4D8244342FE00127BBB /* System */,
 				2EEDD94B24315418002D2DD2 /* Modules */,
 				2E2E65F423037C28007AF298 /* Engine */,
@@ -170,6 +175,14 @@
 			path = System;
 			sourceTree = "<group>";
 		};
+		2E49B4DE2443ADE500127BBB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2E49B4DF2443ADF100127BBB /* View.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		2EA193A12433D331001C0309 /* Tablet */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				2EA193AB2436A179001C0309 /* Constants.swift */,
+				2E49B4DC2443ADA200127BBB /* KeyboardObserving.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -372,6 +386,7 @@
 				2EA193B62438ED7C001C0309 /* LMCButton.swift in Sources */,
 				2EEDD94F24315465002D2DD2 /* MainPhoneView.swift in Sources */,
 				2ED86487236371AA00DBFFD3 /* Opcode.swift in Sources */,
+				2E49B4E02443ADF100127BBB /* View.swift in Sources */,
 				2EA193C22439320C001C0309 /* FolderButton.swift in Sources */,
 				2EA193A02433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift in Sources */,
 				2EA193AC2436A179001C0309 /* Constants.swift in Sources */,
@@ -383,6 +398,7 @@
 				2ED864852363717E00DBFFD3 /* Instruction.swift in Sources */,
 				2E49B4DA2443431600127BBB /* AppState.swift in Sources */,
 				2ED86489236371E200DBFFD3 /* Program.swift in Sources */,
+				2E49B4DD2443ADA200127BBB /* KeyboardObserving.swift in Sources */,
 				2E2E65D423037BEB007AF298 /* SceneDelegate.swift in Sources */,
 				2EEDD94D2431545B002D2DD2 /* MainTabletView.swift in Sources */,
 				2ED864832363711500DBFFD3 /* ProgramState.swift in Sources */,

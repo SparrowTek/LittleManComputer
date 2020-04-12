@@ -29,7 +29,7 @@ struct AssemblyCodeEditor: View {
             Spacer()
             LMCButton(title: "compileCodeButton", width: .infinity, action: compile)
             .padding([.leading, .trailing])
-        }
+        }.keyboardObserving()
     }
     
     private func compile() {
