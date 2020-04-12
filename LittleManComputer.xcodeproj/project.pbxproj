@@ -127,8 +127,8 @@
 		2E2E65D023037BEB007AF298 /* LittleManComputer */ = {
 			isa = PBXGroup;
 			children = (
-				2E49B4DE2443ADE500127BBB /* Extensions */,
 				2E49B4D8244342FE00127BBB /* System */,
+				2E49B4DE2443ADE500127BBB /* Extensions */,
 				2EEDD94B24315418002D2DD2 /* Modules */,
 				2E2E65F423037C28007AF298 /* Engine */,
 				2ED86481236370FF00DBFFD3 /* Model */,

@@ -26,10 +26,10 @@ struct LMCButton: View {
             self.action?()
         }) {
             Text(title)
-            .frame(maxWidth: width, maxHeight: height)
-            .background(Color(Colors.lmcButton))
-            .foregroundColor(Color(Colors.lmcButtonTitle))
-            .cornerRadius(16)
+                .frame(maxWidth: width, maxHeight: height)
+                .background(Color(Colors.lmcButton))
+                .foregroundColor(Color(Colors.lmcButtonTitle))
+                .cornerRadius(16)
         }
     }
 }

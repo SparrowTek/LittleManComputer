@@ -22,13 +22,13 @@ struct AssemblyCodeEditor: View {
                 Spacer()
             }
             TextView(sourceCode: $appState.sourceCode)
-            .foregroundColor(.white)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(Colors.textEditorBackground))
-            .padding([.leading, .trailing], 20)
+                .padding([.leading, .trailing], 20)
             Spacer()
             LMCButton(title: "compileCodeButton", width: .infinity, action: compile)
-            .padding([.leading, .trailing])
+                .padding([.leading, .trailing])
         }.keyboardObserving()
     }
     
@@ -39,7 +39,7 @@ struct AssemblyCodeEditor: View {
 
 struct TextView: UIViewRepresentable {
     @Binding var sourceCode: String
-
+    
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
         textView.isScrollEnabled = true
@@ -53,7 +53,7 @@ struct TextView: UIViewRepresentable {
         textView.delegate = context.coordinator
         return textView
     }
-
+    
     func updateUIView(_ uiView: UITextView, context: Context) {
         uiView.text = sourceCode
     }
@@ -64,11 +64,11 @@ struct TextView: UIViewRepresentable {
     
     class Coordinator: NSObject, UITextViewDelegate {
         var control: TextView
-
+        
         init(_ control: TextView) {
             self.control = control
         }
-
+        
         func textViewDidChange(_ textView: UITextView) {
             control.sourceCode = textView.text
         }

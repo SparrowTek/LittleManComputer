@@ -47,7 +47,6 @@ struct AllRegisters: View {
 
 struct RegisterRow: View {
     private var range: ClosedRange<Int>
-//    @Binding var programState: ProgramState
     @EnvironmentObject var appState: AppState
     
     init(range: ClosedRange<Int>) {
@@ -63,20 +62,8 @@ struct RegisterRow: View {
     }
 }
 
-//struct RegisterCollectionView_Previews: PreviewProvider {
-//    var registers = [506, 107, 902, 108, 902, 000, 001, 010, 003, 000,
-//                     000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-//                     000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-//                     000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-//                     000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-//                     000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-//                     000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-//                     000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-//                     000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-//                     000, 000, 000, 000, 000, 000, 000, 000, 000, 000]
-//    private lazy var programState = ProgramState(registers: registers)
-//
-//    static var previews: some View {
-//        RegisterCollectionView(programState: .constant(programState))
-//    }
-//}
+struct RegisterCollectionView_Previews: PreviewProvider {
+    static var previews: some View {
+        RegisterCollectionView()
+    }
+}
