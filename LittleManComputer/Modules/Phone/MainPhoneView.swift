@@ -19,7 +19,7 @@ struct MainPhoneView: View {
             VStack {
                 RegisterCollectionView()
                 HStack {
-                    ShowAssemblyCodeEditorButton()
+                    ShowAssemblyCodeEditorButton().environmentObject(appState)
                         .padding(.leading, 20)
                     Spacer()
                 }

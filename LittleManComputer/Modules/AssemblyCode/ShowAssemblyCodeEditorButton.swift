@@ -15,7 +15,7 @@ struct ShowAssemblyCodeEditorButton: View {
     var body: some View {
         LMCButton(title: "assemblyCodeButton", action: assemblyButtonAction)
         .sheet(isPresented: $showAssemblyCodeEditor) {
-            AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(appState: self.appState))
+            AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(appState: self.appState)).environmentObject(self.appState)
         }
     }
     

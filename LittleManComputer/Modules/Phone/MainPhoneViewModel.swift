@@ -22,7 +22,6 @@ class MainPhoneViewModel {
         cancelable = appState.virtualMachine.state.sink(receiveCompletion: { completion in
             print("completion: \n\(completion)")
         }, receiveValue: { state in
-            print(state)
             self.appState.programState = state
         })
     }

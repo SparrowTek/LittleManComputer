@@ -10,12 +10,6 @@ import SwiftUI
 
 struct AssemblyCodeEditor: View {
     @EnvironmentObject var appState: AppState
-    @State private var sourceCode = """
-INP
-OUT
-HLT
-
-"""
     let viewModel: AssemblyCodeEditorViewModel
     
     var body: some View {
@@ -27,7 +21,7 @@ HLT
                     .font(.system(size: 20, weight: .bold))
                 Spacer()
             }
-            MultilineTextView(text: $sourceCode)
+            TextView(text: $appState.sourceCode)
             .foregroundColor(.white)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(Colors.textEditorBackground))
@@ -39,23 +33,24 @@ HLT
     }
     
     private func compile() {
-        viewModel.compileCode(sourceCode)
+        viewModel.compileCode(appState.sourceCode)
     }
 }
 
-struct MultilineTextView: UIViewRepresentable {
-    
+struct TextView: UIViewRepresentable {
     @Binding var text: String
 
     func makeUIView(context: Context) -> UITextView {
-        let view = UITextView()
-        view.isScrollEnabled = true
-        view.isEditable = true
-        view.isUserInteractionEnabled = true
-        view.textColor = UIColor(named: Colors.textEditorText)
-        view.backgroundColor = UIColor(named: Colors.textEditorBackground)
-        view.font = .systemFont(ofSize: 18)
-        return view
+        let textView = UITextView()
+        textView.isScrollEnabled = true
+        textView.isEditable = true
+        textView.isUserInteractionEnabled = true
+        textView.textColor = UIColor(named: Colors.textEditorText)
+        textView.backgroundColor = UIColor(named: Colors.textEditorBackground)
+        textView.font = .systemFont(ofSize: 18)
+        textView.autocorrectionType = .no
+        textView.autocapitalizationType = .allCharacters
+        return textView
     }
 
     func updateUIView(_ uiView: UITextView, context: Context) {
