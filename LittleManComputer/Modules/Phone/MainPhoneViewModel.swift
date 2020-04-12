@@ -10,18 +10,16 @@ import Foundation
 import Combine
 
 class MainPhoneViewModel {
-    private let vm: VirtualMachine
     private var cancelable: AnyCancellable?
     private var appState: AppState
     
     init(appState: AppState) {
         self.appState = appState
-        vm = VirtualMachine(state: appState.programState)
         subscribeToState()
     }
     
     private func subscribeToState() {
-        cancelable = vm.state.sink(receiveCompletion: { completion in
+        cancelable = appState.virtualMachine.state.sink(receiveCompletion: { completion in
             print("completion: \n\(completion)")
         }, receiveValue: { state in
             print(state)
@@ -30,11 +28,11 @@ class MainPhoneViewModel {
     }
     
     func run() {
-        vm.run(speed: 1)
+        appState.virtualMachine.run(speed: 1)
     }
     
     func step() {
-        vm.step()
+        appState.virtualMachine.step()
     }
     
     func reset() {

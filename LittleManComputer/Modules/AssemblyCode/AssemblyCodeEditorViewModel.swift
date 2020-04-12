@@ -7,28 +7,28 @@
 //
 
 import Foundation
-import Combine
 
-class AssemblyCodeEditorViewModel { //: ObservableObject {
-//    @Published var programState: ProgramState
-    private let compiler = Compiler()
+class AssemblyCodeEditorViewModel {
+    private var appState: AppState
     
-//    init(programState: ProgramState) {
-//        self.programState = programState
-//    }
+    init(appState: AppState) {
+        self.appState = appState
+    }
     
     func compileCode(_ code: String) {
-//        do {
-//            programState = try compiler.compile(code)
-//        } catch (let error as CompileError) {
-//            switch error {
-//            case .intExpected:
-//                return
-//            case .invalidAssemblyCode:
-//                return
-//            }
-//        } catch {
-//            #warning("catch all")
-//        }
+        do {
+            appState.programState = try appState.compiler.compile(code)
+        } catch (let error as CompileError) {
+            switch error {
+            case .intExpected:
+                break
+            case .invalidAssemblyCode:
+                break
+            }
+            
+            appState.showCompileError = true
+        } catch {
+            #warning("catch all")
+        }
     }
 }

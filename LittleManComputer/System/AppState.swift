@@ -21,4 +21,9 @@ class AppState: ObservableObject {
     000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
     000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
     000, 000, 000, 000, 000, 000, 000, 000, 000, 000])
+    lazy var virtualMachine = VirtualMachine(state: programState)
+    let compiler = Compiler()
+    
+    @Published var showCompileError = false
+    @Published var compileErrorMessage = ""
 }

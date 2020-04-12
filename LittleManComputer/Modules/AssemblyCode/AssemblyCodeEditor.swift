@@ -9,17 +9,14 @@
 import SwiftUI
 
 struct AssemblyCodeEditor: View {
-    //    @ObservedObject var viewModel: AssemblyCodeEditorViewModel
-    let viewModel = AssemblyCodeEditorViewModel()
+    @EnvironmentObject var appState: AppState
     @State private var sourceCode = """
 INP
 OUT
 HLT
-wh
-okokok
-flkdflkmds
 
 """
+    let viewModel: AssemblyCodeEditorViewModel
     
     var body: some View {
         VStack {
@@ -68,6 +65,6 @@ struct MultilineTextView: UIViewRepresentable {
 
 struct AssemblyCodeEditor_Previews: PreviewProvider {
     static var previews: some View {
-        AssemblyCodeEditor()
+        AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(appState: AppState()))
     }
 }
