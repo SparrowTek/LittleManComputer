@@ -133,97 +133,87 @@ class VirtualMachine {
     }
     
     private func add(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
-        var ogState = state
         let accumulator = state.accumulator
         let registerValue = state.registers[mailbox]
         
-        ogState.accumulator += registerValue
-        ogState.programCounter += 1
-        ogState.printStatement = "Add \(accumulator) from the accumulator to the value in register \(mailbox) (\(registerValue))"
-        return ogState
+        state.accumulator += registerValue
+        state.programCounter += 1
+        state.printStatement = "Add \(accumulator) from the accumulator to the value in register \(mailbox) (\(registerValue))"
+        return state
     }
     
     private func subtract(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
-        var ogState = state
         let accumulator = state.accumulator
         let registerValue = state.registers[mailbox]
         
-        ogState.accumulator -= registerValue
-        ogState.programCounter += 1
-        ogState.printStatement = "Subtract \(registerValue) in register \(mailbox) from the accumulator value (\(accumulator))"
-        return ogState
+        state.accumulator -= registerValue
+        state.programCounter += 1
+        state.printStatement = "Subtract \(registerValue) in register \(mailbox) from the accumulator value (\(accumulator))"
+        return state
     }
     
     private func store(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
-        var ogState = state
-        ogState.registers[mailbox] = ogState.accumulator
-        ogState.programCounter += 1
-        ogState.printStatement = "Store the accumulator value \(ogState.accumulator) in register \(mailbox)"
-        return ogState
+        state.registers[mailbox] = state.accumulator
+        state.programCounter += 1
+        state.printStatement = "Store the accumulator value \(state.accumulator) in register \(mailbox)"
+        return state
     }
     
     private func load(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
-        var ogState = state
-        ogState.accumulator = ogState.registers[mailbox]
-        ogState.programCounter += 1
-        ogState.printStatement = "Load the value in register \(mailbox) (\(ogState.registers[mailbox])) into the accumulator"
-        return ogState
+        state.accumulator = state.registers[mailbox]
+        state.programCounter += 1
+        state.printStatement = "Load the value in register \(mailbox) (\(state.registers[mailbox])) into the accumulator"
+        return state
     }
     
     private func branch(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
-        var ogState = state
-        ogState.programCounter = mailbox
-        ogState.printStatement = "Branch: change the program counter to the value in register \(mailbox)"
-        return ogState
+        state.programCounter = mailbox
+        state.printStatement = "Branch: change the program counter to the value in register \(mailbox)"
+        return state
     }
     
     private func branchIfZero(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
-        var ogState = state
         
-        if ogState.accumulator == 0 {
-            ogState.programCounter = mailbox
-            ogState.printStatement = "Branch if zero: Accumulator == 0 is true. Program counter sets to \(mailbox)"
+        if state.accumulator == 0 {
+            state.programCounter = mailbox
+            state.printStatement = "Branch if zero: Accumulator == 0 is true. Program counter sets to \(mailbox)"
         } else {
-            ogState.programCounter += 1
-            ogState.printStatement = "Branch if zero: The accumulator != 0. Do not branch; increment program counter"
+            state.programCounter += 1
+            state.printStatement = "Branch if zero: The accumulator != 0. Do not branch; increment program counter"
         }
         
-        return ogState
+        return state
     }
     
     private func branchIfPositive(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
-        var ogState = state
         
-        if ogState.accumulator >= 0 {
-            ogState.programCounter = mailbox
-            ogState.printStatement = "Branch if positive: Accumulator >= 0 is true. Program counter sets to \(mailbox)"
+        if state.accumulator >= 0 {
+            state.programCounter = mailbox
+            state.printStatement = "Branch if positive: Accumulator >= 0 is true. Program counter sets to \(mailbox)"
         } else {
-            ogState.programCounter += 1
-            ogState.printStatement = "Branch if positive: Accumulator is not possitive. Do not branch"
+            state.programCounter += 1
+            state.printStatement = "Branch if positive: Accumulator is not possitive. Do not branch"
         }
         
-        return ogState
+        return state
     }
     
     private func input(for state: ProgramState) throws -> ProgramState {
         guard let inbox = state.inbox else { throw StateError.needInput }
-        var ogState = state
-        ogState.accumulator = inbox
-        ogState.printStatement = "Input"
-        return ogState
+        state.accumulator = inbox
+        state.printStatement = "Input"
+        return state
     }
     
     private func output(for state: ProgramState) -> ProgramState {
-        var ogState = state
-        ogState.outbox.append(ogState.accumulator)
-        ogState.programCounter += 1
-        ogState.printStatement = "Output: output the value in the accumulator, \(ogState.accumulator) into the output box"
-        return ogState
+        state.outbox.append(state.accumulator)
+        state.programCounter += 1
+        state.printStatement = "Output: output the value in the accumulator, \(state.accumulator) into the output box"
+        return state
     }
     
     private func halt(for state: ProgramState) -> ProgramState {
-        var ogState = state
-        ogState.printStatement = "Program Complete"
-        return ogState
+        state.printStatement = "Program Complete"
+        return state
     }
 }
