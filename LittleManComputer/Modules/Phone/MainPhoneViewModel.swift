@@ -9,28 +9,14 @@
 import Foundation
 import Combine
 
-class MainPhoneViewModel: ObservableObject {
-    @Published var programState: ProgramState
-//    private let registers = [Register](repeating: 000, count: 100)
-    private let registers = [506, 107, 902, 108, 902, 000, 001, 010, 003, 000,
-    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-    000, 000, 000, 000, 000, 000, 000, 000, 000, 000]
-//    private lazy var virtualMachine = VirtualMachine(state: programState)
+class MainPhoneViewModel {
     private let vm: VirtualMachine
     private var cancelable: AnyCancellable?
+    private var appState: AppState
     
-    init() {
-        let state = ProgramState(registers: registers)
-//        programState = ProgramState(registers: registers)
-        programState = state
-        vm = VirtualMachine(state: state)
+    init(appState: AppState) {
+        self.appState = appState
+        vm = VirtualMachine(state: appState.programState)
         subscribeToState()
     }
     
@@ -38,7 +24,8 @@ class MainPhoneViewModel: ObservableObject {
         cancelable = vm.state.sink(receiveCompletion: { completion in
             print("completion: \n\(completion)")
         }, receiveValue: { state in
-            self.programState = state
+            print(state)
+            self.appState.programState = state
         })
     }
     

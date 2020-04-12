@@ -30,11 +30,11 @@ flkdflkmds
                     .font(.system(size: 20, weight: .bold))
                 Spacer()
             }
-            TextField("", text: $sourceCode)
-                .foregroundColor(.white)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            MultilineTextView(text: $sourceCode)
+            .foregroundColor(.white)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(Colors.textEditorBackground))
-                .padding([.leading, .trailing], 20)
+            .padding([.leading, .trailing], 20)
             Spacer()
             LMCButton(title: "compileCodeButton", width: .infinity, action: compile)
             .padding([.leading, .trailing])
@@ -46,9 +46,28 @@ flkdflkmds
     }
 }
 
+struct MultilineTextView: UIViewRepresentable {
+    
+    @Binding var text: String
+
+    func makeUIView(context: Context) -> UITextView {
+        let view = UITextView()
+        view.isScrollEnabled = true
+        view.isEditable = true
+        view.isUserInteractionEnabled = true
+        view.textColor = UIColor(named: Colors.textEditorText)
+        view.backgroundColor = UIColor(named: Colors.textEditorBackground)
+        view.font = .systemFont(ofSize: 18)
+        return view
+    }
+
+    func updateUIView(_ uiView: UITextView, context: Context) {
+        uiView.text = text
+    }
+}
+
 struct AssemblyCodeEditor_Previews: PreviewProvider {
     static var previews: some View {
-        //        AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(programState: ProgramState()))
         AssemblyCodeEditor()
     }
 }

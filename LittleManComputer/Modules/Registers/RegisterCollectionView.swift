@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct RegisterCollectionView: View {
-    @Binding var programState: ProgramState
     
     var body: some View {
         VStack {
@@ -18,25 +17,24 @@ struct RegisterCollectionView: View {
                     .font(.system(size: 20, weight: .bold))
                 Spacer()
             }
-            AllRegisters(programState: $programState)
+            AllRegisters()
         }
     }
 }
 
 struct AllRegisters: View {
-    @Binding var programState: ProgramState
     var body: some View {
         VStack {
-            RegisterRow(range: (0...9), programState: $programState)
-            RegisterRow(range: (10...19), programState: $programState)
-            RegisterRow(range: (20...29), programState: $programState)
-            RegisterRow(range: (30...39), programState: $programState)
-            RegisterRow(range: (40...49), programState: $programState)
-            RegisterRow(range: (50...59), programState: $programState)
-            RegisterRow(range: (60...69), programState: $programState)
-            RegisterRow(range: (70...79), programState: $programState)
-            RegisterRow(range: (80...89), programState: $programState)
-            RegisterRow(range: (90...99), programState: $programState)
+            RegisterRow(range: (0...9))
+            RegisterRow(range: (10...19))
+            RegisterRow(range: (20...29))
+            RegisterRow(range: (30...39))
+            RegisterRow(range: (40...49))
+            RegisterRow(range: (50...59))
+            RegisterRow(range: (60...69))
+            RegisterRow(range: (70...79))
+            RegisterRow(range: (80...89))
+            RegisterRow(range: (90...99))
         }
         .overlay(
         Rectangle()
@@ -49,17 +47,17 @@ struct AllRegisters: View {
 
 struct RegisterRow: View {
     private var range: ClosedRange<Int>
-    @Binding var programState: ProgramState
+//    @Binding var programState: ProgramState
+    @EnvironmentObject var appState: AppState
     
-    init(range: ClosedRange<Int>, programState: Binding<ProgramState>) {
+    init(range: ClosedRange<Int>) {
         self.range = range
-        _programState = programState
     }
     
     var body: some View {
         HStack {
             ForEach(range, id: \.self) {
-                RegisterView(registerNumber: "\($0)", registerValue: self.$programState.registers[$0])
+                RegisterView(registerNumber: "\($0)", registerValue: self.$appState.programState.registers[$0])
             }
         }
     }

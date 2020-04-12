@@ -17,6 +17,7 @@
 		2E2E65E923037BED007AF298 /* LittleManComputerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65E823037BED007AF298 /* LittleManComputerTests.swift */; };
 		2E2E65F623037C4A007AF298 /* Compiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65F523037C4A007AF298 /* Compiler.swift */; };
 		2E2E65F823037CDB007AF298 /* VirtualMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65F723037CDB007AF298 /* VirtualMachine.swift */; };
+		2E49B4DA2443431600127BBB /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E49B4D92443431600127BBB /* AppState.swift */; };
 		2EA193A02433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA1939F2433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift */; };
 		2EA193A824369F10001C0309 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EA193A724369F10001C0309 /* Colors.xcassets */; };
 		2EA193AC2436A179001C0309 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA193AB2436A179001C0309 /* Constants.swift */; };
@@ -61,6 +62,7 @@
 		2E2E65EA23037BED007AF298 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E2E65F523037C4A007AF298 /* Compiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compiler.swift; sourceTree = "<group>"; };
 		2E2E65F723037CDB007AF298 /* VirtualMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualMachine.swift; sourceTree = "<group>"; };
+		2E49B4D92443431600127BBB /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		2EA1939F2433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAssemblyCodeEditorButton.swift; sourceTree = "<group>"; };
 		2EA193A724369F10001C0309 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		2EA193AB2436A179001C0309 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -121,14 +123,12 @@
 		2E2E65D023037BEB007AF298 /* LittleManComputer */ = {
 			isa = PBXGroup;
 			children = (
-				2E2E65D123037BEB007AF298 /* AppDelegate.swift */,
-				2E2E65D323037BEB007AF298 /* SceneDelegate.swift */,
-				2E2E65DF23037BED007AF298 /* Info.plist */,
+				2E49B4D8244342FE00127BBB /* System */,
 				2EEDD94B24315418002D2DD2 /* Modules */,
 				2E2E65F423037C28007AF298 /* Engine */,
 				2ED86481236370FF00DBFFD3 /* Model */,
 				2EA193AA2436A152001C0309 /* Common */,
-				2EA193A924369F75001C0309 /* Assets */,
+				2EA193A924369F75001C0309 /* Resources */,
 				2E2E65D923037BED007AF298 /* Preview Content */,
 			);
 			path = LittleManComputer;
@@ -160,6 +160,16 @@
 			path = Engine;
 			sourceTree = "<group>";
 		};
+		2E49B4D8244342FE00127BBB /* System */ = {
+			isa = PBXGroup;
+			children = (
+				2E2E65D323037BEB007AF298 /* SceneDelegate.swift */,
+				2E2E65D123037BEB007AF298 /* AppDelegate.swift */,
+				2E49B4D92443431600127BBB /* AppState.swift */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
 		2EA193A12433D331001C0309 /* Tablet */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,15 +187,16 @@
 			path = Phone;
 			sourceTree = "<group>";
 		};
-		2EA193A924369F75001C0309 /* Assets */ = {
+		2EA193A924369F75001C0309 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2E2E65DF23037BED007AF298 /* Info.plist */,
 				2E2E65DC23037BED007AF298 /* LaunchScreen.storyboard */,
 				2EA193A724369F10001C0309 /* Colors.xcassets */,
 				2E2E65D723037BED007AF298 /* Assets.xcassets */,
 				2EA193B02438EC15001C0309 /* Localizable.strings */,
 			);
-			path = Assets;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		2EA193AA2436A152001C0309 /* Common */ = {
@@ -370,6 +381,7 @@
 				2EA193C02439317D001C0309 /* NavBarButtons.swift in Sources */,
 				2E2E65D223037BEB007AF298 /* AppDelegate.swift in Sources */,
 				2ED864852363717E00DBFFD3 /* Instruction.swift in Sources */,
+				2E49B4DA2443431600127BBB /* AppState.swift in Sources */,
 				2ED86489236371E200DBFFD3 /* Program.swift in Sources */,
 				2E2E65D423037BEB007AF298 /* SceneDelegate.swift in Sources */,
 				2EEDD94D2431545B002D2DD2 /* MainTabletView.swift in Sources */,
@@ -541,7 +553,7 @@
 				DEVELOPMENT_ASSET_PATHS = "LittleManComputer/Preview\\ Content";
 				DEVELOPMENT_TEAM = VFXJQ4U7H8;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = LittleManComputer/Info.plist;
+				INFOPLIST_FILE = LittleManComputer/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -561,7 +573,7 @@
 				DEVELOPMENT_ASSET_PATHS = "LittleManComputer/Preview\\ Content";
 				DEVELOPMENT_TEAM = VFXJQ4U7H8;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = LittleManComputer/Info.plist;
+				INFOPLIST_FILE = LittleManComputer/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

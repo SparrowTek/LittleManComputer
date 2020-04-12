@@ -8,6 +8,7 @@
 
 struct Colors {
     static let textEditorBackground = "TextEditorBackground"
+    static let textEditorText = "TextEditorText"
     static let registerBorder = "RegisterBorder"
     static let lmcButton = "LMCButton"
     static let lmcButtonTitle  = "LMCButtonTitle"

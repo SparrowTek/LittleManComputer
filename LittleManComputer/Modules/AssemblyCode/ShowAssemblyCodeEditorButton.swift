@@ -10,7 +10,6 @@ import SwiftUI
 
 struct ShowAssemblyCodeEditorButton: View {
     @State var showAssemblyCodeEditor = false
-    @Binding var programState: ProgramState
     
     var body: some View {
         LMCButton(title: "assemblyCodeButton", action: assemblyButtonAction)
@@ -52,6 +51,6 @@ struct ShowAssemblyCodeEditorButton: View {
 
 struct ShowAssemblyCodeEditorButton_Previews: PreviewProvider {
     static var previews: some View {
-        ShowAssemblyCodeEditorButton(programState: .constant(ProgramState()))
+        ShowAssemblyCodeEditorButton()
     }
 }

@@ -10,14 +10,16 @@ import SwiftUI
 
 struct MainPhoneView: View {
     @State var showAssemblyCodeEditor = false
-    @ObservedObject var viewModel: MainPhoneViewModel
+    @EnvironmentObject var appState: AppState
+    
+    var viewModel: MainPhoneViewModel
     
     var body: some View {
         NavigationView {
             VStack {
-                RegisterCollectionView(programState: $viewModel.programState)
+                RegisterCollectionView()
                 HStack {
-                    ShowAssemblyCodeEditorButton(programState: $viewModel.programState)
+                    ShowAssemblyCodeEditorButton()
                         .padding(.leading, 20)
                     Spacer()
                 }
@@ -42,14 +44,14 @@ struct MainPhoneView: View {
                     }
                     .padding(.top, 8)
                     VStack {
-                        StateRepresentationView(title: "programCounter", value: $viewModel.programState.programCounter)
-                        StateRepresentationView(title: "accumulator", value: $viewModel.programState.accumulator)
+                        StateRepresentationView(title: "programCounter", value: $appState.programState.programCounter)
+                        StateRepresentationView(title: "accumulator", value: $appState.programState.accumulator)
                     }
                     Spacer()
-                    OutboxView(outbox: $viewModel.programState.outbox)
+                    OutboxView(outbox: $appState.programState.outbox)
                 }
                 Spacer()
-                Text(viewModel.programState.printStatement)
+                Text(appState.programState.printStatement)
                     .padding()
                     
                     .padding(.bottom, 16)
@@ -119,6 +121,6 @@ struct OutboxView: View {
 
 struct MainPhoneView_Previews: PreviewProvider {
     static var previews: some View {
-        MainPhoneView(viewModel: MainPhoneViewModel())
+        MainPhoneView(viewModel: MainPhoneViewModel(appState: AppState()))
     }
 }
