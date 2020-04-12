@@ -18,6 +18,7 @@ class MainPhoneViewModel {
         subscribeToState()
     }
     
+    #warning("now that I am using an EnvironmentObject I might not even need to subscribe??")
     private func subscribeToState() {
         cancelable = appState.virtualMachine.state.sink(receiveCompletion: { completion in
             print("completion: \n\(completion)")
