@@ -12,17 +12,7 @@ import Combine
 
 class AppState: ObservableObject {
     
-//    @Published var programState = ProgramState()
-    @Published var programState = ProgramState(registers: [506, 107, 902, 108, 902, 000, 001, 010, 003, 000,
-    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-    000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-    000, 000, 000, 000, 000, 000, 000, 000, 000, 000])
+    @Published var programState = ProgramState()
     lazy var virtualMachine = VirtualMachine(state: programState)
     let compiler = Compiler()
     
