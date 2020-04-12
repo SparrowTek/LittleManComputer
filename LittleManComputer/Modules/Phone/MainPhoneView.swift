@@ -51,9 +51,10 @@ struct MainPhoneView: View {
                 }
                 Spacer()
                 Text(appState.programState.printStatement)
-                    .padding()
-                    
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.5)
                     .padding(.bottom, 16)
+                    .padding([.leading, .trailing], 8)
                     .navigationBarTitle("navigationBarTitle", displayMode: .inline)
                     .navigationBarItems(trailing: NavBarButtons())
             }
