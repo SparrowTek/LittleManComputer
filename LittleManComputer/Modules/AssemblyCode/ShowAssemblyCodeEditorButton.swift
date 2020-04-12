@@ -9,18 +9,17 @@
 import SwiftUI
 
 struct ShowAssemblyCodeEditorButton: View {
-    @State var showAssemblyCodeEditor = false
     @EnvironmentObject var appState: AppState
     
     var body: some View {
         LMCButton(title: "assemblyCodeButton", action: assemblyButtonAction)
-        .sheet(isPresented: $showAssemblyCodeEditor) {
-            AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(appState: self.appState)).environmentObject(self.appState)
+            .sheet(isPresented: $appState.showAssemblyCodeEditor) {
+                AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(appState: self.appState)).environmentObject(self.appState)
         }
     }
     
     private func assemblyButtonAction() {
-        showAssemblyCodeEditor.toggle()
+        appState.showAssemblyCodeEditor.toggle()
     }
 }
 

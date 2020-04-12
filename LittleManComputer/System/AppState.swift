@@ -33,4 +33,6 @@ class AppState: ObservableObject {
     OUT
     HLT
     """
+    
+    @Published var showAssemblyCodeEditor = false
 }

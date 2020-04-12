@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct MainPhoneView: View {
-    @State var showAssemblyCodeEditor = false
     @EnvironmentObject var appState: AppState
     
     var viewModel: MainPhoneViewModel
@@ -103,8 +102,8 @@ struct OutboxView: View {
             // TODO: this really needs to be a scrollable view
             ForEach(outbox, id: \.self) {
                 Text("\($0)")
-                .background(Color.gray)
-                .foregroundColor(.white)
+                    .background(Color.gray)
+                    .foregroundColor(.white)
             }
             
             Spacer()

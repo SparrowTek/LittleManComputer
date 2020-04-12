@@ -21,7 +21,7 @@ struct AssemblyCodeEditor: View {
                     .font(.system(size: 20, weight: .bold))
                 Spacer()
             }
-            TextView(text: $appState.sourceCode)
+            TextView(sourceCode: $appState.sourceCode)
             .foregroundColor(.white)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(Colors.textEditorBackground))
@@ -38,7 +38,7 @@ struct AssemblyCodeEditor: View {
 }
 
 struct TextView: UIViewRepresentable {
-    @Binding var text: String
+    @Binding var sourceCode: String
 
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
@@ -50,11 +50,28 @@ struct TextView: UIViewRepresentable {
         textView.font = .systemFont(ofSize: 18)
         textView.autocorrectionType = .no
         textView.autocapitalizationType = .allCharacters
+        textView.delegate = context.coordinator
         return textView
     }
 
     func updateUIView(_ uiView: UITextView, context: Context) {
-        uiView.text = text
+        uiView.text = sourceCode
+    }
+    
+    func makeCoordinator() -> TextView.Coordinator {
+        Coordinator(self)
+    }
+    
+    class Coordinator: NSObject, UITextViewDelegate {
+        var control: TextView
+
+        init(_ control: TextView) {
+            self.control = control
+        }
+
+        func textViewDidChange(_ textView: UITextView) {
+            control.sourceCode = textView.text
+        }
     }
 }
 

@@ -18,6 +18,7 @@ class AssemblyCodeEditorViewModel {
     func compileCode(_ code: String) {
         do {
             appState.programState = try appState.compiler.compile(code)
+            appState.showAssemblyCodeEditor = false
         } catch (let error as CompileError) {
             switch error {
             case .intExpected:
