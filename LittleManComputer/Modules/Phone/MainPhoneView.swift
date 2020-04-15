@@ -58,6 +58,9 @@ struct MainPhoneView: View {
                     .navigationBarTitle("navigationBarTitle", displayMode: .inline)
                     .navigationBarItems(trailing: NavBarButtons())
             }
+            .sheet(isPresented: $appState.showInputAlert) {
+                InputView().environmentObject(self.appState)
+            }
         }
     }
     
@@ -70,7 +73,8 @@ struct MainPhoneView: View {
     }
     
     private func resetAction() {
-        viewModel.reset()
+        //        viewModel.reset()
+        appState.showInputAlert.toggle()
     }
 }
 
@@ -89,6 +93,29 @@ struct StateRepresentationView: View {
                 .font(.system(size: 12))
             Text("\(value)")
                 .font(.system(size: 12))
+        }
+    }
+}
+
+struct InputView: View {
+    @EnvironmentObject var appState: AppState
+    @State private var inputValue = ""
+    
+    var body: some View {
+        VStack {
+            Text("inputNeeded")
+            TextField("000", text: $inputValue, onEditingChanged: { text in
+                self.appState.virtualMachine.state.value.inbox = Int(self.inputValue)
+            }, onCommit: {
+                // no return button on numberPad keyboard type
+            })
+                .keyboardType(.numberPad)
+                .multilineTextAlignment(.center)
+                .padding(.bottom, 8)
+            
+            LMCButton(title: "enter") {
+                self.appState.showInputAlert = false
+            }
         }
     }
 }
@@ -112,12 +139,6 @@ struct OutboxView: View {
         .frame(width: 150, height: 150)
     }
 }
-
-/**
- TODO:
- input alert
- assemble into ram button should be in the AssemblyCodeEditor view
- */
 
 struct MainPhoneView_Previews: PreviewProvider {
     static var previews: some View {

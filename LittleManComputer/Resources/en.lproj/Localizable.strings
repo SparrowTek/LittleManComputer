@@ -18,3 +18,5 @@
 "accumulator" = "Accumulator";
 "initPrintStatement" = "Compile assembly code to begin";
 "compileCodeButton" = "Compile Code";
+"inputNeeded" = "Enter a value between 0 and 999";
+"enter" = "Enter";

@@ -12,11 +12,16 @@ import Combine
 
 class AppState: ObservableObject {
     
-    @Published var programState = ProgramState()
+    @Published var programState = ProgramState() /*{
+        didSet {
+            virtualMachine.state.value = programState
+        }
+    }*/
     @Published var showCompileError = false
     @Published var compileErrorMessage = ""
     @Published var sourceCode = ""
     @Published var showAssemblyCodeEditor = false
+    @Published var showInputAlert = false
     
     lazy var virtualMachine = VirtualMachine(state: programState)
     let compiler = Compiler()
