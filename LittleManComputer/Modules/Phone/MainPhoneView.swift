@@ -18,7 +18,7 @@ struct MainPhoneView: View {
             VStack {
                 RegisterCollectionView()
                 HStack {
-                    ShowAssemblyCodeEditorButton().environmentObject(appState)
+                    LMCButton(title: "assemblyCodeButton", action: assemblyButtonAction)
                         .padding(.leading, 20)
                     Spacer()
                 }
@@ -61,7 +61,14 @@ struct MainPhoneView: View {
             .sheet(isPresented: $appState.showInputAlert) {
                 InputView().environmentObject(self.appState)
             }
+            .sheet(isPresented: $appState.showAssemblyCodeEditor) {
+                    AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(appState: self.appState)).environmentObject(self.appState)
+            }
         }
+    }
+    
+    private func assemblyButtonAction() {
+        appState.showAssemblyCodeEditor.toggle()
     }
     
     private func runAction() {

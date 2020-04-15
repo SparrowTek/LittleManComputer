@@ -20,7 +20,6 @@
 		2E49B4DA2443431600127BBB /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E49B4D92443431600127BBB /* AppState.swift */; };
 		2E49B4DD2443ADA200127BBB /* KeyboardObserving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E49B4DC2443ADA200127BBB /* KeyboardObserving.swift */; };
 		2E49B4E02443ADF100127BBB /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E49B4DF2443ADF100127BBB /* View.swift */; };
-		2EA193A02433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA1939F2433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift */; };
 		2EA193A824369F10001C0309 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EA193A724369F10001C0309 /* Colors.xcassets */; };
 		2EA193AC2436A179001C0309 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA193AB2436A179001C0309 /* Constants.swift */; };
 		2EA193B22438EC15001C0309 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2EA193B02438EC15001C0309 /* Localizable.strings */; };
@@ -67,7 +66,6 @@
 		2E49B4D92443431600127BBB /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		2E49B4DC2443ADA200127BBB /* KeyboardObserving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserving.swift; sourceTree = "<group>"; };
 		2E49B4DF2443ADF100127BBB /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
-		2EA1939F2433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAssemblyCodeEditorButton.swift; sourceTree = "<group>"; };
 		2EA193A724369F10001C0309 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		2EA193AB2436A179001C0309 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2EA193B12438EC15001C0309 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -268,7 +266,6 @@
 			isa = PBXGroup;
 			children = (
 				2EEDD95124315ED4002D2DD2 /* AssemblyCodeEditor.swift */,
-				2EA1939F2433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift */,
 				2E071956243BF48800F1C9A5 /* AssemblyCodeEditorViewModel.swift */,
 			);
 			path = AssemblyCode;
@@ -388,7 +385,6 @@
 				2ED86487236371AA00DBFFD3 /* Opcode.swift in Sources */,
 				2E49B4E02443ADF100127BBB /* View.swift in Sources */,
 				2EA193C22439320C001C0309 /* FolderButton.swift in Sources */,
-				2EA193A02433D1CA001C0309 /* ShowAssemblyCodeEditorButton.swift in Sources */,
 				2EA193AC2436A179001C0309 /* Constants.swift in Sources */,
 				2E071955243A4A0700F1C9A5 /* MainPhoneViewModel.swift in Sources */,
 				2E2E65F823037CDB007AF298 /* VirtualMachine.swift in Sources */,
