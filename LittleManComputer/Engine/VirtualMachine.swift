@@ -22,7 +22,14 @@ class VirtualMachine {
     var state: CurrentValueSubject<ProgramState, StateError>
     var input: Int? {
         didSet {
-            state.value.inbox = input
+            do {
+                state.value.inbox = input
+                state.value = try input(for: state.value)
+            } catch let error as StateError {
+                state.send(completion: .failure(error))
+            } catch {
+                state.send(completion: .failure(.generic))
+            }
         }
     }
     
@@ -209,6 +216,7 @@ class VirtualMachine {
         guard let inbox = state.inbox else { throw StateError.needInput }
         var ogState = state
         ogState.accumulator = inbox
+        ogState.programCounter += 1
         ogState.printStatement = "Input"
         return ogState
     }
