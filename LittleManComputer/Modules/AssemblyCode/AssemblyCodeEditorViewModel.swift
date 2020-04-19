@@ -19,7 +19,7 @@ class AssemblyCodeEditorViewModel {
         do {
             appState.programState = try appState.compiler.compile(code)
             appState.virtualMachine.state.value = appState.programState
-            appState.showAssemblyCodeEditor = false
+            appState.showSheet = false
         } catch (let error as CompileError) {
             switch error {
             case .intExpected:

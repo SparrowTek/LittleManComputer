@@ -10,6 +10,11 @@ import Foundation
 import SwiftUI
 import Combine
 
+enum SheetType {
+    case inputNeeded
+    case assemblyCodeEditor
+}
+
 class AppState: ObservableObject {
     
     @Published var programState = ProgramState() /*{
@@ -20,9 +25,32 @@ class AppState: ObservableObject {
     @Published var showCompileError = false
     @Published var compileErrorMessage = ""
     @Published var sourceCode = ""
-    @Published var showAssemblyCodeEditor = false
-    @Published var showInputAlert = false
+    @Published var sheetType = SheetType.assemblyCodeEditor
+    @Published var showSheet = false
     
     lazy var virtualMachine = VirtualMachine(state: programState)
     let compiler = Compiler()
+    private var cancelable: AnyCancellable?
+    
+    init() {
+        subscribeToState()
+    }
+    
+    private func subscribeToState() {
+        cancelable = virtualMachine.state.sink(receiveCompletion: { completion in
+            print("completion: \n\(completion)")
+            if completion == .failure(.needInput) {
+                self.sheetType = .inputNeeded
+                self.showSheet = true
+            }
+            self.resetVirtualMachine()
+        }, receiveValue: { state in
+            self.programState = state
+        })
+    }
+    
+    private func resetVirtualMachine() {
+        virtualMachine = VirtualMachine(state: programState)
+        subscribeToState()
+    }
 }

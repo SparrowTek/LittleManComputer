@@ -10,21 +10,10 @@ import Foundation
 import Combine
 
 class MainPhoneViewModel {
-    private var cancelable: AnyCancellable?
     private var appState: AppState
     
     init(appState: AppState) {
         self.appState = appState
-        subscribeToState()
-    }
-    
-    #warning("now that I am using an EnvironmentObject I might not even need to subscribe??")
-    private func subscribeToState() {
-        cancelable = appState.virtualMachine.state.sink(receiveCompletion: { completion in
-            print("completion: \n\(completion)")
-        }, receiveValue: { state in
-            self.appState.programState = state
-        })
     }
     
     func run() {

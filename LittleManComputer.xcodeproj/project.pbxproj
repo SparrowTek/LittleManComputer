@@ -29,6 +29,8 @@
 		2EA193BE243925AA001C0309 /* RegisterCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA193BD243925AA001C0309 /* RegisterCollectionView.swift */; };
 		2EA193C02439317D001C0309 /* NavBarButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA193BF2439317D001C0309 /* NavBarButtons.swift */; };
 		2EA193C22439320C001C0309 /* FolderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA193C12439320C001C0309 /* FolderButton.swift */; };
+		2ED6E557244D0A5C00C58212 /* InputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED6E556244D0A5C00C58212 /* InputViewModel.swift */; };
+		2ED6E559244D0A6900C58212 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED6E558244D0A6900C58212 /* InputView.swift */; };
 		2ED864832363711500DBFFD3 /* ProgramState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED864822363711500DBFFD3 /* ProgramState.swift */; };
 		2ED864852363717E00DBFFD3 /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED864842363717E00DBFFD3 /* Instruction.swift */; };
 		2ED86487236371AA00DBFFD3 /* Opcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED86486236371AA00DBFFD3 /* Opcode.swift */; };
@@ -77,6 +79,8 @@
 		2EA193BD243925AA001C0309 /* RegisterCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCollectionView.swift; sourceTree = "<group>"; };
 		2EA193BF2439317D001C0309 /* NavBarButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarButtons.swift; sourceTree = "<group>"; };
 		2EA193C12439320C001C0309 /* FolderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderButton.swift; sourceTree = "<group>"; };
+		2ED6E556244D0A5C00C58212 /* InputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewModel.swift; sourceTree = "<group>"; };
+		2ED6E558244D0A6900C58212 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		2ED864822363711500DBFFD3 /* ProgramState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramState.swift; sourceTree = "<group>"; };
 		2ED864842363717E00DBFFD3 /* Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
 		2ED86486236371AA00DBFFD3 /* Opcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opcode.swift; sourceTree = "<group>"; };
@@ -239,6 +243,15 @@
 			path = Registers;
 			sourceTree = "<group>";
 		};
+		2ED6E555244D0A4000C58212 /* InputView */ = {
+			isa = PBXGroup;
+			children = (
+				2ED6E556244D0A5C00C58212 /* InputViewModel.swift */,
+				2ED6E558244D0A6900C58212 /* InputView.swift */,
+			);
+			path = InputView;
+			sourceTree = "<group>";
+		};
 		2ED86481236370FF00DBFFD3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +266,7 @@
 		2EEDD94B24315418002D2DD2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				2ED6E555244D0A4000C58212 /* InputView */,
 				2EA193B42438ED6B001C0309 /* Common */,
 				2EA193A22433D338001C0309 /* Phone */,
 				2EA193A12433D331001C0309 /* Tablet */,
@@ -378,6 +392,7 @@
 				2EA193B924391368001C0309 /* HelpButton.swift in Sources */,
 				2E2E65F623037C4A007AF298 /* Compiler.swift in Sources */,
 				2E071957243BF48800F1C9A5 /* AssemblyCodeEditorViewModel.swift in Sources */,
+				2ED6E557244D0A5C00C58212 /* InputViewModel.swift in Sources */,
 				2EA193BE243925AA001C0309 /* RegisterCollectionView.swift in Sources */,
 				2EEDD95224315ED4002D2DD2 /* AssemblyCodeEditor.swift in Sources */,
 				2EA193B62438ED7C001C0309 /* LMCButton.swift in Sources */,
@@ -391,6 +406,7 @@
 				2EA193BC2439259D001C0309 /* RegisterView.swift in Sources */,
 				2EA193C02439317D001C0309 /* NavBarButtons.swift in Sources */,
 				2E2E65D223037BEB007AF298 /* AppDelegate.swift in Sources */,
+				2ED6E559244D0A6900C58212 /* InputView.swift in Sources */,
 				2ED864852363717E00DBFFD3 /* Instruction.swift in Sources */,
 				2E49B4DA2443431600127BBB /* AppState.swift in Sources */,
 				2ED86489236371E200DBFFD3 /* Program.swift in Sources */,
