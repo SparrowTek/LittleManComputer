@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct LMCButton: View {
-    private var title: String
+    private var title: LocalizedStringKey
     private var action: (() -> Void)?
     private var height: CGFloat
     private var width: CGFloat
     
-    init(title: String, height: CGFloat = 50, width: CGFloat = 200, action: (() -> Void)?) {
+    init(title: LocalizedStringKey, height: CGFloat = 50, width: CGFloat = 200, action: (() -> Void)?) {
         self.title = title
         self.action = action
         self.height = height

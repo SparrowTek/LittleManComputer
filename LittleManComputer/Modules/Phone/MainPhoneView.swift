@@ -31,7 +31,7 @@ struct MainPhoneView: View {
                             Spacer()
                         }
                         HStack {
-                            LMCButton(title: "StepButton", height: 30, width: 100, action: stepAction)
+                            LMCButton(title: "stepButton", height: 30, width: 100, action: stepAction)
                                 .padding(.leading, 20)
                             Spacer()
                         }.padding(.top, 8)
