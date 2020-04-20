@@ -216,6 +216,7 @@ class VirtualMachine {
         guard let inbox = state.inbox else { throw StateError.needInput }
         var ogState = state
         ogState.accumulator = inbox
+        ogState.inbox = nil
         ogState.programCounter += 1
         ogState.printStatement = "Input"
         return ogState

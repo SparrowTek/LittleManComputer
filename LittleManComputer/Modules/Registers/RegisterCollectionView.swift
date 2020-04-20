@@ -64,6 +64,6 @@ struct RegisterRow: View {
 
 struct RegisterCollectionView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterCollectionView()
+        RegisterCollectionView().environmentObject(AppState())
     }
 }

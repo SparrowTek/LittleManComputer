@@ -114,11 +114,18 @@ struct OutboxView: View {
         VStack {
             Text("outboxTitle")
             
-            // TODO: this really needs to be a scrollable view
-            ForEach(outbox, id: \.self) {
-                Text("\($0)")
-                    .background(Color.gray)
-                    .foregroundColor(.white)
+            // TODO: start back here. get the scroll correct for outbox. it is janky :)
+            ScrollView(.vertical) {
+                VStack {
+                    ForEach(outbox, id: \.self) {
+                        Text("\($0)")
+                            .foregroundColor(.white)
+                        
+                    }
+                }
+                .frame(width: 75, height: 150)
+                .background(Color.gray)
+                
             }
             
             Spacer()
@@ -129,6 +136,6 @@ struct OutboxView: View {
 
 struct MainPhoneView_Previews: PreviewProvider {
     static var previews: some View {
-        MainPhoneView(viewModel: MainPhoneViewModel(appState: AppState()))
+        MainPhoneView(viewModel: MainPhoneViewModel(appState: AppState())).environmentObject(AppState())
     }
 }

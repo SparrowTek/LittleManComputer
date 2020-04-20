@@ -77,6 +77,6 @@ struct TextView: UIViewRepresentable {
 
 struct AssemblyCodeEditor_Previews: PreviewProvider {
     static var previews: some View {
-        AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(appState: AppState()))
+        AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(appState: AppState())).environmentObject(AppState())
     }
 }

@@ -31,6 +31,6 @@ struct InputView: View {
 
 struct InputView_Previews: PreviewProvider {
     static var previews: some View {
-        InputView(viewModel: InputViewModel(appState: AppState()))
+        InputView(viewModel: InputViewModel(appState: AppState())).environmentObject(AppState())
     }
 }
