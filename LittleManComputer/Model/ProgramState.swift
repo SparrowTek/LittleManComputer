@@ -6,6 +6,8 @@
 //  Copyright © 2019 SparrowTek LLC. All rights reserved.
 //
 
+import SwiftUI
+
 typealias Register = Int
 
 struct ProgramState {
@@ -14,5 +16,5 @@ struct ProgramState {
     var outbox: [Int] = []
     var accumulator: Int = 0
     var registers: [Register] = [Register](repeating: 000, count: 100)
-    var printStatement: String = "initPrintStatement"
+    var printStatement: LocalizedStringKey = "initPrintStatement"
 }
