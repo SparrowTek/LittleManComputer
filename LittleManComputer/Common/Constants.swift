@@ -16,4 +16,6 @@ struct Colors {
     static let navBarTitle = "NavBarTitle"
     static let outboxText = "OutboxText"
     static let outboxBackground = "OutboxBackground"
+    static let registerBackground = "RegisterBackground"
+    static let registerText = "RegisterText"
 }

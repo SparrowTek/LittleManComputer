@@ -121,12 +121,12 @@ struct OutboxView: View {
                     Text("\($0)")
                         .frame(height: 10)
                         .foregroundColor(Color(Colors.outboxText))
-                        .listRowBackground(Color(Colors.outboxText))
+                        .listRowBackground(Color(Colors.outboxBackground))
                 }
             }
             .environment(\.defaultMinListRowHeight, 10)
             .frame(width: 75, height: 150)
-            .background(Color.gray)
+            .background(Color(Colors.outboxBackground))
             .onAppear { UITableView.appearance().separatorStyle = .none }
             .onDisappear { UITableView.appearance().separatorStyle = .singleLine }
         }

@@ -22,7 +22,6 @@ struct AssemblyCodeEditor: View {
                 Spacer()
             }
             TextView(sourceCode: $appState.sourceCode)
-                .foregroundColor(.white)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(Colors.textEditorBackground))
                 .padding([.leading, .trailing], 20)

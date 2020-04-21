@@ -17,8 +17,8 @@ struct RegisterView: View {
         }
     }
 //    @State private var memoryValue = "000"
-    var backgroundColor = Color.white
-    var textColor = Color.black
+    var backgroundColor = Color(Colors.registerBackground)
+    var textColor = Color(Colors.registerText)
     @Binding var registerValue: Register
     
     init(registerNumber: String, registerValue: Binding<Register>) {
