@@ -46,7 +46,6 @@ struct MainPhoneView: View {
                         StateRepresentationView(title: "programCounter", value: $appState.programState.programCounter)
                         StateRepresentationView(title: "accumulator", value: $appState.programState.accumulator)
                     }
-                    Spacer()
                     OutboxView(outbox: $appState.programState.outbox)
                 }
                 Spacer()
@@ -95,15 +94,16 @@ struct StateRepresentationView: View {
     init(title: String, value: Binding<Int>) {
         self.title = title
         self._value = value
-        UITableView.appearance().backgroundColor = .clear
     }
     
     var body: some View {
         HStack {
             Text(title)
                 .font(.system(size: 12))
+                .lineLimit(1)
             Text("\(value)")
                 .font(.system(size: 12))
+            Spacer()
         }
     }
 }
@@ -127,7 +127,10 @@ struct OutboxView: View {
             .environment(\.defaultMinListRowHeight, 10)
             .frame(width: 75, height: 150)
             .background(Color(Colors.outboxBackground))
-            .onAppear { UITableView.appearance().separatorStyle = .none }
+            .onAppear {
+                UITableView.appearance().backgroundColor = .clear
+                UITableView.appearance().separatorStyle = .none
+            }
             .onDisappear { UITableView.appearance().separatorStyle = .singleLine }
         }
         .frame(width: 150, height: 150)
