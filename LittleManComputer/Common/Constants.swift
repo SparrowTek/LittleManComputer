@@ -14,4 +14,6 @@ struct Colors {
     static let lmcButtonTitle  = "LMCButtonTitle"
     static let navBar = "NavBar"
     static let navBarTitle = "NavBarTitle"
+    static let outboxText = "OutboxText"
+    static let outboxBackground = "OutboxBackground"
 }

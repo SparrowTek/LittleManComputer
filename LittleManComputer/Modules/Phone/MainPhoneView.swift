@@ -95,6 +95,7 @@ struct StateRepresentationView: View {
     init(title: String, value: Binding<Int>) {
         self.title = title
         self._value = value
+        UITableView.appearance().backgroundColor = .clear
     }
     
     var body: some View {
@@ -114,21 +115,20 @@ struct OutboxView: View {
         VStack {
             Text("outboxTitle")
             
-            // TODO: start back here. get the scroll correct for outbox. it is janky :)
-            ScrollView(.vertical) {
-                VStack {
-                    ForEach(outbox, id: \.self) {
-                        Text("\($0)")
-                            .foregroundColor(.white)
-                        
-                    }
-                }
-                .frame(width: 75, height: 150)
-                .background(Color.gray)
-                
-            }
             
-            Spacer()
+            List {
+                ForEach(outbox, id: \.self) {
+                    Text("\($0)")
+                        .frame(height: 10)
+                        .foregroundColor(Color(Colors.outboxText))
+                        .listRowBackground(Color(Colors.outboxText))
+                }
+            }
+            .environment(\.defaultMinListRowHeight, 10)
+            .frame(width: 75, height: 150)
+            .background(Color.gray)
+            .onAppear { UITableView.appearance().separatorStyle = .none }
+            .onDisappear { UITableView.appearance().separatorStyle = .singleLine }
         }
         .frame(width: 150, height: 150)
     }
