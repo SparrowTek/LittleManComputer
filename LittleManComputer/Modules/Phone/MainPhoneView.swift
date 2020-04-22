@@ -17,12 +17,12 @@ struct MainPhoneView: View {
         NavigationView {
             VStack {
                 RegisterCollectionView()
-                HStack {
-                    LMCButton(title: "assemblyCodeButton", action: assemblyButtonAction)
-                        .padding(.leading, 20)
-                    Spacer()
-                }
-                .padding([.top, .bottom], 8)
+                Text(appState.programState.printStatement)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.5)
+                    .padding(.top, 16)
+                    .padding([.leading, .trailing, .bottom], 8)
+                    .padding([.top, .bottom], 8)
                 HStack {
                     VStack {
                         HStack {
@@ -40,22 +40,21 @@ struct MainPhoneView: View {
                                 .padding(.leading, 20)
                             Spacer()
                         }.padding(.top, 8)
+                        StateRepresentationView(title: "programCounter", value: $appState.programState.programCounter)
+                            .padding(.top, 8)
+                            .padding(.leading, 16)
+                        StateRepresentationView(title: "accumulator", value: $appState.programState.accumulator)
+                            .padding(.top, 8)
+                            .padding(.leading, 16)
                     }
                     .padding(.top, 8)
-                    VStack {
-                        StateRepresentationView(title: "programCounter", value: $appState.programState.programCounter)
-                        StateRepresentationView(title: "accumulator", value: $appState.programState.accumulator)
-                    }
+                    
                     OutboxView(outbox: $appState.programState.outbox)
                 }
                 Spacer()
-                Text(appState.programState.printStatement)
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.5)
-                    .padding(.bottom, 16)
+                LMCButton(title: "assemblyCodeButton", maxHeight: 50, maxWidth: .infinity, action: assemblyButtonAction)
                     .padding([.leading, .trailing], 8)
-                    .navigationBarTitle("navigationBarTitle", displayMode: .inline)
-                    .navigationBarItems(trailing: NavBarButtons())
+                
             }
             .sheet(isPresented: $appState.showSheet) {
                 if self.appState.sheetType == SheetType.inputNeeded {
@@ -64,6 +63,8 @@ struct MainPhoneView: View {
                     AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(appState: self.appState)).environmentObject(self.appState)
                 }
             }
+            .navigationBarTitle("navigationBarTitle", displayMode: .inline)
+            .navigationBarItems(trailing: NavBarButtons())
         }
     }
     

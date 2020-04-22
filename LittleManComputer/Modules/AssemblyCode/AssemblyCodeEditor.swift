@@ -26,7 +26,7 @@ struct AssemblyCodeEditor: View {
                 .background(Color(Colors.textEditorBackground))
                 .padding([.leading, .trailing], 20)
             Spacer()
-            LMCButton(title: "compileCodeButton", width: .infinity, action: compile)
+            LMCButton(title: "compileCodeButton", maxHeight: 50, maxWidth: .infinity, action: compile)
                 .padding([.leading, .trailing])
         }.keyboardObserving()
     }

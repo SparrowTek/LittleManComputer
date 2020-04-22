@@ -21,8 +21,7 @@ struct InputView: View {
                 .keyboardType(.numberPad)
                 .multilineTextAlignment(.center)
                 .padding(.bottom, 8)
-            
-            LMCButton(title: "enter") {
+            LMCButton(title: "enter", height: 50, width: 200) {
                 self.viewModel.enterInput(self.inputValue)
             }
         }
