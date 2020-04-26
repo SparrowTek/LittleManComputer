@@ -35,7 +35,13 @@ struct RegisterView: View {
 //                self.appState.programState.registers[self.registerNumber] = self.registerValue
 //            })
 //            TextField("", value: $name /*$appState.programState.registers[registerNumber]*/, formatter: NumberFormatter())
-            TextField("", text: $appState.programState.registers[registerNumber].display)
+            
+//            TextField("", text: $appState.programState.registers[registerNumber].display, onCommit: {
+//                if self.appState.programState.registers[self.registerNumber].value == nil {
+//                    self.appState.programState.registers[self.registerNumber].value = 0
+//                }
+//            })
+                TextField("", text: $appState.programState.registers[registerNumber].display)
                 .keyboardType(.numberPad)
                 .frame(width: 22, height: 12)
                 .multilineTextAlignment(.center)

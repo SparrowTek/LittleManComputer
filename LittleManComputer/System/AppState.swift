@@ -80,4 +80,10 @@ class AppState: ObservableObject {
         compileErrorMessage = errorMessage
         showCompileError = true
     }
+    
+    func removeNilRegisters() {
+        programState.registers = programState.registers.map {
+            $0.value != nil ? $0 : Register(value: 0)
+        }
+    }
 }

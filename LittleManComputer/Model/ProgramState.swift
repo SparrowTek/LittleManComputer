@@ -20,14 +20,17 @@ struct ProgramState {
 }
 
 struct Register: Equatable {
-    var value: RegisterValue
+    var value: RegisterValue?
     var display: String {
         get {
+            guard let value = value else { return "" }
             return "\(value)"
         }
         set {
-            #warning("handle this guard with more than just a return")
-            guard let displayAsInt = Int(newValue) else { return }
+            guard let displayAsInt = Int(newValue) else {
+                value = nil
+                return
+            }
             value = displayAsInt
         }
     }
