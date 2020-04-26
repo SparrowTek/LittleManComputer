@@ -60,8 +60,10 @@ struct MainPhoneView: View {
             .sheet(isPresented: $appState.showSheet) {
                 if self.appState.sheetType == SheetType.inputNeeded {
                     InputView(viewModel: InputViewModel(appState: self.appState)).environmentObject(self.appState)
-                } else {
+                } else if self.appState.sheetType == SheetType.assemblyCodeEditor {
                     AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(appState: self.appState)).environmentObject(self.appState)
+                } else if self.appState.sheetType == SheetType.updateRegister {
+                    InputView(viewModel: UpdateRegisterViewModel(appState: self.appState))
                 }
             }
             .navigationBarTitle("navigationBarTitle", displayMode: .inline)
@@ -71,7 +73,6 @@ struct MainPhoneView: View {
     
     private func assemblyButtonAction() {
         appState.sheetType = .assemblyCodeEditor
-        appState.showSheet.toggle()
     }
     
     private func runAction() {
@@ -85,7 +86,6 @@ struct MainPhoneView: View {
     private func resetAction() {
         //        viewModel.reset()
         appState.sheetType = .inputNeeded
-        appState.showSheet.toggle()
     }
 }
 

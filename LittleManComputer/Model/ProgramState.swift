@@ -24,7 +24,10 @@ struct Register: Equatable {
     var display: String {
         get {
             guard let value = value else { return "" }
-            return "\(value)"
+            let numValue = NSNumber(value: value)
+            let numberFormatter = NumberFormatter()
+            numberFormatter.minimumIntegerDigits = 3
+            return numberFormatter.string(from: numValue) ?? ""
         }
         set {
             guard let displayAsInt = Int(newValue) else {
@@ -33,5 +36,14 @@ struct Register: Equatable {
             }
             value = displayAsInt
         }
+    }
+}
+
+extension Int {
+    func asStringWith3IntegerDigits() -> String {
+        let numValue = NSNumber(value: self)
+        let numberFormatter = NumberFormatter()
+        numberFormatter.minimumIntegerDigits = 3
+        return numberFormatter.string(from: numValue) ?? ""
     }
 }

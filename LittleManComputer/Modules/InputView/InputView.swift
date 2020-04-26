@@ -8,15 +8,20 @@
 
 import SwiftUI
 
+protocol EnterValueSheetViewModel {
+    var appState: AppState { get }
+    var title: LocalizedStringKey { get }
+    func enterInput(_ input: String)
+}
+
 struct InputView: View {
-    @EnvironmentObject var appState: AppState
     @State private var inputValue = ""
     
-    var viewModel: InputViewModel
+    var viewModel: EnterValueSheetViewModel
     
     var body: some View {
         VStack {
-            Text("inputNeeded")
+            Text(viewModel.title)
             TextField("000", text: $inputValue)
                 .keyboardType(.numberPad)
                 .multilineTextAlignment(.center)
@@ -30,6 +35,6 @@ struct InputView: View {
 
 struct InputView_Previews: PreviewProvider {
     static var previews: some View {
-        InputView(viewModel: InputViewModel(appState: AppState())).environmentObject(AppState())
+        InputView(viewModel: InputViewModel(appState: AppState()))
     }
 }

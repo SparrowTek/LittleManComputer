@@ -13,6 +13,7 @@ import Combine
 enum SheetType {
     case inputNeeded
     case assemblyCodeEditor
+    case updateRegister
 }
 
 class AppState: ObservableObject {
@@ -20,12 +21,21 @@ class AppState: ObservableObject {
     @Published var showCompileError = false
     @Published var compileErrorMessage: LocalizedStringKey = ""
     @Published var sourceCode = ""
-    @Published var sheetType = SheetType.assemblyCodeEditor
+    @Published var sheetType = SheetType.assemblyCodeEditor {
+        didSet {
+            showSheet = true
+        }
+    }
     @Published var showSheet = false
     
     private lazy var virtualMachine = VirtualMachine(state: programState)
     let compiler = Compiler()
     private var cancelable: AnyCancellable?
+    var registerToUpdate = 0 {
+        didSet {
+            sheetType = .updateRegister
+        }
+    }
     
     init() {
         subscribeToState()
@@ -36,7 +46,6 @@ class AppState: ObservableObject {
             print("completion: \n\(completion)")
             if completion == .failure(.needInput) {
                 self.sheetType = .inputNeeded
-                self.showSheet = true
             }
             self.resetVirtualMachine()
         }, receiveValue: { state in
@@ -79,6 +88,11 @@ class AppState: ObservableObject {
         
         compileErrorMessage = errorMessage
         showCompileError = true
+    }
+    
+    func updateRegister(with value: Int) {
+        programState.registers[registerToUpdate].value = value
+        updateVirtualMachine()
     }
     
     func removeNilRegisters() {

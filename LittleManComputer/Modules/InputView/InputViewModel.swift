@@ -6,10 +6,11 @@
 //  Copyright © 2020 SparrowTek LLC. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 
-class InputViewModel {
+class InputViewModel: EnterValueSheetViewModel {
     var appState: AppState
+    var title: LocalizedStringKey = "inputNeeded"
     
     init(appState: AppState) {
         self.appState = appState
