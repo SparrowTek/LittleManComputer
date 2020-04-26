@@ -35,6 +35,8 @@
 		2ED864852363717E00DBFFD3 /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED864842363717E00DBFFD3 /* Instruction.swift */; };
 		2ED86487236371AA00DBFFD3 /* Opcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED86486236371AA00DBFFD3 /* Opcode.swift */; };
 		2ED86489236371E200DBFFD3 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED86488236371E200DBFFD3 /* Program.swift */; };
+		2EE113BA245457C200CF1987 /* InputAccessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE113B9245457C200CF1987 /* InputAccessory.swift */; };
+		2EE113BC2455AB0600CF1987 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE113BB2455AB0600CF1987 /* UIApplication.swift */; };
 		2EEDD94D2431545B002D2DD2 /* MainTabletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDD94C2431545B002D2DD2 /* MainTabletView.swift */; };
 		2EEDD94F24315465002D2DD2 /* MainPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDD94E24315465002D2DD2 /* MainPhoneView.swift */; };
 		2EEDD95224315ED4002D2DD2 /* AssemblyCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDD95124315ED4002D2DD2 /* AssemblyCodeEditor.swift */; };
@@ -85,6 +87,8 @@
 		2ED864842363717E00DBFFD3 /* Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
 		2ED86486236371AA00DBFFD3 /* Opcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opcode.swift; sourceTree = "<group>"; };
 		2ED86488236371E200DBFFD3 /* Program.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
+		2EE113B9245457C200CF1987 /* InputAccessory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputAccessory.swift; sourceTree = "<group>"; };
+		2EE113BB2455AB0600CF1987 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		2EEDD94C2431545B002D2DD2 /* MainTabletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabletView.swift; sourceTree = "<group>"; };
 		2EEDD94E24315465002D2DD2 /* MainPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPhoneView.swift; sourceTree = "<group>"; };
 		2EEDD95124315ED4002D2DD2 /* AssemblyCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyCodeEditor.swift; sourceTree = "<group>"; };
@@ -181,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				2E49B4DF2443ADF100127BBB /* View.swift */,
+				2EE113BB2455AB0600CF1987 /* UIApplication.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 				2EA193B824391368001C0309 /* HelpButton.swift */,
 				2EA193BF2439317D001C0309 /* NavBarButtons.swift */,
 				2EA193C12439320C001C0309 /* FolderButton.swift */,
+				2EE113B9245457C200CF1987 /* InputAccessory.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -389,6 +395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EE113BC2455AB0600CF1987 /* UIApplication.swift in Sources */,
 				2EA193B924391368001C0309 /* HelpButton.swift in Sources */,
 				2E2E65F623037C4A007AF298 /* Compiler.swift in Sources */,
 				2E071957243BF48800F1C9A5 /* AssemblyCodeEditorViewModel.swift in Sources */,
@@ -396,6 +403,7 @@
 				2EA193BE243925AA001C0309 /* RegisterCollectionView.swift in Sources */,
 				2EEDD95224315ED4002D2DD2 /* AssemblyCodeEditor.swift in Sources */,
 				2EA193B62438ED7C001C0309 /* LMCButton.swift in Sources */,
+				2EE113BA245457C200CF1987 /* InputAccessory.swift in Sources */,
 				2EEDD94F24315465002D2DD2 /* MainPhoneView.swift in Sources */,
 				2ED86487236371AA00DBFFD3 /* Opcode.swift in Sources */,
 				2E49B4E02443ADF100127BBB /* View.swift in Sources */,

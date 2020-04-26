@@ -16,7 +16,7 @@ struct MainPhoneView: View {
     var body: some View {
         NavigationView {
             VStack {
-                RegisterCollectionView()
+                RegisterCollectionView().environmentObject(appState)
                 Text(appState.programState.printStatement)
                     .lineLimit(2)
                     .minimumScaleFactor(0.5)

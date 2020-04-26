@@ -16,7 +16,6 @@ struct RegisterView: View {
             
         }
     }
-//    @State private var memoryValue = "000"
     var backgroundColor = Color(Colors.registerBackground)
     var textColor = Color(Colors.registerText)
     @Binding var registerValue: Register
@@ -32,11 +31,7 @@ struct RegisterView: View {
                 .font(.system(size: 12))
                 .padding(.bottom, -8)
             TextField("", value: $registerValue, formatter: NumberFormatter())
-//            TextField("", text: "\($registerValue)", onEditingChanged: { _ in
-//                
-//            }, onCommit: {
-//                
-//            })
+                .keyboardType(.numberPad)
                 .frame(width: 22, height: 12)
                 .multilineTextAlignment(.center)
                 .font(.system(size: 10))

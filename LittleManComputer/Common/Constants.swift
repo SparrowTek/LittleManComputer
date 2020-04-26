@@ -18,4 +18,5 @@ struct Colors {
     static let outboxBackground = "OutboxBackground"
     static let registerBackground = "RegisterBackground"
     static let registerText = "RegisterText"
+    static let inputAccessoryBackground = "InputAccessoryBackground"
 }

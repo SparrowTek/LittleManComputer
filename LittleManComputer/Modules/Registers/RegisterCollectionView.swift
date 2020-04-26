@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct RegisterCollectionView: View {
+    @State var showInputAccessory = false
     
     var body: some View {
         VStack {
@@ -18,7 +19,20 @@ struct RegisterCollectionView: View {
                 Spacer()
             }
             AllRegisters()
+            
+            if showInputAccessory {
+                InputAccessory()
+            }
         }
+        .onReceive(
+          NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification)
+            .receive(on: RunLoop.main),
+          perform: toggleInputAccessory
+        )
+    }
+    
+    func toggleInputAccessory(_ notification: Notification) {
+        showInputAccessory.toggle()
     }
 }
 

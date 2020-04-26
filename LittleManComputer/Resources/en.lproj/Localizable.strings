@@ -20,3 +20,4 @@
 "compileCodeButton" = "Compile Code";
 "inputNeeded" = "Enter a value between 0 and 999";
 "enter" = "Enter";
+"inputAccessoryButton" = "Done";
