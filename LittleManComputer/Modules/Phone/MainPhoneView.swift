@@ -18,6 +18,7 @@ struct MainPhoneView: View {
             VStack {
                 RegisterCollectionView().environmentObject(appState)
                 Text(appState.programState.printStatement)
+                    .frame(height: 30)
                     .lineLimit(2)
                     .minimumScaleFactor(0.5)
                     .padding(.top, 16)
