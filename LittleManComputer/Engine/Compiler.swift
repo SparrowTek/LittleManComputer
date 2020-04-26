@@ -11,6 +11,7 @@ import Foundation
 enum CompileError: Error {
     case invalidAssemblyCode // TODO: make more specific invalid assembly code errors
     case intExpected
+    case general
 }
 
 class Compiler {

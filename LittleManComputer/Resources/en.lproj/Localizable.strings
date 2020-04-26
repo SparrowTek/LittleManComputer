@@ -21,3 +21,7 @@
 "inputNeeded" = "Enter a value between 0 and 999";
 "enter" = "Enter";
 "inputAccessoryButton" = "Done";
+"intExpectedError" = "The input value must be an integer between 0 - 999";
+"invalidAssemblyCodeError" = "The assembly code that you entered is not valid. Please adjust your code and try again";
+"generalError" = "Error - this code can not be compiled as is";
+"outOfBoundsError" = "Mailbox out of bounds. Mailbox values must be between 0 and 99";

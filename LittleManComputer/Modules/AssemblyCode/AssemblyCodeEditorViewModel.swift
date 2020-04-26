@@ -21,16 +21,9 @@ class AssemblyCodeEditorViewModel {
             appState.updateVirtualMachine()
             appState.showSheet = false
         } catch (let error as CompileError) {
-            switch error {
-            case .intExpected:
-                break
-            case .invalidAssemblyCode:
-                break
-            }
-            
-            appState.showCompileError = true
+            appState.showError(error)
         } catch {
-            #warning("catch all")
+            appState.showError(.general)
         }
     }
 }

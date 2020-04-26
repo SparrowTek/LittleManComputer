@@ -28,7 +28,11 @@ struct AssemblyCodeEditor: View {
             Spacer()
             LMCButton(title: "compileCodeButton", maxHeight: 50, maxWidth: .infinity, action: compile)
                 .padding([.leading, .trailing])
-        }.keyboardObserving()
+        }
+        .alert(isPresented: $appState.showCompileError) {
+            Alert(title: Text(appState.compileErrorMessage))
+        }
+        .keyboardObserving()
     }
     
     private func compile() {

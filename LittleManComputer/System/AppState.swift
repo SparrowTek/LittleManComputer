@@ -18,7 +18,7 @@ enum SheetType {
 class AppState: ObservableObject {
     @Published var programState = ProgramState()
     @Published var showCompileError = false
-    @Published var compileErrorMessage = ""
+    @Published var compileErrorMessage: LocalizedStringKey = ""
     @Published var sourceCode = ""
     @Published var sheetType = SheetType.assemblyCodeEditor
     @Published var showSheet = false
@@ -63,5 +63,21 @@ class AppState: ObservableObject {
     
     func updateInput(_ input: Int?) {
         virtualMachine.input = input
+    }
+    
+    func showError(_ error: CompileError) {
+        let errorMessage: LocalizedStringKey
+        
+        switch error {
+        case .intExpected:
+            errorMessage = "intExpectedError"
+        case .invalidAssemblyCode:
+            errorMessage = "invalidAssemblyCodeError"
+        case .general:
+            errorMessage = "generalError"
+        }
+        
+        compileErrorMessage = errorMessage
+        showCompileError = true
     }
 }
