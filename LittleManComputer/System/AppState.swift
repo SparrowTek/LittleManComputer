@@ -91,13 +91,7 @@ class AppState: ObservableObject {
     }
     
     func updateRegister(with value: Int) {
-        programState.registers[registerToUpdate].value = value
+        programState.registers[registerToUpdate] = value
         updateVirtualMachine()
-    }
-    
-    func removeNilRegisters() {
-        programState.registers = programState.registers.map {
-            $0.value != nil ? $0 : Register(value: 0)
-        }
     }
 }

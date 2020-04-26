@@ -18,6 +18,7 @@
 		2E2E65F623037C4A007AF298 /* Compiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65F523037C4A007AF298 /* Compiler.swift */; };
 		2E2E65F823037CDB007AF298 /* VirtualMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65F723037CDB007AF298 /* VirtualMachine.swift */; };
 		2E3FEA7324562066007B77A2 /* UpdateRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3FEA7224562066007B77A2 /* UpdateRegisterViewModel.swift */; };
+		2E3FEA7524562D03007B77A2 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3FEA7424562D03007B77A2 /* Int.swift */; };
 		2E49B4DA2443431600127BBB /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E49B4D92443431600127BBB /* AppState.swift */; };
 		2E49B4DD2443ADA200127BBB /* KeyboardObserving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E49B4DC2443ADA200127BBB /* KeyboardObserving.swift */; };
 		2E49B4E02443ADF100127BBB /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E49B4DF2443ADF100127BBB /* View.swift */; };
@@ -69,6 +70,7 @@
 		2E2E65F523037C4A007AF298 /* Compiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compiler.swift; sourceTree = "<group>"; };
 		2E2E65F723037CDB007AF298 /* VirtualMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualMachine.swift; sourceTree = "<group>"; };
 		2E3FEA7224562066007B77A2 /* UpdateRegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRegisterViewModel.swift; sourceTree = "<group>"; };
+		2E3FEA7424562D03007B77A2 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		2E49B4D92443431600127BBB /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		2E49B4DC2443ADA200127BBB /* KeyboardObserving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserving.swift; sourceTree = "<group>"; };
 		2E49B4DF2443ADF100127BBB /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			children = (
 				2E49B4DF2443ADF100127BBB /* View.swift */,
 				2EE113BB2455AB0600CF1987 /* UIApplication.swift */,
+				2E3FEA7424562D03007B77A2 /* Int.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				2EE113BC2455AB0600CF1987 /* UIApplication.swift in Sources */,
 				2EA193B924391368001C0309 /* HelpButton.swift in Sources */,
 				2E2E65F623037C4A007AF298 /* Compiler.swift in Sources */,
+				2E3FEA7524562D03007B77A2 /* Int.swift in Sources */,
 				2E071957243BF48800F1C9A5 /* AssemblyCodeEditorViewModel.swift in Sources */,
 				2ED6E557244D0A5C00C58212 /* InputViewModel.swift in Sources */,
 				2EA193BE243925AA001C0309 /* RegisterCollectionView.swift in Sources */,

@@ -25,7 +25,6 @@ struct RegisterCollectionView: View {
     }
     
     private func inputAccessoryAction() {
-        appState.removeNilRegisters()
         appState.updateVirtualMachine()
     }
 }

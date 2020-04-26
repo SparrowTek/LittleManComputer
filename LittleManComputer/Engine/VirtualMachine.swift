@@ -15,7 +15,6 @@ enum StateError: Error {
     case generic
     case mailboxOutOfBounds
     case needInput
-    case nilRegisterValue
 }
 
 class VirtualMachine {
@@ -40,11 +39,8 @@ class VirtualMachine {
     
     func step() {
         do {
-            guard let registerValue = state.value.registers[state.value.programCounter].value else {
-                state.send(completion: .failure(.nilRegisterValue))
-                return
-            }
-            let instruction = getInstruction(for: registerValue)
+            let register = state.value.registers[state.value.programCounter]
+            let instruction = getInstruction(for: register)
             state.value = try execute(instruction: instruction, for: state.value)
             #warning("the program is not halting. Program complete goes forever...")
         } catch let error as StateError {
@@ -64,7 +60,7 @@ class VirtualMachine {
         }, receiveValue: {_ in })
     }
     
-    private func getInstruction(for register: RegisterValue) -> Instruction {
+    private func getInstruction(for register: Register) -> Instruction {
         let registerOpcode = opcode(for: register)
         
         switch registerOpcode {
@@ -76,12 +72,12 @@ class VirtualMachine {
         }
     }
     
-    private func address(for register: RegisterValue) -> Mailbox {
+    private func address(for register: Register) -> Mailbox {
         let registerHundredsDigit = (register - (register % 100))
         return register - registerHundredsDigit
     }
     
-    private func opcode(for register: RegisterValue) -> Opcode {
+    private func opcode(for register: Register) -> Opcode {
         let registerFirstDigit = (register - (register % 100)) / 100
         
         switch registerFirstDigit {
@@ -109,44 +105,44 @@ class VirtualMachine {
     }
     
     private func execute(instruction: Instruction, for state: ProgramState) throws -> ProgramState {
-        do {
-            let opcode = instruction.opcode
-            let mailbox = instruction.address
-            guard mailbox >= 0 && mailbox <= 99 else { throw StateError.mailboxOutOfBounds }
-            
-            switch opcode {
-            case .add:
-                return try add(mailbox: mailbox, for: state)
-            case .subtract:
-                return try subtract(mailbox: mailbox, for: state)
-            case .store:
-                return store(mailbox: mailbox, for: state)
-            case .load:
-                return try load(mailbox: mailbox, for: state)
-            case .branch:
-                return branch(mailbox: mailbox, for: state)
-            case .branchIfZero:
-                return branchIfZero(mailbox: mailbox, for: state)
-            case .branchIfPositive:
-                return branchIfPositive(mailbox: mailbox, for: state)
-            case .input:
+        let opcode = instruction.opcode
+        let mailbox = instruction.address
+        guard mailbox >= 0 && mailbox <= 99 else { throw StateError.mailboxOutOfBounds }
+        
+        switch opcode {
+        case .add:
+            return add(mailbox: mailbox, for: state)
+        case .subtract:
+            return subtract(mailbox: mailbox, for: state)
+        case .store:
+            return store(mailbox: mailbox, for: state)
+        case .load:
+            return load(mailbox: mailbox, for: state)
+        case .branch:
+            return branch(mailbox: mailbox, for: state)
+        case .branchIfZero:
+            return branchIfZero(mailbox: mailbox, for: state)
+        case .branchIfPositive:
+            return branchIfPositive(mailbox: mailbox, for: state)
+        case .input:
+            do {
                 return try input(for: state)
-            case .output:
-                return output(for: state)
-            case .halt:
-                return halt(for: state)
-            case .data:
-                throw StateError.generic
+            } catch let error as StateError {
+                throw error
             }
-        } catch let error as StateError {
-            throw error
+        case .output:
+            return output(for: state)
+        case .halt:
+            return halt(for: state)
+        case .data:
+            throw StateError.generic
         }
     }
     
-    private func add(mailbox: Mailbox, for state: ProgramState) throws -> ProgramState {
+    private func add(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
         let accumulator = state.accumulator
-        guard let registerValue = state.registers[mailbox].value else { throw StateError.nilRegisterValue }
+        let registerValue = state.registers[mailbox]
         
         ogState.accumulator += registerValue
         ogState.programCounter += 1
@@ -154,10 +150,10 @@ class VirtualMachine {
         return ogState
     }
     
-    private func subtract(mailbox: Mailbox, for state: ProgramState) throws -> ProgramState {
+    private func subtract(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
         let accumulator = state.accumulator
-        guard let registerValue = state.registers[mailbox].value else { throw StateError.nilRegisterValue }
+        let registerValue = state.registers[mailbox]
         
         ogState.accumulator -= registerValue
         ogState.programCounter += 1
@@ -167,19 +163,17 @@ class VirtualMachine {
     
     private func store(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
-        ogState.registers[mailbox].value = ogState.accumulator
+        ogState.registers[mailbox] = ogState.accumulator
         ogState.programCounter += 1
         ogState.printStatement = "Store the accumulator value \(ogState.accumulator) in register \(mailbox)"
         return ogState
     }
     
-    private func load(mailbox: Mailbox, for state: ProgramState) throws -> ProgramState {
+    private func load(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
-        guard let registerValue = state.registers[mailbox].value else { throw StateError.nilRegisterValue }
-        ogState.accumulator = registerValue
+        ogState.accumulator = ogState.registers[mailbox]
         ogState.programCounter += 1
-        guard let printStatementValue = ogState.registers[mailbox].value else { throw StateError.nilRegisterValue }
-        ogState.printStatement = "Load the value in register \(mailbox) (\(printStatementValue)) into the accumulator"
+        ogState.printStatement = "Load the value in register \(mailbox) (\(ogState.registers[mailbox])) into the accumulator"
         return ogState
     }
     

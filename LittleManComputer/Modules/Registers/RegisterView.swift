@@ -24,7 +24,7 @@ struct RegisterView: View {
             Button(action: {
                 self.appState.registerToUpdate = self.registerNumber
             }) {
-                Text(appState.programState.registers[registerNumber].display)
+                Text(appState.programState.registers[registerNumber].toStringWith3IntegerDigits())
                 .frame(width: 22, height: 12)
                     .multilineTextAlignment(.center)
                     .font(.system(size: 10))
