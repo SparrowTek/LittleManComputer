@@ -10,9 +10,10 @@ import SwiftUI
 import Combine
 
 struct InputAccessory: View {
-    @State var keyboardHeight: CGFloat = 0
-    var cancellables: Set<AnyCancellable> = []
-    var action: (() -> Void)?
+    @State private var keyboardHeight: CGFloat = 0
+    @State private var isVisible = false
+    private var cancellables: Set<AnyCancellable> = []
+    private var action: (() -> Void)?
     
     init() {
         NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification)
@@ -38,16 +39,28 @@ struct InputAccessory: View {
     
     var body: some View {
         VStack {
-            HStack {
+            if isVisible {
+                HStack {
+                    Spacer()
+                    LMCButton(title: "inputAccessoryButton", height: 30, width: 75, action: doneAction)
+                        .padding(.trailing, 16)
+                }
+                .frame(height: 38)
+                .background(Color(Colors.inputAccessoryBackground))
                 Spacer()
-                LMCButton(title: "inputAccessoryButton", height: 30, width: 75, action: doneAction)
-                    .padding(.trailing, 16)
+                    .frame(height: keyboardHeight)
             }
-            .frame(height: 38)
-            .background(Color(Colors.inputAccessoryBackground))
-            Spacer()
-                .frame(height: keyboardHeight)
         }
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification), perform: toggleIsVisibleOn )
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification), perform: toggleIsVisibleOff )
+    }
+    
+    private func toggleIsVisibleOn(_ notification: Notification) {
+        isVisible = true
+    }
+    
+    private func toggleIsVisibleOff(_ notification: Notification) {
+        isVisible = false
     }
     
     private func doneAction() {
