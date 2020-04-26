@@ -20,16 +20,16 @@ class LittleManComputerTests: XCTestCase {
     }
     
     func createTestState() -> ProgramState {
-        let registers = [Register(value: 506), Register(value: 107), Register(value: 902), Register(value: 108), Register(value: 902), Register(value: 000), Register(value: 001), Register(value: 010), Register(value: 003), Register(value: 000),
-        Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000),
-        Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000),
-        Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000),
-        Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000),
-        Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000),
-        Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000),
-        Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000),
-        Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000),
-        Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000), Register(value: 000)]
+        let registers = [506, 107, 902, 108, 902, 000, 001, 010, 003, 000,
+        000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+        000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+        000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+        000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+        000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+        000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+        000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+        000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+        000, 000, 000, 000, 000, 000, 000, 000, 000, 000]
         
         return ProgramState(registers: registers)
     }
