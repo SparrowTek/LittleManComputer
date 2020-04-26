@@ -39,8 +39,8 @@ class VirtualMachine {
     
     func step() {
         do {
-            let register = state.value.registers[state.value.programCounter]
-            let instruction = getInstruction(for: register)
+            let registerValue = state.value.registers[state.value.programCounter].value
+            let instruction = getInstruction(for: registerValue)
             state.value = try execute(instruction: instruction, for: state.value)
             #warning("the program is not halting. Program complete goes forever...")
         } catch let error as StateError {
@@ -60,7 +60,7 @@ class VirtualMachine {
         }, receiveValue: {_ in })
     }
     
-    private func getInstruction(for register: Register) -> Instruction {
+    private func getInstruction(for register: RegisterValue) -> Instruction {
         let registerOpcode = opcode(for: register)
         
         switch registerOpcode {
@@ -72,12 +72,12 @@ class VirtualMachine {
         }
     }
     
-    private func address(for register: Register) -> Mailbox {
+    private func address(for register: RegisterValue) -> Mailbox {
         let registerHundredsDigit = (register - (register % 100))
         return register - registerHundredsDigit
     }
     
-    private func opcode(for register: Register) -> Opcode {
+    private func opcode(for register: RegisterValue) -> Opcode {
         let registerFirstDigit = (register - (register % 100)) / 100
         
         switch registerFirstDigit {
@@ -142,7 +142,7 @@ class VirtualMachine {
     private func add(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
         let accumulator = state.accumulator
-        let registerValue = state.registers[mailbox]
+        let registerValue = state.registers[mailbox].value
         
         ogState.accumulator += registerValue
         ogState.programCounter += 1
@@ -153,7 +153,7 @@ class VirtualMachine {
     private func subtract(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
         let accumulator = state.accumulator
-        let registerValue = state.registers[mailbox]
+        let registerValue = state.registers[mailbox].value
         
         ogState.accumulator -= registerValue
         ogState.programCounter += 1
@@ -163,7 +163,7 @@ class VirtualMachine {
     
     private func store(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
-        ogState.registers[mailbox] = ogState.accumulator
+        ogState.registers[mailbox].value = ogState.accumulator
         ogState.programCounter += 1
         ogState.printStatement = "Store the accumulator value \(ogState.accumulator) in register \(mailbox)"
         return ogState
@@ -171,9 +171,9 @@ class VirtualMachine {
     
     private func load(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
-        ogState.accumulator = ogState.registers[mailbox]
+        ogState.accumulator = ogState.registers[mailbox].value
         ogState.programCounter += 1
-        ogState.printStatement = "Load the value in register \(mailbox) (\(ogState.registers[mailbox])) into the accumulator"
+        ogState.printStatement = "Load the value in register \(mailbox) (\(ogState.registers[mailbox].value)) into the accumulator"
         return ogState
     }
     

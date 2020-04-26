@@ -9,8 +9,9 @@
 import SwiftUI
 
 struct RegisterView: View {
+    @EnvironmentObject var appState: AppState
     var id = UUID()
-    private var registerNumber: String
+    private var registerNumber: Int
     var isSelected = false {
         didSet {
             
@@ -18,19 +19,23 @@ struct RegisterView: View {
     }
     var backgroundColor = Color(Colors.registerBackground)
     var textColor = Color(Colors.registerText)
-    @Binding var registerValue: Register
     
-    init(registerNumber: String, registerValue: Binding<Register>) {
+    init(registerNumber: Int) {
         self.registerNumber = registerNumber
-        self._registerValue = registerValue
     }
     
     var body: some View {
         VStack {
-            Text(registerNumber)
+            Text("\(registerNumber)")
                 .font(.system(size: 12))
                 .padding(.bottom, -8)
-            TextField("", value: $registerValue, formatter: NumberFormatter())
+//            TextField("", value: $appState.programState.registers[registerNumber], formatter: NumberFormatter(), onEditingChanged: { _ in
+//
+//            }, onCommit: {
+//                self.appState.programState.registers[self.registerNumber] = self.registerValue
+//            })
+//            TextField("", value: $name /*$appState.programState.registers[registerNumber]*/, formatter: NumberFormatter())
+            TextField("", text: $appState.programState.registers[registerNumber].display)
                 .keyboardType(.numberPad)
                 .frame(width: 22, height: 12)
                 .multilineTextAlignment(.center)
@@ -41,13 +46,12 @@ struct RegisterView: View {
                     Rectangle()
                         .stroke(Color(Colors.registerBorder), lineWidth: 1)
             )
-            
         }
     }
 }
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView(registerNumber: "0", registerValue: .constant(000))
+        RegisterView(registerNumber: 0).environmentObject(AppState())
     }
 }

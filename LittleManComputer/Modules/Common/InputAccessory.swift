@@ -12,6 +12,7 @@ import Combine
 struct InputAccessory: View {
     @State var keyboardHeight: CGFloat = 0
     var cancellables: Set<AnyCancellable> = []
+    var action: (() -> Void)?
     
     init() {
         NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification)
@@ -31,6 +32,10 @@ struct InputAccessory: View {
           .store(in: &cancellables)
     }
     
+    init(withAction action: @escaping (() -> Void)) {
+        self.action = action
+    }
+    
     var body: some View {
         VStack {
             HStack {
@@ -47,6 +52,7 @@ struct InputAccessory: View {
     
     private func doneAction() {
         UIApplication.shared.endEditing()
+        action?()
     }
 }
 

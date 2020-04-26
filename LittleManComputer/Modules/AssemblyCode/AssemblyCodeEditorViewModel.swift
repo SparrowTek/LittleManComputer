@@ -18,7 +18,7 @@ class AssemblyCodeEditorViewModel {
     func compileCode(_ code: String) {
         do {
             appState.programState = try appState.compiler.compile(code)
-            appState.virtualMachine.state.value = appState.programState
+            appState.updateVirtualMachine()
             appState.showSheet = false
         } catch (let error as CompileError) {
             switch error {

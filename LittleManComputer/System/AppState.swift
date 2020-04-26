@@ -16,19 +16,14 @@ enum SheetType {
 }
 
 class AppState: ObservableObject {
-    
-    @Published var programState = ProgramState() /*{
-        didSet {
-            virtualMachine.state.value = programState
-        }
-    }*/
+    @Published var programState = ProgramState()
     @Published var showCompileError = false
     @Published var compileErrorMessage = ""
     @Published var sourceCode = ""
     @Published var sheetType = SheetType.assemblyCodeEditor
     @Published var showSheet = false
     
-    lazy var virtualMachine = VirtualMachine(state: programState)
+    private lazy var virtualMachine = VirtualMachine(state: programState)
     let compiler = Compiler()
     private var cancelable: AnyCancellable?
     
@@ -52,5 +47,21 @@ class AppState: ObservableObject {
     private func resetVirtualMachine() {
         virtualMachine = VirtualMachine(state: programState)
         subscribeToState()
+    }
+    
+    func updateVirtualMachine() {
+        virtualMachine.state.value = programState
+    }
+    
+    func runVirtualMachine(speed: Double = 1) {
+        virtualMachine.run(speed: speed)
+    }
+    
+    func stepVirtualMaching() {
+        virtualMachine.step()
+    }
+    
+    func updateInput(_ input: Int?) {
+        virtualMachine.input = input
     }
 }

@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct RegisterCollectionView: View {
+    @EnvironmentObject var appState: AppState
     @State var showInputAccessory = false
     
     var body: some View {
@@ -21,7 +22,7 @@ struct RegisterCollectionView: View {
             AllRegisters()
             
             if showInputAccessory {
-                InputAccessory()
+                InputAccessory(withAction: inputAccessoryAction)
             }
         }
         .onReceive(
@@ -31,8 +32,12 @@ struct RegisterCollectionView: View {
         )
     }
     
-    func toggleInputAccessory(_ notification: Notification) {
+    private func toggleInputAccessory(_ notification: Notification) {
         showInputAccessory.toggle()
+    }
+    
+    private func inputAccessoryAction() {
+        appState.updateVirtualMachine()
     }
 }
 
@@ -70,7 +75,7 @@ struct RegisterRow: View {
     var body: some View {
         HStack {
             ForEach(range, id: \.self) {
-                RegisterView(registerNumber: "\($0)", registerValue: self.$appState.programState.registers[$0])
+                RegisterView(registerNumber: $0).environmentObject(self.appState)
             }
         }
     }

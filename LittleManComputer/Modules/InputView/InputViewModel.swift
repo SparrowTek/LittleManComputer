@@ -16,7 +16,7 @@ class InputViewModel {
     }
     
     func enterInput(_ input: String) {
-        appState.virtualMachine.input = Int(input)
+        appState.updateInput(Int(input))
         appState.showSheet = false
     }
 }

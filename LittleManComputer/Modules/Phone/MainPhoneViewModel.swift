@@ -17,11 +17,11 @@ class MainPhoneViewModel {
     }
     
     func run() {
-        appState.virtualMachine.run(speed: 1)
+        appState.runVirtualMachine()
     }
     
     func step() {
-        appState.virtualMachine.step()
+        appState.stepVirtualMaching()
     }
     
     func reset() {
