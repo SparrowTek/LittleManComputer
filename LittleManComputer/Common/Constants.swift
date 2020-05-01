@@ -9,14 +9,19 @@
 struct Colors {
     static let textEditorBackground = "TextEditorBackground"
     static let textEditorText = "TextEditorText"
-    static let registerBorder = "RegisterBorder"
     static let lmcButton = "LMCButton"
     static let lmcButtonTitle  = "LMCButtonTitle"
     static let navBar = "NavBar"
     static let navBarTitle = "NavBarTitle"
     static let outboxText = "OutboxText"
     static let outboxBackground = "OutboxBackground"
+    static let inputAccessoryBackground = "InputAccessoryBackground"
+    
+    // registers
     static let registerBackground = "RegisterBackground"
     static let registerText = "RegisterText"
-    static let inputAccessoryBackground = "InputAccessoryBackground"
+    static let registerBorder = "RegisterBorder"
+    static let highlightedRegisterBackground = "HighlightedRegisterBackground"
+    static let highlightedRegisterText = "HighlightedRegisterText"
+    static let highlightedRegisterBorder = "HighlightedRegisterBorder"
 }

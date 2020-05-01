@@ -17,4 +17,5 @@ struct ProgramState {
     var accumulator: Int = 0
     var registers: [Register] = [Register](repeating: 000, count: 100)
     var printStatement: LocalizedStringKey = "initPrintStatement"
+    var registersCurrentlyBeingEvaluated: [Register : Bool] = [Register : Bool]()
 }

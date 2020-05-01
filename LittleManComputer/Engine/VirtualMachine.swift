@@ -41,6 +41,7 @@ class VirtualMachine {
         do {
             let register = state.value.registers[state.value.programCounter]
             let instruction = getInstruction(for: register)
+            resetRegistersCurrentlyBeingEvaluated()
             state.value = try execute(instruction: instruction, for: state.value)
             #warning("the program is not halting. Program complete goes forever...")
         } catch let error as StateError {
@@ -109,6 +110,7 @@ class VirtualMachine {
         let mailbox = instruction.address
         guard mailbox >= 0 && mailbox <= 99 else { throw StateError.mailboxOutOfBounds }
         
+        
         switch opcode {
         case .add:
             return add(mailbox: mailbox, for: state)
@@ -139,11 +141,16 @@ class VirtualMachine {
         }
     }
     
+    private func resetRegistersCurrentlyBeingEvaluated() {
+        state.value.registersCurrentlyBeingEvaluated = [ : ]
+    }
+    
     private func add(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
         let accumulator = state.accumulator
         let registerValue = state.registers[mailbox]
         
+        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
         ogState.accumulator += registerValue
         ogState.programCounter += 1
         ogState.printStatement = "Add \(accumulator) from the accumulator to the value in register \(mailbox) (\(registerValue))"
@@ -155,6 +162,7 @@ class VirtualMachine {
         let accumulator = state.accumulator
         let registerValue = state.registers[mailbox]
         
+        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
         ogState.accumulator -= registerValue
         ogState.programCounter += 1
         ogState.printStatement = "Subtract \(registerValue) in register \(mailbox) from the accumulator value (\(accumulator))"
@@ -163,6 +171,8 @@ class VirtualMachine {
     
     private func store(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
+        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
+        ogState.registersCurrentlyBeingEvaluated[mailbox] = true
         ogState.registers[mailbox] = ogState.accumulator
         ogState.programCounter += 1
         ogState.printStatement = "Store the accumulator value \(ogState.accumulator) in register \(mailbox)"
@@ -171,6 +181,9 @@ class VirtualMachine {
     
     private func load(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
+        
+        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
+        ogState.registersCurrentlyBeingEvaluated[mailbox] = true
         ogState.accumulator = ogState.registers[mailbox]
         ogState.programCounter += 1
         ogState.printStatement = "Load the value in register \(mailbox) (\(ogState.registers[mailbox])) into the accumulator"
@@ -179,6 +192,7 @@ class VirtualMachine {
     
     private func branch(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
+        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
         ogState.programCounter = mailbox
         ogState.printStatement = "Branch: change the program counter to the value in register \(mailbox)"
         return ogState
@@ -186,7 +200,7 @@ class VirtualMachine {
     
     private func branchIfZero(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
-        
+        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
         if ogState.accumulator == 0 {
             ogState.programCounter = mailbox
             ogState.printStatement = "Branch if zero: Accumulator == 0 is true. Program counter sets to \(mailbox)"
@@ -200,7 +214,7 @@ class VirtualMachine {
     
     private func branchIfPositive(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
         var ogState = state
-        
+        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
         if ogState.accumulator >= 0 {
             ogState.programCounter = mailbox
             ogState.printStatement = "Branch if positive: Accumulator >= 0 is true. Program counter sets to \(mailbox)"
@@ -215,6 +229,7 @@ class VirtualMachine {
     private func input(for state: ProgramState) throws -> ProgramState {
         guard let inbox = state.inbox else { throw StateError.needInput }
         var ogState = state
+        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
         ogState.accumulator = inbox
         ogState.inbox = nil
         ogState.programCounter += 1
@@ -224,6 +239,7 @@ class VirtualMachine {
     
     private func output(for state: ProgramState) -> ProgramState {
         var ogState = state
+        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
         ogState.outbox.append(ogState.accumulator)
         ogState.programCounter += 1
         ogState.printStatement = "Output: output the value in the accumulator, \(ogState.accumulator) into the output box"
@@ -232,6 +248,7 @@ class VirtualMachine {
     
     private func halt(for state: ProgramState) -> ProgramState {
         var ogState = state
+        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
         ogState.printStatement = "Program Complete"
         return ogState
     }
