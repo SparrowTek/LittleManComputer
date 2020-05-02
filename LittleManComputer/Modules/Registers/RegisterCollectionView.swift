@@ -15,7 +15,9 @@ struct RegisterCollectionView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("ram").padding([.leading, .bottom], 16)
+                Text("ram")
+                    .padding(.bottom, 16)
+                    .padding(.leading, 48)
                     .font(.system(size: 20, weight: .bold))
                 Spacer()
             }
