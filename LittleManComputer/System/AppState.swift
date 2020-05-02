@@ -47,7 +47,7 @@ class AppState: ObservableObject {
             if completion == .failure(.needInput) {
                 self.sheetType = .inputNeeded
             }
-            self.resetVirtualMachine()
+            self.reset()
         }, receiveValue: { state in
             self.programState = state
         })
@@ -61,6 +61,7 @@ class AppState: ObservableObject {
     func reset() {
         let registers = programState.registers
         programState = ProgramState(registers: registers)
+        programState.printStatement = LocalizedStringKey(NSLocalizedString("HALT_STATEMENT", comment: ""))
         resetVirtualMachine()
     }
     

@@ -44,11 +44,17 @@ class VirtualMachine {
             let instruction = getInstruction(for: register)
             resetRegistersCurrentlyBeingEvaluated()
             state.value = try execute(instruction: instruction, for: state.value)
-            #warning("the program is not halting. Program complete goes forever...")
+            programShouldCompleteCheck(register: register)
         } catch let error as StateError {
             state.send(completion: .failure(error))
         } catch {
             state.send(completion: .failure(.generic))
+        }
+    }
+    
+    private func programShouldCompleteCheck(register: Register) {
+        if opcode(for: register) == .halt {
+            state.send(completion: .finished)
         }
     }
     
