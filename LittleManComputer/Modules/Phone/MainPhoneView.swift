@@ -119,7 +119,7 @@ struct OutboxView: View {
             
             List {
                 ForEach(outbox, id: \.self) {
-                    Text("\($0)")
+                    Text($0.toStringWith3IntegerDigits())
                         .frame(height: 10)
                         .foregroundColor(Color(Colors.outboxText))
                         .listRowBackground(Color(Colors.outboxBackground))
