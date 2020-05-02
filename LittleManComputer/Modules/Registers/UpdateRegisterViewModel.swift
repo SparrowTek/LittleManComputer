@@ -10,7 +10,7 @@ import SwiftUI
 
 class UpdateRegisterViewModel: EnterValueSheetViewModel {
     var appState: AppState
-    var title: LocalizedStringKey = "UPDATE LOCALIZABLE FILE"
+    var title: LocalizedStringKey = "enterNewRegisterValue"
     
     init(appState: AppState) {
         self.appState = appState
