@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 typealias Mailbox = Int
 
@@ -153,7 +154,8 @@ class VirtualMachine {
         ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
         ogState.accumulator += registerValue
         ogState.programCounter += 1
-        ogState.printStatement = "Add \(accumulator) from the accumulator to the value in register \(mailbox) (\(registerValue))"
+        let formatString = NSLocalizedString("ADD_STATEMENT", comment: "")
+        ogState.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, accumulator, mailbox, registerValue))
         return ogState
     }
     
@@ -165,7 +167,8 @@ class VirtualMachine {
         ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
         ogState.accumulator -= registerValue
         ogState.programCounter += 1
-        ogState.printStatement = "Subtract \(registerValue) in register \(mailbox) from the accumulator value (\(accumulator))"
+        let formatString = NSLocalizedString("SUBTRACT_STATEMENT", comment: "")
+        ogState.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, registerValue, mailbox, accumulator))
         return ogState
     }
     
@@ -175,7 +178,8 @@ class VirtualMachine {
         ogState.registersCurrentlyBeingEvaluated[mailbox] = true
         ogState.registers[mailbox] = ogState.accumulator
         ogState.programCounter += 1
-        ogState.printStatement = "Store the accumulator value \(ogState.accumulator) in register \(mailbox)"
+        let formatString = NSLocalizedString("STORE_STATEMENT", comment: "")
+        ogState.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, ogState.accumulator, mailbox))
         return ogState
     }
     
@@ -186,7 +190,8 @@ class VirtualMachine {
         ogState.registersCurrentlyBeingEvaluated[mailbox] = true
         ogState.accumulator = ogState.registers[mailbox]
         ogState.programCounter += 1
-        ogState.printStatement = "Load the value in register \(mailbox) (\(ogState.registers[mailbox])) into the accumulator"
+        let formatString = NSLocalizedString("LOAD_STATEMENT", comment: "")
+        ogState.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, mailbox, ogState.registers[mailbox]))
         return ogState
     }
     
@@ -194,7 +199,8 @@ class VirtualMachine {
         var ogState = state
         ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
         ogState.programCounter = mailbox
-        ogState.printStatement = "Branch: change the program counter to the value in register \(mailbox)"
+        let formatString = NSLocalizedString("BRANCH_STATEMENT", comment: "")
+        ogState.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, mailbox))
         return ogState
     }
     
@@ -203,10 +209,11 @@ class VirtualMachine {
         ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
         if ogState.accumulator == 0 {
             ogState.programCounter = mailbox
-            ogState.printStatement = "Branch if zero: Accumulator == 0 is true. Program counter sets to \(mailbox)"
+            let formatString = NSLocalizedString("BRANCH_IF_ZERO_TRUE_STATEMENT", comment: "")
+            ogState.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, mailbox))
         } else {
             ogState.programCounter += 1
-            ogState.printStatement = "Branch if zero: The accumulator != 0. Do not branch; increment program counter"
+            ogState.printStatement = LocalizedStringKey(NSLocalizedString("BRANCH_IF_ZERO_FALSE_STATEMENT", comment: ""))
         }
         
         return ogState
@@ -217,10 +224,11 @@ class VirtualMachine {
         ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
         if ogState.accumulator >= 0 {
             ogState.programCounter = mailbox
-            ogState.printStatement = "Branch if positive: Accumulator >= 0 is true. Program counter sets to \(mailbox)"
+            let formatString = NSLocalizedString("BRANCH_IF_POSITIVE_TRUE_STATEMENT", comment: "")
+            ogState.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, mailbox))
         } else {
             ogState.programCounter += 1
-            ogState.printStatement = "Branch if positive: Accumulator is not possitive. Do not branch"
+            ogState.printStatement = LocalizedStringKey(NSLocalizedString("BRANCH_IF_POSITIVE_FALSE_STATEMENT", comment: ""))
         }
         
         return ogState
@@ -233,7 +241,7 @@ class VirtualMachine {
         ogState.accumulator = inbox
         ogState.inbox = nil
         ogState.programCounter += 1
-        ogState.printStatement = "Input"
+        ogState.printStatement = LocalizedStringKey(NSLocalizedString("INPUT_STATEMENT", comment: ""))
         return ogState
     }
     
@@ -242,14 +250,15 @@ class VirtualMachine {
         ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
         ogState.outbox.append(ogState.accumulator)
         ogState.programCounter += 1
-        ogState.printStatement = "Output: output the value in the accumulator, \(ogState.accumulator) into the output box"
+        let formatString = NSLocalizedString("OUTPUT_STATEMENT", comment: "")
+        ogState.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, ogState.accumulator))
         return ogState
     }
     
     private func halt(for state: ProgramState) -> ProgramState {
         var ogState = state
         ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
-        ogState.printStatement = "Program Complete"
+        ogState.printStatement = LocalizedStringKey(NSLocalizedString("HALT_STATEMENT", comment: ""))
         return ogState
     }
 }

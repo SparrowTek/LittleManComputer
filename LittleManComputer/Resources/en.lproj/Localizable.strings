@@ -25,3 +25,17 @@
 "invalidAssemblyCodeError" = "The assembly code that you entered is not valid. Please adjust your code and try again";
 "generalError" = "Error - this code can not be compiled as is";
 "outOfBoundsError" = "Mailbox out of bounds. Mailbox values must be between 0 and 99";
+
+// VirtualMachine print statements
+"ADD_STATEMENT" = "Add %d from the accumulator to the value in register %d (%d)";
+"SUBTRACT_STATEMENT" = "Subtract %d in register %d from the accumulator value (%d)";
+"STORE_STATEMENT" = "Store the accumulator value %d in register %d";
+"LOAD_STATEMENT" = "Load the value in register %d (%d) into the accumulator";
+"BRANCH_STATEMENT" = "Branch: change the program counter to the value in register %d";
+"BRANCH_IF_ZERO_TRUE_STATEMENT" = "Branch if zero: Accumulator == 0 is true. Program counter sets to %d";
+"BRANCH_IF_ZERO_FALSE_STATEMENT" = "Branch if zero: The accumulator != 0. Do not branch; increment program counter";
+"BRANCH_IF_POSITIVE_TRUE_STATEMENT" = "Branch if positive: Accumulator >= 0 is true. Program counter sets to %d";
+"BRANCH_IF_POSITIVE_FALSE_STATEMENT" = "Branch if positive: Accumulator is not possitive. Do not branch";
+"INPUT_STATEMENT" = "Input";
+"OUTPUT_STATEMENT" = "Output: output the value in the accumulator, %d into the output box";
+"HALT_STATEMENT" = "Program Complete";
