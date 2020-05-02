@@ -17,8 +17,9 @@ class UpdateRegisterViewModel: EnterValueSheetViewModel {
     }
     
     func enterInput(_ input: String) {
-        guard let input = Int(input) else {
-            #warning("handle error. this should be an integer")
+        guard let input = Int(input),
+            input >= 0 && input < 1000 else {
+            appState.showError(.intExpected)
             return
         }
 

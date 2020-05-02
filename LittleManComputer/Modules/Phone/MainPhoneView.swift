@@ -63,7 +63,7 @@ struct MainPhoneView: View {
                 } else if self.appState.sheetType == SheetType.assemblyCodeEditor {
                     AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(appState: self.appState)).environmentObject(self.appState)
                 } else if self.appState.sheetType == SheetType.updateRegister {
-                    InputView(viewModel: UpdateRegisterViewModel(appState: self.appState))
+                    InputView(viewModel: UpdateRegisterViewModel(appState: self.appState)).environmentObject(self.appState)
                 }
             }
             .navigationBarTitle("navigationBarTitle", displayMode: .inline)

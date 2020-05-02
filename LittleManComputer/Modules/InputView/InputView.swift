@@ -15,6 +15,7 @@ protocol EnterValueSheetViewModel {
 }
 
 struct InputView: View {
+    @EnvironmentObject var appState: AppState
     @State private var inputValue = ""
     
     var viewModel: EnterValueSheetViewModel
@@ -32,6 +33,9 @@ struct InputView: View {
                 self.viewModel.enterInput(self.inputValue)
             }
             Spacer()
+        }
+        .alert(isPresented: $appState.showCompileError) {
+            Alert(title: Text(appState.compileErrorMessage))
         }
     }
 }
