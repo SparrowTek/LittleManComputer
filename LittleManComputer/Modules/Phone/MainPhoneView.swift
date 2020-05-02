@@ -84,8 +84,7 @@ struct MainPhoneView: View {
     }
     
     private func resetAction() {
-        //        viewModel.reset()
-        appState.sheetType = .inputNeeded
+        viewModel.reset()
     }
 }
 

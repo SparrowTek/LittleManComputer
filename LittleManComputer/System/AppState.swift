@@ -58,6 +58,12 @@ class AppState: ObservableObject {
         subscribeToState()
     }
     
+    func reset() {
+        let registers = programState.registers
+        programState = ProgramState(registers: registers)
+        resetVirtualMachine()
+    }
+    
     func updateVirtualMachine() {
         virtualMachine.state.value = programState
     }
