@@ -14,6 +14,8 @@ struct AssemblyCodeEditor: View {
     
     var body: some View {
         VStack {
+            SheetTopBar()
+            Spacer()
             HStack {
                 Text("assemblyCodeEditorTitle")
                     .padding([.leading], 32)

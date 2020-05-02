@@ -21,6 +21,8 @@ struct InputView: View {
     
     var body: some View {
         VStack {
+            SheetTopBar()
+            Spacer()
             Text(viewModel.title)
             TextField("000", text: $inputValue)
                 .keyboardType(.numberPad)
@@ -29,6 +31,7 @@ struct InputView: View {
             LMCButton(title: "enter", height: 50, width: 200) {
                 self.viewModel.enterInput(self.inputValue)
             }
+            Spacer()
         }
     }
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2E071955243A4A0700F1C9A5 /* MainPhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E071954243A4A0700F1C9A5 /* MainPhoneViewModel.swift */; };
 		2E071957243BF48800F1C9A5 /* AssemblyCodeEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E071956243BF48800F1C9A5 /* AssemblyCodeEditorViewModel.swift */; };
+		2E0958AB245DB29400F7E374 /* SheetTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0958AA245DB29400F7E374 /* SheetTopBar.swift */; };
 		2E2E65D223037BEB007AF298 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65D123037BEB007AF298 /* AppDelegate.swift */; };
 		2E2E65D423037BEB007AF298 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65D323037BEB007AF298 /* SceneDelegate.swift */; };
 		2E2E65D823037BED007AF298 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E2E65D723037BED007AF298 /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 /* Begin PBXFileReference section */
 		2E071954243A4A0700F1C9A5 /* MainPhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPhoneViewModel.swift; sourceTree = "<group>"; };
 		2E071956243BF48800F1C9A5 /* AssemblyCodeEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyCodeEditorViewModel.swift; sourceTree = "<group>"; };
+		2E0958AA245DB29400F7E374 /* SheetTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetTopBar.swift; sourceTree = "<group>"; };
 		2E2E65CE23037BEB007AF298 /* LittleManComputer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LittleManComputer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E2E65D123037BEB007AF298 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E2E65D323037BEB007AF298 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				2EA193BF2439317D001C0309 /* NavBarButtons.swift */,
 				2EA193C12439320C001C0309 /* FolderButton.swift */,
 				2EE113B9245457C200CF1987 /* InputAccessory.swift */,
+				2E0958AA245DB29400F7E374 /* SheetTopBar.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				2E2E65F623037C4A007AF298 /* Compiler.swift in Sources */,
 				2E3FEA7524562D03007B77A2 /* Int.swift in Sources */,
 				2E071957243BF48800F1C9A5 /* AssemblyCodeEditorViewModel.swift in Sources */,
+				2E0958AB245DB29400F7E374 /* SheetTopBar.swift in Sources */,
 				2ED6E557244D0A5C00C58212 /* InputViewModel.swift in Sources */,
 				2EA193BE243925AA001C0309 /* RegisterCollectionView.swift in Sources */,
 				2EEDD95224315ED4002D2DD2 /* AssemblyCodeEditor.swift in Sources */,
