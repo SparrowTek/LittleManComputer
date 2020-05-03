@@ -25,7 +25,6 @@ struct OutboxView: View {
             }
             .environment(\.defaultMinListRowHeight, 10)
             .frame(minWidth: 75, idealWidth: 75, maxWidth: 75, minHeight: 50, idealHeight: 150, maxHeight: 150, alignment: .center)
-//            .frame(width: 75, height: 150)
             .background(Color(Colors.outboxBackground))
             .onAppear {
                 UITableView.appearance().backgroundColor = .clear
@@ -34,7 +33,6 @@ struct OutboxView: View {
             .onDisappear { UITableView.appearance().separatorStyle = .singleLine }
         }
             .frame(minWidth: 75, idealWidth: 75, maxWidth: 75, minHeight: 50, idealHeight: 150, maxHeight: 150, alignment: .center)
-//        .frame(width: 150, height: 150)
     }
 }
 
