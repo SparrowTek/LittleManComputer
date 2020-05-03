@@ -32,8 +32,6 @@ struct RegisterViewSelected: View {
     private var backgroundColor: Color
     private var textColor: Color
     private var borderColor: Color
-//    private var width: CGFloat { horizontalSizeClass == .compact ? 22 : 66 }
-//    private var height: CGFloat { horizontalSizeClass == .compact ? 12 : 24 }
     private var fontSize: CGFloat { horizontalSizeClass == .compact ? 10 : 18 }
     private var titleFontSize: CGFloat {horizontalSizeClass == .compact ? 12 : 20 }
     
