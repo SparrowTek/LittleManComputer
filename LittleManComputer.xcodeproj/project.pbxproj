@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E071955243A4A0700F1C9A5 /* MainPhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E071954243A4A0700F1C9A5 /* MainPhoneViewModel.swift */; };
+		2E071955243A4A0700F1C9A5 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E071954243A4A0700F1C9A5 /* MainViewModel.swift */; };
 		2E071957243BF48800F1C9A5 /* AssemblyCodeEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E071956243BF48800F1C9A5 /* AssemblyCodeEditorViewModel.swift */; };
 		2E0958AB245DB29400F7E374 /* SheetTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0958AA245DB29400F7E374 /* SheetTopBar.swift */; };
+		2E0958AD245F0A4700F7E374 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0958AC245F0A4700F7E374 /* MainContentView.swift */; };
 		2E2E65D223037BEB007AF298 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65D123037BEB007AF298 /* AppDelegate.swift */; };
 		2E2E65D423037BEB007AF298 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E65D323037BEB007AF298 /* SceneDelegate.swift */; };
 		2E2E65D823037BED007AF298 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E2E65D723037BED007AF298 /* Assets.xcassets */; };
@@ -56,9 +57,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2E071954243A4A0700F1C9A5 /* MainPhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPhoneViewModel.swift; sourceTree = "<group>"; };
+		2E071954243A4A0700F1C9A5 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		2E071956243BF48800F1C9A5 /* AssemblyCodeEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyCodeEditorViewModel.swift; sourceTree = "<group>"; };
 		2E0958AA245DB29400F7E374 /* SheetTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetTopBar.swift; sourceTree = "<group>"; };
+		2E0958AC245F0A4700F7E374 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
 		2E2E65CE23037BEB007AF298 /* LittleManComputer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LittleManComputer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E2E65D123037BEB007AF298 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E2E65D323037BEB007AF298 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -209,7 +211,6 @@
 			isa = PBXGroup;
 			children = (
 				2EEDD94E24315465002D2DD2 /* MainPhoneView.swift */,
-				2E071954243A4A0700F1C9A5 /* MainPhoneViewModel.swift */,
 			);
 			path = Phone;
 			sourceTree = "<group>";
@@ -287,6 +288,8 @@
 				2EA193A12433D331001C0309 /* Tablet */,
 				2EEDD95024315EB9002D2DD2 /* AssemblyCode */,
 				2EA193BA2439255A001C0309 /* Registers */,
+				2E0958AC245F0A4700F7E374 /* MainContentView.swift */,
+				2E071954243A4A0700F1C9A5 /* MainViewModel.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				2ED6E557244D0A5C00C58212 /* InputViewModel.swift in Sources */,
 				2EA193BE243925AA001C0309 /* RegisterCollectionView.swift in Sources */,
 				2EEDD95224315ED4002D2DD2 /* AssemblyCodeEditor.swift in Sources */,
+				2E0958AD245F0A4700F7E374 /* MainContentView.swift in Sources */,
 				2EA193B62438ED7C001C0309 /* LMCButton.swift in Sources */,
 				2EE113BA245457C200CF1987 /* InputAccessory.swift in Sources */,
 				2EEDD94F24315465002D2DD2 /* MainPhoneView.swift in Sources */,
@@ -420,7 +424,7 @@
 				2E49B4E02443ADF100127BBB /* View.swift in Sources */,
 				2EA193C22439320C001C0309 /* FolderButton.swift in Sources */,
 				2EA193AC2436A179001C0309 /* Constants.swift in Sources */,
-				2E071955243A4A0700F1C9A5 /* MainPhoneViewModel.swift in Sources */,
+				2E071955243A4A0700F1C9A5 /* MainViewModel.swift in Sources */,
 				2E2E65F823037CDB007AF298 /* VirtualMachine.swift in Sources */,
 				2EA193BC2439259D001C0309 /* RegisterView.swift in Sources */,
 				2EA193C02439317D001C0309 /* NavBarButtons.swift in Sources */,

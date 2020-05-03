@@ -36,6 +36,7 @@ class AppState: ObservableObject {
             sheetType = .updateRegister
         }
     }
+    var isIpad: Bool { UIDevice.current.userInterfaceIdiom == .pad }
     
     init() {
         subscribeToState()

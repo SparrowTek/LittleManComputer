@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-class MainPhoneViewModel {
+class MainViewModel {
     private var appState: AppState
     
     init(appState: AppState) {

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MainTabletView: View {
     @EnvironmentObject var appState: AppState
-    var viewModel: MainPhoneViewModel
+    var viewModel: MainViewModel
     
     var body: some View {
         HStack {
@@ -109,6 +109,6 @@ struct MainTabletView: View {
 
 struct MainTabletView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabletView(viewModel: MainPhoneViewModel(appState: AppState())).environmentObject(AppState())
+        MainTabletView(viewModel: MainViewModel(appState: AppState())).environmentObject(AppState())
     }
 }

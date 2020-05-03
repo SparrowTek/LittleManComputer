@@ -19,19 +19,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
-        let appState = AppState()
-        let mainPhoneViewModel = MainPhoneViewModel(appState: appState)
-        let rootViewController: UIViewController
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            rootViewController = UIHostingController(rootView: MainTabletView(viewModel: mainPhoneViewModel).environmentObject(appState))
-        } else {
-            rootViewController = UIHostingController(rootView: MainPhoneView(viewModel: mainPhoneViewModel).environmentObject(appState))
-        }
-
         // Use a UIHostingController as window root view controller
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = rootViewController
+            let appState = AppState()
+            window.rootViewController = UIHostingController(rootView: MainContentView().environmentObject(appState))
             self.window = window
             window.makeKeyAndVisible()
         }

@@ -11,7 +11,7 @@ import SwiftUI
 struct MainPhoneView: View {
     @EnvironmentObject var appState: AppState
     
-    var viewModel: MainPhoneViewModel
+    var viewModel: MainViewModel
     
     var body: some View {
         NavigationView {
@@ -143,6 +143,6 @@ struct OutboxView: View {
 
 struct MainPhoneView_Previews: PreviewProvider {
     static var previews: some View {
-        MainPhoneView(viewModel: MainPhoneViewModel(appState: AppState())).environmentObject(AppState())
+        MainPhoneView(viewModel: MainViewModel(appState: AppState())).environmentObject(AppState())
     }
 }
