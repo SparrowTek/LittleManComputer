@@ -17,8 +17,27 @@ struct SheetTopBar: View {
     }
 }
 
+struct SheetTopClose: View {
+    @EnvironmentObject var appState: AppState
+    
+    var body: some View {
+        HStack {
+            Spacer()
+            Button(action: {
+                self.appState.showSheet = false
+            }) {
+                Image(systemName: "xmark.circle")
+                .font(Font.system(.largeTitle))
+                .foregroundColor(Color(Colors.lmcButton))
+            }
+            .padding(16)
+        }
+    }
+}
+
 struct SheetTopBar_Previews: PreviewProvider {
     static var previews: some View {
         SheetTopBar()
+//        SheetTopClose().EnvironmentObject(AppState())
     }
 }

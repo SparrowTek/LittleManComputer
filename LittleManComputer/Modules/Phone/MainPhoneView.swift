@@ -53,7 +53,7 @@ struct MainPhoneView: View {
                     }
                     .padding(.top, 8)
                     
-                    OutboxView(outbox: $appState.programState.outbox)
+                    OutboxView().environmentObject(appState)
                 }
                 Spacer()
                 LMCButton(title: "assemblyCodeButton", maxHeight: 50, maxWidth: .infinity, action: assemblyButtonAction)
@@ -69,8 +69,10 @@ struct MainPhoneView: View {
                     InputView(viewModel: UpdateRegisterViewModel(appState: self.appState)).environmentObject(self.appState)
                 }
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .navigationBarTitle("navigationBarTitle", displayMode: .inline)
             .navigationBarItems(trailing: NavBarButtons())
+            
         }
     }
     
@@ -88,56 +90,6 @@ struct MainPhoneView: View {
     
     private func resetAction() {
         viewModel.reset()
-    }
-}
-
-struct StateRepresentationView: View {
-    private var title = ""
-    @Binding var value: Int
-    
-    init(title: String, value: Binding<Int>) {
-        self.title = title
-        self._value = value
-    }
-    
-    var body: some View {
-        HStack {
-            Text(title)
-                .font(.system(size: 12))
-                .lineLimit(1)
-            Text("\(value)")
-                .font(.system(size: 12))
-            Spacer()
-        }
-    }
-}
-
-struct OutboxView: View {
-    @Binding var outbox: [Int]
-    
-    var body: some View {
-        VStack {
-            Text("outboxTitle")
-            
-            
-            List {
-                ForEach(outbox, id: \.self) {
-                    Text($0.toStringWith3IntegerDigits())
-                        .frame(height: 10)
-                        .foregroundColor(Color(Colors.outboxText))
-                        .listRowBackground(Color(Colors.outboxBackground))
-                }
-            }
-            .environment(\.defaultMinListRowHeight, 10)
-            .frame(width: 75, height: 150)
-            .background(Color(Colors.outboxBackground))
-            .onAppear {
-                UITableView.appearance().backgroundColor = .clear
-                UITableView.appearance().separatorStyle = .none
-            }
-            .onDisappear { UITableView.appearance().separatorStyle = .singleLine }
-        }
-        .frame(width: 150, height: 150)
     }
 }
 

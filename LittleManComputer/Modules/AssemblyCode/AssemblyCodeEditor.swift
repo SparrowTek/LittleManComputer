@@ -9,13 +9,18 @@
 import SwiftUI
 
 struct AssemblyCodeEditor: View {
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @EnvironmentObject var appState: AppState
     let viewModel: AssemblyCodeEditorViewModel
+    private var isIpadAndRegularWidth: Bool { appState.isIpad && horizontalSizeClass == .regular }
     
     var body: some View {
         VStack {
-            SheetTopBar()
-            Spacer()
+            if !isIpadAndRegularWidth {
+                SheetTopBar()
+                Spacer()
+            }
+            
             HStack {
                 Text("assemblyCodeEditorTitle")
                     .padding([.leading], 32)

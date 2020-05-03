@@ -15,14 +15,20 @@ protocol EnterValueSheetViewModel {
 }
 
 struct InputView: View {
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @EnvironmentObject var appState: AppState
     @State private var inputValue = ""
+    private var isIpadAndRegularWidth: Bool { appState.isIpad && horizontalSizeClass == .regular }
     
     var viewModel: EnterValueSheetViewModel
     
     var body: some View {
         VStack {
-            SheetTopBar()
+            if isIpadAndRegularWidth {
+                SheetTopClose().environmentObject(appState)
+            } else {
+                SheetTopBar()
+            }
             Spacer()
             Text(viewModel.title)
             TextField("000", text: $inputValue)
@@ -42,6 +48,6 @@ struct InputView: View {
 
 struct InputView_Previews: PreviewProvider {
     static var previews: some View {
-        InputView(viewModel: InputViewModel(appState: AppState()))
+        InputView(viewModel: InputViewModel(appState: AppState())).environmentObject(AppState())
     }
 }

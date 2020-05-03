@@ -13,29 +13,17 @@ struct MainTabletView: View {
     var viewModel: MainViewModel
     
     var body: some View {
-        HStack {
-            AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(appState: appState))
-                .frame(width: 350)
-            VStack {
-            RegisterCollectionView().environmentObject(appState)
-            .frame(minWidth: 0, maxWidth: 550, minHeight: 0, maxHeight: 400, alignment: .center)
-                .padding(.top, 64)
-                .padding(.trailing, 16)
-                Spacer()
-            }
+        VStack {
+            NavBar()
             
-        }
-            
-            
-            
-            
-            
-            
-            
-            
-/*//            NavigationView {
+            HStack {
+                AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(appState: appState))
+                    .frame(width: 350)
                 VStack {
                     RegisterCollectionView().environmentObject(appState)
+                        .frame(minWidth: 0, maxWidth: 550, minHeight: 0, maxHeight: 400, alignment: .center)
+                        .padding([.top, .bottom], 96)
+                        .padding(.trailing, 16)
                     Text(appState.programState.printStatement)
                         .frame(height: 30)
                         .lineLimit(2)
@@ -43,38 +31,23 @@ struct MainTabletView: View {
                         .padding(.top, 16)
                         .padding([.leading, .trailing, .bottom], 8)
                         .padding([.top, .bottom], 8)
-                    HStack {
-                        VStack {
-                            HStack {
-                                LMCButton(title: "runButton", height: 30, width: 100, action: runAction)
-                                    .padding(.leading, 20)
-                                Spacer()
-                            }
-                            HStack {
-                                LMCButton(title: "stepButton", height: 30, width: 100, action: stepAction)
-                                    .padding(.leading, 20)
-                                Spacer()
-                            }.padding(.top, 8)
-                            HStack {
-                                LMCButton(title: "resetButton", height: 30, width: 100, action: resetAction)
-                                    .padding(.leading, 20)
-                                Spacer()
-                            }.padding(.top, 8)
-                            StateRepresentationView(title: "programCounter", value: $appState.programState.programCounter)
-                                .padding(.top, 8)
-                                .padding(.leading, 16)
-                            StateRepresentationView(title: "accumulator", value: $appState.programState.accumulator)
-                                .padding(.top, 8)
-                                .padding(.leading, 16)
-                        }
-                        .padding(.top, 8)
-                        
-                        OutboxView(outbox: $appState.programState.outbox)
-                    }
                     Spacer()
-                    LMCButton(title: "assemblyCodeButton", maxHeight: 50, maxWidth: .infinity, action: assemblyButtonAction)
-                        .padding([.leading, .trailing], 8)
-                    
+                    VStack {
+                        StateRepresentationView(title: "programCounter", value: $appState.programState.programCounter)
+                            .padding(.top, 8)
+                            .padding(.leading, 16)
+                        StateRepresentationView(title: "accumulator", value: $appState.programState.accumulator)
+                            .padding(.top, 8)
+                            .padding(.leading, 16)
+                        
+                        HStack {
+                            LMCButton(title: "runButton", height: 30, width: 100, action: runAction)
+                            LMCButton(title: "stepButton", height: 30, width: 100, action: stepAction)
+                            LMCButton(title: "resetButton", height: 30, width: 100, action: resetAction)
+                            
+                            OutboxView().environmentObject(appState)
+                        }
+                    }
                 }
                 .sheet(isPresented: $appState.showSheet) {
                     if self.appState.sheetType == SheetType.inputNeeded {
@@ -85,27 +58,42 @@ struct MainTabletView: View {
                         InputView(viewModel: UpdateRegisterViewModel(appState: self.appState)).environmentObject(self.appState)
                     }
                 }
-//                .navigationBarTitle("navigationBarTitle", displayMode: .inline)
-//                .navigationBarItems(trailing: NavBarButtons())
-//            }*/
-        }
-        
-        private func assemblyButtonAction() {
-            appState.sheetType = .assemblyCodeEditor
-        }
-        
-        private func runAction() {
-            viewModel.run()
-        }
-        
-        private func stepAction() {
-            viewModel.step()
-        }
-        
-        private func resetAction() {
-            viewModel.reset()
+            }
         }
     }
+    
+    private func assemblyButtonAction() {
+        appState.sheetType = .assemblyCodeEditor
+    }
+    
+    private func runAction() {
+        viewModel.run()
+    }
+    
+    private func stepAction() {
+        viewModel.step()
+    }
+    
+    private func resetAction() {
+        viewModel.reset()
+    }
+}
+
+struct NavBar: View {
+    var body: some View {
+        ZStack {
+            HStack {
+                Text("navigationBarTitle")
+            }
+            HStack {
+                Spacer()
+                NavBarButtons()
+                    .padding(.trailing, 16)
+            }
+        }
+        .padding([.top, .bottom], 16)
+    }
+}
 
 struct MainTabletView_Previews: PreviewProvider {
     static var previews: some View {
