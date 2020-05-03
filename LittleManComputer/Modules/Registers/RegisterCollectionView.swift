@@ -49,7 +49,6 @@ struct AllRegisters: View {
         Rectangle()
             .stroke(Color(Colors.registerBorder), lineWidth: 1)
             .padding(-8)
-            
         )
     }
 }

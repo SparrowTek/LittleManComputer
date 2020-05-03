@@ -17,6 +17,9 @@ struct MainPhoneView: View {
         NavigationView {
             VStack {
                 RegisterCollectionView().environmentObject(appState)
+                    .frame(maxWidth: .infinity, maxHeight: 375, alignment: .center)
+                    .padding([.leading, .trailing], 16)
+                    
                 Text(appState.programState.printStatement)
                     .frame(height: 30)
                     .lineLimit(2)

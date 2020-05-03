@@ -27,10 +27,15 @@ struct RegisterView: View {
 
 struct RegisterViewSelected: View {
     @EnvironmentObject var appState: AppState
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     private var registerNumber: Int
     private var backgroundColor: Color
     private var textColor: Color
     private var borderColor: Color
+//    private var width: CGFloat { horizontalSizeClass == .compact ? 22 : 66 }
+//    private var height: CGFloat { horizontalSizeClass == .compact ? 12 : 24 }
+    private var fontSize: CGFloat { horizontalSizeClass == .compact ? 10 : 18 }
+    private var titleFontSize: CGFloat {horizontalSizeClass == .compact ? 12 : 20 }
     
     init(registerNumber: Int, backgroundColor: Color, textColor: Color, borderColor: Color) {
         self.registerNumber = registerNumber
@@ -42,15 +47,17 @@ struct RegisterViewSelected: View {
     var body: some View {
         VStack {
             Text("\(registerNumber)")
-            .font(.system(size: 12))
-            .padding(.bottom, 4)
+                .font(.system(size: titleFontSize))
+                .padding(.bottom, 4)
             Button(action: {
                 self.appState.registerToUpdate = self.registerNumber
             }) {
                 Text(appState.programState.registers[registerNumber].toStringWith3IntegerDigits())
-                .frame(width: 22, height: 12)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .padding(4)
                     .multilineTextAlignment(.center)
-                    .font(.system(size: 10))
+                    .font(.system(size: fontSize))
+                    .minimumScaleFactor(0.9)
                     .background(backgroundColor)
                     .foregroundColor(textColor)
                     .overlay(
