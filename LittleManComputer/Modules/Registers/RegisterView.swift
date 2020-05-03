@@ -57,7 +57,7 @@ struct RegisterViewSelected: View {
                     .padding(4)
                     .multilineTextAlignment(.center)
                     .font(.system(size: fontSize))
-                    .minimumScaleFactor(0.9)
+                    .minimumScaleFactor(0.75)
                     .background(backgroundColor)
                     .foregroundColor(textColor)
                     .overlay(

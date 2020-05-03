@@ -16,18 +16,22 @@ struct AssemblyCodeEditor: View {
     
     var body: some View {
         VStack {
-            if !isIpadAndRegularWidth {
+            if isIpadAndRegularWidth { 
+                Text("assemblyCodeEditorTitle")
+                .padding(.top, 16)
+                .font(.system(size: 20, weight: .bold))
+            } else {
                 SheetTopBar()
                 Spacer()
+                HStack {
+                    Text("assemblyCodeEditorTitle")
+                        .padding([.leading], 32)
+                        .padding(.top, 16)
+                        .font(.system(size: 20, weight: .bold))
+                    Spacer()
+                }
             }
             
-            HStack {
-                Text("assemblyCodeEditorTitle")
-                    .padding([.leading], 32)
-                    .padding(.top, 16)
-                    .font(.system(size: 20, weight: .bold))
-                Spacer()
-            }
             TextView(sourceCode: $appState.sourceCode)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(Colors.textEditorBackground))

@@ -15,13 +15,15 @@ struct MainTabletView: View {
     var body: some View {
         VStack {
             NavBar()
+            Spacer()
             
             HStack {
                 AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(appState: appState))
                     .frame(width: 350)
+                    .padding(.bottom, 16)
                 VStack {
                     RegisterCollectionView().environmentObject(appState)
-                        .frame(minWidth: 0, maxWidth: 550, minHeight: 0, maxHeight: 400, alignment: .center)
+                        .frame(maxWidth: 550, maxHeight: 400, alignment: .center)
                         .padding([.top, .bottom], 96)
                         .padding(.trailing, 16)
                     Text(appState.programState.printStatement)
@@ -30,35 +32,35 @@ struct MainTabletView: View {
                         .minimumScaleFactor(0.5)
                         .padding(.top, 16)
                         .padding([.leading, .trailing, .bottom], 8)
-                        .padding([.top, .bottom], 8)
                     Spacer()
-                    VStack {
-                        StateRepresentationView(title: "programCounter", value: $appState.programState.programCounter)
-                            .padding(.top, 8)
-                            .padding(.leading, 16)
-                        StateRepresentationView(title: "accumulator", value: $appState.programState.accumulator)
-                            .padding(.top, 8)
-                            .padding(.leading, 16)
-                        
-                        HStack {
-                            LMCButton(title: "runButton", height: 30, width: 100, action: runAction)
-                            LMCButton(title: "stepButton", height: 30, width: 100, action: stepAction)
-                            LMCButton(title: "resetButton", height: 30, width: 100, action: resetAction)
+                    
+                    HStack {
+                        VStack {
+                            StateRepresentationView(title: "programCounter", value: $appState.programState.programCounter)
+                                .padding(.top, 8)
+                                .padding(.leading, 16)
+                            StateRepresentationView(title: "accumulator", value: $appState.programState.accumulator)
+                                .padding(.top, 8)
+                                .padding([.leading, .bottom], 16)
                             
-                            OutboxView().environmentObject(appState)
+                            HStack {
+                                LMCButton(title: "runButton", height: 30, width: 100, action: runAction)
+                                LMCButton(title: "stepButton", height: 30, width: 100, action: stepAction)
+                                LMCButton(title: "resetButton", height: 30, width: 100, action: resetAction)
+                            }
                         }
+                        .padding(.top, -32)
+                        OutboxView().environmentObject(appState)
+                            .padding(.top, -32)
+                            .padding(.trailing, 16)
+                            .padding(.bottom, 8)
                     }
                 }
-                .sheet(isPresented: $appState.showSheet) {
-                    if self.appState.sheetType == SheetType.inputNeeded {
-                        InputView(viewModel: InputViewModel(appState: self.appState)).environmentObject(self.appState)
-                    } else if self.appState.sheetType == SheetType.assemblyCodeEditor {
-                        AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(appState: self.appState)).environmentObject(self.appState)
-                    } else if self.appState.sheetType == SheetType.updateRegister {
-                        InputView(viewModel: UpdateRegisterViewModel(appState: self.appState)).environmentObject(self.appState)
-                    }
-                }
+                
             }
+        }
+        .sheet(isPresented: $appState.showSheet) {
+            Sheets().environmentObject(self.appState)
         }
     }
     
@@ -83,7 +85,9 @@ struct NavBar: View {
     var body: some View {
         ZStack {
             HStack {
-                Text("navigationBarTitle")
+                Text("navigationBarTitle_iPad")
+                    .font(.system(size: 24, weight: .bold, design: .default))
+                    .foregroundColor(Color(Colors.navBarTitle))
             }
             HStack {
                 Spacer()

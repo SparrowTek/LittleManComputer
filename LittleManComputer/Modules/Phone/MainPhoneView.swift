@@ -54,6 +54,7 @@ struct MainPhoneView: View {
                     .padding(.top, 8)
                     
                     OutboxView().environmentObject(appState)
+                        .padding(.trailing, 16)
                 }
                 Spacer()
                 LMCButton(title: "assemblyCodeButton", maxHeight: 50, maxWidth: .infinity, action: assemblyButtonAction)
@@ -61,13 +62,7 @@ struct MainPhoneView: View {
                 
             }
             .sheet(isPresented: $appState.showSheet) {
-                if self.appState.sheetType == SheetType.inputNeeded {
-                    InputView(viewModel: InputViewModel(appState: self.appState)).environmentObject(self.appState)
-                } else if self.appState.sheetType == SheetType.assemblyCodeEditor {
-                    AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(appState: self.appState)).environmentObject(self.appState)
-                } else if self.appState.sheetType == SheetType.updateRegister {
-                    InputView(viewModel: UpdateRegisterViewModel(appState: self.appState)).environmentObject(self.appState)
-                }
+                Sheets().environmentObject(self.appState)
             }
             .navigationViewStyle(StackNavigationViewStyle())
             .navigationBarTitle("navigationBarTitle", displayMode: .inline)

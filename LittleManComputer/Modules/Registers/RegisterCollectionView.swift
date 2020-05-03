@@ -9,26 +9,34 @@
 import SwiftUI
 
 struct RegisterCollectionView: View {
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @EnvironmentObject var appState: AppState
     @State private var showInputAccessory = false
+    private var isIpadAndRegularWidth: Bool { appState.isIpad && horizontalSizeClass == .regular }
     
     var body: some View {
         VStack {
-            HStack {
+            if isIpadAndRegularWidth {
                 Text("ram")
                     .padding(.bottom, 16)
-                    .padding(.leading, 48)
                     .font(.system(size: 20, weight: .bold))
-                Spacer()
-            }
-            AllRegisters()
-            InputAccessory(withAction: inputAccessoryAction)
+            } else {
+                HStack {
+                    Text("ram")
+                        .padding(.bottom, 16)
+                        .padding(.leading, 48)
+                        .font(.system(size: 20, weight: .bold))
+                    Spacer()
+                }
         }
+        AllRegisters()
+        InputAccessory(withAction: inputAccessoryAction)
     }
-    
-    private func inputAccessoryAction() {
-        appState.updateVirtualMachine()
-    }
+}
+
+private func inputAccessoryAction() {
+    appState.updateVirtualMachine()
+}
 }
 
 struct AllRegisters: View {
@@ -46,9 +54,9 @@ struct AllRegisters: View {
             RegisterRow(range: (90...99))
         }
         .overlay(
-        Rectangle()
-            .stroke(Color(Colors.registerBorder), lineWidth: 1)
-            .padding(-8)
+            Rectangle()
+                .stroke(Color(Colors.registerBorder), lineWidth: 1)
+                .padding(-8)
         )
     }
 }
