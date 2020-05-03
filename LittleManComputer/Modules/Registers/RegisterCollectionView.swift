@@ -11,7 +11,7 @@ import SwiftUI
 struct RegisterCollectionView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @EnvironmentObject var appState: AppState
-    @State private var showInputAccessory = false
+    
     private var isIpadAndRegularWidth: Bool { appState.isIpad && horizontalSizeClass == .regular }
     
     var body: some View {
@@ -28,15 +28,11 @@ struct RegisterCollectionView: View {
                         .font(.system(size: 20, weight: .bold))
                     Spacer()
                 }
+                .padding(.top, 8)
+            }
+            AllRegisters()
         }
-        AllRegisters()
-        InputAccessory(withAction: inputAccessoryAction)
     }
-}
-
-private func inputAccessoryAction() {
-    appState.updateVirtualMachine()
-}
 }
 
 struct AllRegisters: View {
