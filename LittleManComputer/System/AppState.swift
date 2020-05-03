@@ -44,7 +44,6 @@ class AppState: ObservableObject {
     
     private func subscribeToState() {
         cancelable = virtualMachine.state.sink(receiveCompletion: { completion in
-            print("completion: \n\(completion)")
             if completion == .failure(.needInput) {
                 self.sheetType = .inputNeeded
             }
