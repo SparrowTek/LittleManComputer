@@ -1,0 +1,59 @@
+/* 
+  Localizable.strings
+  LittleManComputer
+
+  Created by SparrowTek on 4/4/20.
+  Copyright © 2020 SparrowTek LLC. All rights reserved.
+*/
+
+"navigationBarTitle" = "LMC";
+"navigationBarTitle_iPad" = "Little Man Computer";
+"assemblyCodeButton" = "Assembly Code";
+"assemblyCodeEditorTitle" = "Assembly Code";
+"runButton" = "Run";
+"stepButton" = "Step";
+"resetButton" = "Reset";
+"ram" = "RAM";
+"outboxTitle" = "Outbox";
+"programCounter" = "Program counter";
+"accumulator" = "Accumulator";
+"initPrintStatement" = "Compile assembly code to begin";
+"compileCodeButton" = "Compile Code";
+"inputNeeded" = "Enter a value between 0 and 999";
+"enter" = "Enter";
+"inputAccessoryButton" = "Done";
+"enterNewRegisterValue" = "Enter a value between 0 and 999";
+"load" = "Load Program";
+"save" = "Save Program";
+"folderAlertTitle" = "Folder options";
+"folderAlertSubTitle" = "Please select one of the following";
+"saveSuccess" = "Your program has been saved successfully";
+"saveNamePlaceholder" = "program name";
+"saveNameTitle" = "Give your program a name";
+
+// MARK: Error messages
+"intExpectedError" = "The input value must be an integer between 0 - 999";
+"invalidAssemblyCodeError" = "The assembly code that you entered is not valid. Please adjust your code and try again";
+"generalError" = "Error - this code can not be compiled as is";
+"outOfBoundsError" = "Mailbox out of bounds. Mailbox values must be between 0 and 99";
+"loadFileError" = "Loading the file failed. Please select another file.";
+"saveFileError" = "Saving program failed. Please try again";
+
+// MARK: VirtualMachine print statements
+"ADD_STATEMENT" = "Add %d from the accumulator to the value in register %d (%d)";
+"SUBTRACT_STATEMENT" = "Subtract %d in register %d from the accumulator value (%d)";
+"STORE_STATEMENT" = "Store the accumulator value %d in register %d";
+"LOAD_STATEMENT" = "Load the value in register %d (%d) into the accumulator";
+"BRANCH_STATEMENT" = "Branch: change the program counter to the value in register %d";
+"BRANCH_IF_ZERO_TRUE_STATEMENT" = "Branch if zero: Accumulator == 0 is true. Program counter sets to %d";
+"BRANCH_IF_ZERO_FALSE_STATEMENT" = "Branch if zero: The accumulator != 0. Do not branch; increment program counter";
+"BRANCH_IF_POSITIVE_TRUE_STATEMENT" = "Branch if positive: Accumulator >= 0 is true. Program counter sets to %d";
+"BRANCH_IF_POSITIVE_FALSE_STATEMENT" = "Branch if positive: Accumulator is not possitive. Do not branch";
+"INPUT_STATEMENT" = "Input";
+"OUTPUT_STATEMENT" = "Output: output the value in the accumulator, %d into the output box";
+"HALT_STATEMENT" = "Program Complete";
+
+// MARK: Settings
+"settingsTitle" = "Little Man Computer";
+"instructions" = "Show LMC instructions";
+"version" = "version:";
