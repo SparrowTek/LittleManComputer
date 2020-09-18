@@ -14,18 +14,18 @@ struct Sheets: View {
     var body: some View {
         switch appState.sheetType {
         case .inputNeeded:
-            InputView(viewModel: InputViewModel(appState: self.appState)).environmentObject(self.appState)
+            InputView(viewModel: InputViewModel(appState: self.appState))
         case .assemblyCodeEditor:
-            AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(appState: self.appState)).environmentObject(self.appState)
+            AssemblyCodeEditor(viewModel: AssemblyCodeEditorViewModel(appState: self.appState))
         case .updateRegister:
-            InputView(viewModel: UpdateRegisterViewModel(appState: self.appState)).environmentObject(self.appState)
+            InputView(viewModel: UpdateRegisterViewModel(appState: self.appState))
         case .help:
             HelpView()
                 .edgesIgnoringSafeArea(.all)
         case .save:
-            SaveNameSheet(show: self.$appState.showSheet, viewModel: FilesViewModel(appState: appState)).environmentObject(self.appState)
+            SaveNameSheet(show: self.$appState.showSheet, viewModel: FilesViewModel(appState: appState))
         case .folder:
-            FolderView().environmentObject(self.appState)
+            FolderView()
                 .edgesIgnoringSafeArea(.all)
         }
     }
