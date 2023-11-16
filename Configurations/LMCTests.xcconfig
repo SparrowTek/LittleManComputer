@@ -1,0 +1,11 @@
+//
+//  LMCTests.xcconfig
+//  LittleManComputer
+//
+//  Created by Thomas Rademaker on 11/15/23.
+//  Copyright © 2023 SparrowTek LLC. All rights reserved.
+//
+
+#include "User.xcconfig"
+
+PRODUCT_BUNDLE_IDENTIFIER = $(BUNDLE_ID_PREFIX).LittleManComputerTests
