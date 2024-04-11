@@ -23,14 +23,8 @@ class VirtualMachine {
     var state: CurrentValueSubject<ProgramState, StateError>
     var input: Int? {
         didSet {
-            do {
-                state.value.inbox = input
-                state.value = try input(for: state.value)
-            } catch let error as StateError {
-                state.send(completion: .failure(error))
-            } catch {
-                state.send(completion: .failure(.generic))
-            }
+            state.value.inbox = input
+            step()
         }
     }
     
@@ -43,7 +37,7 @@ class VirtualMachine {
             let register = state.value.registers[state.value.programCounter]
             let instruction = getInstruction(for: register)
             resetRegistersCurrentlyBeingEvaluated()
-            state.value = try execute(instruction: instruction, for: state.value)
+            try execute(instruction: instruction, for: &state.value)
             programShouldCompleteCheck(register: register)
         } catch let error as StateError {
             state.send(completion: .failure(error))
@@ -112,7 +106,7 @@ class VirtualMachine {
         
     }
     
-    private func execute(instruction: Instruction, for state: ProgramState) throws -> ProgramState {
+    private func execute(instruction: Instruction, for state: inout ProgramState) throws {
         let opcode = instruction.opcode
         let mailbox = instruction.address
         guard mailbox >= 0 && mailbox <= 99 else { throw StateError.mailboxOutOfBounds }
@@ -120,29 +114,29 @@ class VirtualMachine {
         
         switch opcode {
         case .add:
-            return add(mailbox: mailbox, for: state)
+            add(mailbox: mailbox, for: &state)
         case .subtract:
-            return subtract(mailbox: mailbox, for: state)
+            subtract(mailbox: mailbox, for: &state)
         case .store:
-            return store(mailbox: mailbox, for: state)
+            store(mailbox: mailbox, for: &state)
         case .load:
-            return load(mailbox: mailbox, for: state)
+            load(mailbox: mailbox, for: &state)
         case .branch:
-            return branch(mailbox: mailbox, for: state)
+            branch(mailbox: mailbox, for: &state)
         case .branchIfZero:
-            return branchIfZero(mailbox: mailbox, for: state)
+            branchIfZero(mailbox: mailbox, for: &state)
         case .branchIfPositive:
-            return branchIfPositive(mailbox: mailbox, for: state)
+            branchIfPositive(mailbox: mailbox, for: &state)
         case .input:
             do {
-                return try input(for: state)
+                try input(for: &state)
             } catch let error as StateError {
                 throw error
             }
         case .output:
-            return output(for: state)
+            output(for: &state)
         case .halt:
-            return halt(for: state)
+            halt(for: &state)
         case .data:
             throw StateError.generic
         }
@@ -152,119 +146,96 @@ class VirtualMachine {
         state.value.registersCurrentlyBeingEvaluated = [ : ]
     }
     
-    private func add(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
-        var ogState = state
+    private func add(mailbox: Mailbox, for state: inout ProgramState) {
         let accumulator = state.accumulator
         let registerValue = state.registers[mailbox]
         
-        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
-        ogState.accumulator += registerValue
-        ogState.programCounter += 1
+        state.registersCurrentlyBeingEvaluated[state.programCounter] = true
+        state.accumulator += registerValue
+        state.programCounter += 1
         let formatString = NSLocalizedString("ADD_STATEMENT", comment: "")
-        ogState.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, accumulator, mailbox, registerValue))
-        return ogState
+        state.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, accumulator, mailbox, registerValue))
     }
     
-    private func subtract(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
-        var ogState = state
+    private func subtract(mailbox: Mailbox, for state: inout ProgramState) {
         let accumulator = state.accumulator
         let registerValue = state.registers[mailbox]
         
-        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
-        ogState.accumulator -= registerValue
-        ogState.programCounter += 1
+        state.registersCurrentlyBeingEvaluated[state.programCounter] = true
+        state.accumulator -= registerValue
+        state.programCounter += 1
         let formatString = NSLocalizedString("SUBTRACT_STATEMENT", comment: "")
-        ogState.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, registerValue, mailbox, accumulator))
-        return ogState
+        state.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, registerValue, mailbox, accumulator))
     }
     
-    private func store(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
-        var ogState = state
-        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
-        ogState.registersCurrentlyBeingEvaluated[mailbox] = true
-        ogState.registers[mailbox] = ogState.accumulator
-        ogState.programCounter += 1
+    private func store(mailbox: Mailbox, for state: inout ProgramState) {
+        state.registersCurrentlyBeingEvaluated[state.programCounter] = true
+        state.registersCurrentlyBeingEvaluated[mailbox] = true
+        state.registers[mailbox] = state.accumulator
+        state.programCounter += 1
         let formatString = NSLocalizedString("STORE_STATEMENT", comment: "")
-        ogState.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, ogState.accumulator, mailbox))
-        return ogState
+        state.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, state.accumulator, mailbox))
     }
     
-    private func load(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
-        var ogState = state
-        
-        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
-        ogState.registersCurrentlyBeingEvaluated[mailbox] = true
-        ogState.accumulator = ogState.registers[mailbox]
-        ogState.programCounter += 1
+    private func load(mailbox: Mailbox, for state: inout ProgramState) {
+        state.registersCurrentlyBeingEvaluated[state.programCounter] = true
+        state.registersCurrentlyBeingEvaluated[mailbox] = true
+        state.accumulator = state.registers[mailbox]
+        state.programCounter += 1
         let formatString = NSLocalizedString("LOAD_STATEMENT", comment: "")
-        ogState.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, mailbox, ogState.registers[mailbox]))
-        return ogState
+        state.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, mailbox, state.registers[mailbox]))
     }
     
-    private func branch(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
-        var ogState = state
-        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
-        ogState.programCounter = mailbox
+    private func branch(mailbox: Mailbox, for state: inout ProgramState) {
+        state.registersCurrentlyBeingEvaluated[state.programCounter] = true
+        state.programCounter = mailbox
         let formatString = NSLocalizedString("BRANCH_STATEMENT", comment: "")
-        ogState.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, mailbox))
-        return ogState
+        state.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, mailbox))
     }
     
-    private func branchIfZero(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
-        var ogState = state
-        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
-        if ogState.accumulator == 0 {
-            ogState.programCounter = mailbox
+    private func branchIfZero(mailbox: Mailbox, for state: inout ProgramState) {
+        state.registersCurrentlyBeingEvaluated[state.programCounter] = true
+        if state.accumulator == 0 {
+            state.programCounter = mailbox
             let formatString = NSLocalizedString("BRANCH_IF_ZERO_TRUE_STATEMENT", comment: "")
-            ogState.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, mailbox))
+            state.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, mailbox))
         } else {
-            ogState.programCounter += 1
-            ogState.printStatement = LocalizedStringKey(NSLocalizedString("BRANCH_IF_ZERO_FALSE_STATEMENT", comment: ""))
+            state.programCounter += 1
+            state.printStatement = LocalizedStringKey(NSLocalizedString("BRANCH_IF_ZERO_FALSE_STATEMENT", comment: ""))
         }
-        
-        return ogState
     }
     
-    private func branchIfPositive(mailbox: Mailbox, for state: ProgramState) -> ProgramState {
-        var ogState = state
-        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
-        if ogState.accumulator >= 0 {
-            ogState.programCounter = mailbox
+    private func branchIfPositive(mailbox: Mailbox, for state: inout ProgramState) {
+        state.registersCurrentlyBeingEvaluated[state.programCounter] = true
+        if state.accumulator >= 0 {
+            state.programCounter = mailbox
             let formatString = NSLocalizedString("BRANCH_IF_POSITIVE_TRUE_STATEMENT", comment: "")
-            ogState.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, mailbox))
+            state.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, mailbox))
         } else {
-            ogState.programCounter += 1
-            ogState.printStatement = LocalizedStringKey(NSLocalizedString("BRANCH_IF_POSITIVE_FALSE_STATEMENT", comment: ""))
+            state.programCounter += 1
+            state.printStatement = LocalizedStringKey(NSLocalizedString("BRANCH_IF_POSITIVE_FALSE_STATEMENT", comment: ""))
         }
-        
-        return ogState
     }
     
-    private func input(for state: ProgramState) throws -> ProgramState {
+    private func input(for state: inout ProgramState) throws {
         guard let inbox = state.inbox else { throw StateError.needInput }
-        var ogState = state
-        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
-        ogState.accumulator = inbox
-        ogState.inbox = nil
-        ogState.programCounter += 1
-        ogState.printStatement = LocalizedStringKey(NSLocalizedString("INPUT_STATEMENT", comment: ""))
-        return ogState
+        state.registersCurrentlyBeingEvaluated[state.programCounter] = true
+        state.accumulator = inbox
+        state.inbox = nil
+        state.programCounter += 1
+        state.printStatement = LocalizedStringKey(NSLocalizedString("INPUT_STATEMENT", comment: ""))
     }
     
-    private func output(for state: ProgramState) -> ProgramState {
-        var ogState = state
-        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
-        ogState.outbox.append(ogState.accumulator)
-        ogState.programCounter += 1
+    private func output(for state: inout ProgramState) {
+        state.registersCurrentlyBeingEvaluated[state.programCounter] = true
+        state.outbox.append(state.accumulator)
+        state.programCounter += 1
         let formatString = NSLocalizedString("OUTPUT_STATEMENT", comment: "")
-        ogState.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, ogState.accumulator))
-        return ogState
+        state.printStatement = LocalizedStringKey(String.localizedStringWithFormat(formatString, state.accumulator))
     }
     
-    private func halt(for state: ProgramState) -> ProgramState {
-        var ogState = state
-        ogState.registersCurrentlyBeingEvaluated[ogState.programCounter] = true
-        ogState.printStatement = LocalizedStringKey(NSLocalizedString("HALT_STATEMENT", comment: ""))
-        return ogState
+    private func halt(for state: inout ProgramState) {
+        state.registersCurrentlyBeingEvaluated[state.programCounter] = true
+        state.printStatement = LocalizedStringKey(NSLocalizedString("HALT_STATEMENT", comment: ""))
     }
 }

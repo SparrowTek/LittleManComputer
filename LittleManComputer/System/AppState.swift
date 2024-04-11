@@ -46,12 +46,13 @@ class AppState: ObservableObject {
     }
     
     private func subscribeToState() {
-        cancelable = virtualMachine.state.sink(receiveCompletion: { completion in
-            if completion == .failure(.needInput) {
-                self.sheetType = .inputNeeded
+        cancelable = virtualMachine.state.sink(receiveCompletion: { [weak self] completion in
+            if completion == .failure(.needInput) { // TODO: THIS IS KILLING the virtual machine state
+                self?.sheetType = .inputNeeded
+                self?.resetVirtualMachine()
             }
-        }, receiveValue: { state in
-            self.programState = state
+        }, receiveValue: { [weak self] state in
+            self?.programState = state
         })
     }
     
