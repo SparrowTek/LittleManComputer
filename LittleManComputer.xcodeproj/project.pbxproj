@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -48,6 +48,7 @@
 		2EEDD94F24315465002D2DD2 /* MainPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDD94E24315465002D2DD2 /* MainPhoneView.swift */; };
 		2EEDD95224315ED4002D2DD2 /* AssemblyCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDD95124315ED4002D2DD2 /* AssemblyCodeEditor.swift */; };
 		2EF98B712513E36800AE0CD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E2E65D723037BED007AF298 /* Assets.xcassets */; };
+		6C1440022F33ED3400E10ACC /* CoreLittleManComputer in Frameworks */ = {isa = PBXBuildFile; productRef = 6C1440012F33ED3400E10ACC /* CoreLittleManComputer */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C1440022F33ED3400E10ACC /* CoreLittleManComputer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +412,9 @@
 				"es-419",
 			);
 			mainGroup = 2E2E65C523037BEB007AF298;
+			packageReferences = (
+				6C1440002F33ED3400E10ACC /* XCLocalSwiftPackageReference "../CoreLittleManComputer" */,
+			);
 			productRefGroup = 2E2E65CF23037BEB007AF298 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -660,6 +665,10 @@
 				);
 				MARKETING_VERSION = 2.0.1;
 				PRODUCT_NAME = LMC;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -682,6 +691,10 @@
 				);
 				MARKETING_VERSION = 2.0.1;
 				PRODUCT_NAME = LMC;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -758,6 +771,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		6C1440002F33ED3400E10ACC /* XCLocalSwiftPackageReference "../CoreLittleManComputer" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../CoreLittleManComputer;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6C1440012F33ED3400E10ACC /* CoreLittleManComputer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreLittleManComputer;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2E2E65C623037BEB007AF298 /* Project object */;
 }
