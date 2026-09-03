@@ -1,42 +1,82 @@
-# LittleManComputer
+# Little Man Computer for iOS and iPadOS
 
--Learn about Little Man Computer and how to structure the assembly language code here: https://en.wikipedia.org/wiki/Little_man_computer 
+Write Little Man Computer assembly, assemble it into the 100 mailboxes, then
+step or run the program while watching the accumulator, the program counter,
+the baskets and every mailbox change. Built on
+[CoreLittleManComputer](../CoreLittleManComputer), the same engine behind the
+`lmc` command-line tool.
 
--Support for iOS and iPadOS
+Learn about the Little Man Computer on
+[Wikipedia](https://en.wikipedia.org/wiki/Little_Man_Computer).
 
--Enter code into the text field where is says, "Enter assembly code here..." Once the code is entered select the "Assemble into RAM button" After the RAM registers are populated you can either "Step" or "Run" the program
+## Using the app
 
--You may also enter code directly into the RAM registers or "mailboxes"
+- Write a program in the editor, then tap **Assemble**. Problems are listed
+  under the editor with their line numbers.
+- **Step** runs one instruction; **Run** keeps going at the speed chosen in
+  the speed menu or Settings. When the program needs input the app asks for
+  a card.
+- Tap a mailbox to change its value. Press and hold one to set a breakpoint.
+- **Programs** saves what is in the editor and loads saved programs or the
+  built-in samples. **Help** explains the instruction set and how the
+  machine behaves.
 
--Sample code to try:  
-LDA ONE   
-ADD TEN  
-OUT  
-INP  
-ADD THREE  
-OUT  
-HLT  
-ONE DAT 001  
-TEN DAT 010  
-THREE DAT 003  
+Sample to try:
 
-Your output should be 011 and 3 plus the input value you enter
+```
+     INP
+     OUT
+LOOP BRZ QUIT
+     SUB ONE
+     OUT
+     BRA LOOP
+QUIT HLT
+ONE  DAT 1
+```
 
-## Project State
+Enter 3 and the out-basket fills with 3, 2, 1, 0.
 
-The code in this repo is live in the Apple iOS App Store
+## Architecture
+
+SwiftUI throughout, Swift 6 with main-actor default isolation, and SwiftData
+for saved programs.
+
+- `System` – the `App` and `AppState`, which owns routing, sheets and alerts.
+- `States` – `EditorState`, a `@MainActor @Observable` object that owns the
+  editor text, the assembled program and an `ObservableMachine` from the
+  engine. Engine work runs through `TaskTrigger`s attached in the presenter,
+  never in free-floating tasks.
+- `Presenters` – `AppPresenter` and `EditorPresenter`, which handle
+  navigation, sheets, alerts and the task modifiers.
+- `Views` – the editor, memory grid, registers, baskets, listing, and the
+  help, library, settings and input sheets.
+- `Model` – the SwiftData schema, `SavedProgram`, and the preview trait that
+  seeds sample data.
+
+The Xcode project uses synchronized folders, so adding a file on disk adds
+it to the target.
+
+## Building
+
+Requires Xcode 26 and macOS 26.
+
+- Clone the repo
+- `cp User.xcconfig.template User.xcconfig`
+- Set your team and bundle prefix in `User.xcconfig`
+- Build and run with Xcode
+
+Unit tests use Swift Testing and cover `EditorState` and the SwiftData
+model.
 
 ## Contributing
 
-It is always a good idea to **discuss** before taking on a significant task. That said, I have a strong bias towards enthusiasm. If you are excited about doing something, I'll do my best to get out of your way.
+It is always a good idea to **discuss** before taking on a significant task.
+That said, I have a strong bias towards enthusiasm. If you are excited about
+doing something, I'll do my best to get out of your way.
 
-By participating in this project you agree to abide by the [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+By participating in this project you agree to abide by the
+[Contributor Code of Conduct](CODE_OF_CONDUCT.md).
 
-### Building
+## Project State
 
-**Note**: requires Xcode 15 and macOS 14
-
-- clone the repo
-- `cp User.xcconfig.template User.xcconfig`
-- update `User.xcconfig` with your personal information
-- build/run with Xcode
+The code in this repo is live in the Apple iOS App Store.

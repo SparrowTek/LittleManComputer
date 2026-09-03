@@ -1,112 +1,61 @@
-//
-//  AppState.swift
-//  LittleManComputer
-//
-//  Created by Thomas J. Rademaker on 4/12/20.
-//  Copyright © 2020 SparrowTek LLC. All rights reserved.
-//
-
-import Foundation
 import SwiftUI
-import Combine
+import CoreLittleManComputer
 
-enum SheetType {
-    case inputNeeded
-    case assemblyCodeEditor
-    case updateRegister
-    case help
-    case folder
-    case save
-}
+@Observable
+@MainActor
+class AppState {
+    enum Route: Int, Identifiable {
+        case editor
 
-class AppState: ObservableObject {
-    @Published var programState = ProgramState()
-    @Published var showCompileError = false
-    @Published var shouldShowAlert = false
-    @Published var alertMessage: LocalizedStringKey = ""
-    @Published var sourceCode = ""
-    @Published var sheetType = SheetType.assemblyCodeEditor {
-        didSet {
-            showSheet = true
-        }
+        var id: Int { rawValue }
     }
-    @Published var showSheet = false
-    
-    private lazy var virtualMachine = VirtualMachine(state: programState)
-    private var cancelable: AnyCancellable?
-    var registerToUpdate = 0 {
-        didSet {
-            sheetType = .updateRegister
-        }
-    }
-    var isIpad: Bool { UIDevice.current.userInterfaceIdiom == .pad }
-    
-    init() {
-        subscribeToState()
-    }
-    
-    private func subscribeToState() {
-        cancelable = virtualMachine.state.sink(receiveCompletion: { [weak self] completion in
-            if completion == .failure(.needInput) { // TODO: THIS IS KILLING the virtual machine state
-                self?.sheetType = .inputNeeded
-                self?.resetVirtualMachine()
+
+    enum Sheet: Identifiable {
+        case help
+        case library
+        case settings
+        case input
+
+        var id: Int {
+            switch self {
+            case .help: 1
+            case .library: 2
+            case .settings: 3
+            case .input: 4
             }
-        }, receiveValue: { [weak self] state in
-            self?.programState = state
-        })
-    }
-    
-    private func resetVirtualMachine() {
-        virtualMachine = VirtualMachine(state: programState)
-        subscribeToState()
-    }
-    
-    func reset() {
-        let registers = programState.registers
-        programState = ProgramState(registers: registers)
-        programState.printStatement = LocalizedStringKey(NSLocalizedString("HALT_STATEMENT", comment: ""))
-        resetVirtualMachine()
-    }
-    
-    func updateVirtualMachine() {
-        virtualMachine.state.value = programState
-    }
-    
-    func runVirtualMachine(speed: Double = 1) {
-        virtualMachine.run(speed: speed)
-    }
-    
-    func stepVirtualMaching() {
-        virtualMachine.step()
-    }
-    
-    func updateInput(_ input: Int?) {
-        virtualMachine.input = input
-    }
-    
-    func showCompileError(_ error: CompileError) {
-        let errorMessage: LocalizedStringKey
-        
-        switch error {
-        case .intExpected:
-            errorMessage = "intExpectedError"
-        case .invalidAssemblyCode:
-            errorMessage = "invalidAssemblyCodeError"
-        case .general:
-            errorMessage = "generalError"
         }
-        
-        self.alertMessage = errorMessage
-        showCompileError = true
     }
-    
-    func showAlert(_ messsage: LocalizedStringKey) {
-        alertMessage = messsage
-        shouldShowAlert = true
+
+    enum Alert: Identifiable {
+        case fault(MachineFault)
+        case error(title: String, message: String)
+
+        var id: Int {
+            switch self {
+            case .fault: 1
+            case .error: 2
+            }
+        }
+
+        var title: String {
+            switch self {
+            case .fault: "Program Stopped"
+            case .error(let title, _): title
+            }
+        }
+
+        var message: String {
+            switch self {
+            case .fault(let fault): fault.description
+            case .error(_, let message): message
+            }
+        }
     }
-    
-    func updateRegister(with value: Int) {
-        programState.registers[registerToUpdate] = value
-        updateVirtualMachine()
-    }
+
+    var route: Route = .editor
+    var sheet: Sheet?
+    var alert: Alert?
+
+    @ObservationIgnored
+    lazy var editorState = EditorState(parentState: self)
 }
