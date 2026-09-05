@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		6C1440022F33ED3400E10ACC /* CoreLittleManComputer in Frameworks */ = {isa = PBXBuildFile; productRef = 6C1440012F33ED3400E10ACC /* CoreLittleManComputer */; };
+		6CD6FED0304C8A3E0002B66F /* CoreLittleManComputer in Frameworks */ = {isa = PBXBuildFile; productRef = 6CD6FECF304C8A3E0002B66F /* CoreLittleManComputer */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,14 +29,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		6CA0000000000000000000A1 /* Exceptions for "LittleManComputer" folder in "LittleManComputer" target */ = {
+		6CA0000000000000000000A1 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Resources/Info.plist,
 			);
 			target = 2E2E65CD23037BEB007AF298 /* LittleManComputer */;
 		};
-		6CA0000000000000000000A2 /* Exceptions for "LittleManComputerTests" folder in "LittleManComputerTests" target */ = {
+		6CA0000000000000000000A2 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -45,22 +46,8 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		6CA0000000000000000000B1 /* LittleManComputer */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				6CA0000000000000000000A1 /* Exceptions for "LittleManComputer" folder in "LittleManComputer" target */,
-			);
-			path = LittleManComputer;
-			sourceTree = "<group>";
-		};
-		6CA0000000000000000000B2 /* LittleManComputerTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				6CA0000000000000000000A2 /* Exceptions for "LittleManComputerTests" folder in "LittleManComputerTests" target */,
-			);
-			path = LittleManComputerTests;
-			sourceTree = "<group>";
-		};
+		6CA0000000000000000000B1 /* LittleManComputer */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (6CA0000000000000000000A1 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = LittleManComputer; sourceTree = "<group>"; };
+		6CA0000000000000000000B2 /* LittleManComputerTests */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (6CA0000000000000000000A2 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = LittleManComputerTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +56,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C1440022F33ED3400E10ACC /* CoreLittleManComputer in Frameworks */,
+				6CD6FED0304C8A3E0002B66F /* CoreLittleManComputer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +119,7 @@
 			name = LittleManComputer;
 			packageProductDependencies = (
 				6C1440012F33ED3400E10ACC /* CoreLittleManComputer */,
+				6CD6FECF304C8A3E0002B66F /* CoreLittleManComputer */,
 			);
 			productName = LittleManComputer;
 			productReference = 2E2E65CE23037BEB007AF298 /* LMC.app */;
@@ -187,11 +176,10 @@
 			mainGroup = 2E2E65C523037BEB007AF298;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				6C1440002F33ED3400E10ACC /* XCLocalSwiftPackageReference "../CoreLittleManComputer" */,
+				6CD6FECE304C8A3E0002B66F /* XCRemoteSwiftPackageReference "CoreLittleManComputer" */,
 			);
 			productRefGroup = 2E2E65CF23037BEB007AF298 /* Products */;
 			projectDirPath = "";
-			preferredProjectObjectVersion = 77;
 			projectRoot = "";
 			targets = (
 				2E2E65CD23037BEB007AF298 /* LittleManComputer */,
@@ -241,7 +229,6 @@
 			targetProxy = 2E2E65E523037BED007AF298 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
 
 /* Begin XCBuildConfiguration section */
 		2E2E65EB23037BED007AF298 /* Debug */ = {
@@ -504,16 +491,25 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		6C1440002F33ED3400E10ACC /* XCLocalSwiftPackageReference "../CoreLittleManComputer" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../CoreLittleManComputer;
+/* Begin XCRemoteSwiftPackageReference section */
+		6CD6FECE304C8A3E0002B66F /* XCRemoteSwiftPackageReference "CoreLittleManComputer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SparrowTek/CoreLittleManComputer";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
 		};
-/* End XCLocalSwiftPackageReference section */
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		6C1440012F33ED3400E10ACC /* CoreLittleManComputer */ = {
 			isa = XCSwiftPackageProductDependency;
+			productName = CoreLittleManComputer;
+		};
+		6CD6FECF304C8A3E0002B66F /* CoreLittleManComputer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6CD6FECE304C8A3E0002B66F /* XCRemoteSwiftPackageReference "CoreLittleManComputer" */;
 			productName = CoreLittleManComputer;
 		};
 /* End XCSwiftPackageProductDependency section */
