@@ -1,0 +1,15 @@
+{
+  "originHash" : "85d0754d5c2ff0d09758ee5a71b70b64f8e18052d9c8b16c769f93e2524dc362",
+  "pins" : [
+    {
+      "identity" : "corelittlemancomputer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SparrowTek/CoreLittleManComputer",
+      "state" : {
+        "branch" : "main",
+        "revision" : "96c8933ab68d8b8897795f96a44814ad5da1fba7"
+      }
+    }
+  ],
+  "version" : 3
+}

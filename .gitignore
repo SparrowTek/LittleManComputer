@@ -3,8 +3,6 @@
 xcuserdata/
 DerivedData/
 Package.pins
-Package.resolved
 .swiftpm
 .build/
-*xcshareddata/
 User.xcconfig
